@@ -1,0 +1,34 @@
+name: Radar BYMA - fundamentales SEC XBRL
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'radar_byma/financials_sec.py'
+      - '.github/workflows/byma_fundamentales.yml'
+  schedule:
+    - cron: '5 23 * * 1-5'
+permissions:
+  contents: read
+concurrency:
+  group: byma-sec-companyfacts
+  cancel-in-progress: true
+jobs:
+  structured-financials:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Read numerical SEC companyfacts without auth keys
+        run: python radar_byma/financials_sec.py
+      - name: Upload filing-date aware numerical ratios
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: byma-sec-fundamentals
+          path: resultados/fundamentales/
+          if-no-files-found: warn
+          retention-days: 30
