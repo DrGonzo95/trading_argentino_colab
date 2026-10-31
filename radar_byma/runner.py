@@ -118,7 +118,8 @@ def backtest(d,initial):
 def write(name,rows):
     with open(OUT/name,"w",encoding="utf-8",newline="") as f:
         if not rows:return
-        writer=csv.DictWriter(f,fieldnames=rows[0].keys())
+        fields=list(dict.fromkeys(key for row in rows for key in row.keys()))
+        writer=csv.DictWriter(f,fieldnames=fields)
         writer.writeheader();writer.writerows(rows)
 states=[];backtests=[];trades=[];candidates=[]
 for ticker in TICKERS:
