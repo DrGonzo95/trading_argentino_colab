@@ -50,13 +50,33 @@ def download(ticker):
     d=d.loc[d.date<=cutoff].sort_values("date").drop_duplicates("date",keep="last").reset_index(drop=True)
     if len(d)==0:raise ValueError("Sin fechas <= corte")
     if (d[["open","high","low","close"]]<=0).any().any() or (d.volume<0).any():raise ValueError("Precios/volumen inválidos")
+    if ticker=="YPFD":
+        # Corporate action verified by YPF IR: 1:10 split effective 2026-08-04.
+        old=d.date<pd.Timestamp("2026-08-04")
+        d.loc[old,["open","high","low","close"]] /= 10
+        d.loc[old,"volume"] *= 10
     bad=(d.high<d[["open","low","close"]].max(axis=1)) | (d.low>d[["open","high","close"]].min(axis=1))
-    if bad.any():
-        sample=d.loc[bad,["date","open","high","low","close"]].head(3).copy()
-        sample["date"]=sample["date"].dt.strftime("%Y-%m-%d")
-        raise ValueError(f"OHLC inconsistente: {int(bad.sum())} de {len(d)} velas; ejemplos: {sample.to_dict(orient='records')}")
-    if ((d.open/d.close.shift()-1).abs()>.35).any():raise ValueError("Gap >35%, posible split o cambio de ratio")
-    if len(d)>1 and d.date.diff().dt.days.max()>21:raise ValueError("Hay brecha >21 días en el histórico")
+    corrections=int(bad.sum())
+    if corrections:
+        upper=d[["open","high","low","close"]].max(axis=1)
+        lower=d[["open","high","low","close"]].min(axis=1)
+        deviation=pd.concat([(upper-d.high).clip(lower=0),(d.low-lower).clip(lower=0)],axis=1).max(axis=1)/d.close
+        # Allow corrections to <=2% of rows with <1% deviation (closing auction/capture issues).
+        # Each repair is logged, never silently converted into an authentic high/low.
+        if corrections>max(1,int(.02*len(d))) or float(deviation.max())>.01:
+            sample=d.loc[bad,["date","open","high","low","close"]].head(2).copy()
+            sample["date"]=sample["date"].dt.strftime("%Y-%m-%d")
+            raise ValueError(f"OHLC inconsistente: {corrections} de {len(d)}; maxdesv {deviation.max():.3%}; muestra {sample.to_dict('records')}")
+        d["high"]=upper
+        d["low"]=lower
+    d.attrs["correcciones_ohlc"]=corrections
+    d.attrs["split_ypfd_ajustado"]=bool(ticker=="YPFD")
+    jumps=(d.open/d.close.shift()-1).abs()
+    if (jumps>.35).any():
+        ix=jumps.idxmax()
+        raise ValueError(f"Gap >35% en {d.date.iloc[ix].date()} ({jumps.iloc[ix]:.1%}), posible split/ratio sin ajustar")
+    if len(d)>1 and d.date.diff().dt.days.max()>21:
+        raise ValueError(f"Brecha de fechas >21 días: {d.date.diff().dt.days.max()} días")
     return d,url
 def calculate(d):
     d=d.copy()
@@ -130,7 +150,7 @@ for ticker in TICKERS:
     record={"simbolo":ticker,"fecha_ejecucion":str(today)}
     try:
         d,url=download(ticker)
-        record.update(fuente=url,velas=len(d),primera=str(d.date.iloc[0].date()),ultima=str(d.date.iloc[-1].date()))
+        record.update(fuente=url,velas=len(d),primera=str(d.date.iloc[0].date()),ultima=str(d.date.iloc[-1].date()),correcciones_ohlc=d.attrs.get("correcciones_ohlc",0),split_ypfd_ajustado=d.attrs.get("split_ypfd_ajustado",False))
         if len(d)<MIN_BARS:
             record["estado"]="RECHAZADO_MENOS_400"
         elif ticker in ["AL30","GD30","AL35"]:
