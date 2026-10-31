@@ -4,11 +4,12 @@ on:
   push:
     paths:
       - 'radar_byma/events_public.py'
+      - 'radar_byma/events_study.py'
       - '.github/workflows/byma_eventos.yml'
   schedule:
     - cron: '20 13-22 * * 1-5'
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: byma-events-official-and-news
   cancel-in-progress: true
@@ -26,6 +27,18 @@ jobs:
         run: python radar_byma/discover_byma.py
       - name: Monitor CNV filings, company-name news and optional public social discussion
         run: python radar_byma/events_public.py
+      - name: Archive events when first observed and run gated forward-safe event study
+        run: python radar_byma/events_study.py
+      - name: Persist first-seen event history without changing paper trades
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add radar_byma/state/event_history.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record first-seen public event dates [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
       - name: Preserve published events, dates and source links
         if: always()
         uses: actions/upload-artifact@v4
