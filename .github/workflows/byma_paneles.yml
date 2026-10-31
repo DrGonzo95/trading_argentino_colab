@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'radar_byma/discover_byma.py'
+      - 'radar_byma/rank_snapshot.py'
       - '.github/workflows/byma_paneles.yml'
   schedule:
     - cron: '10,40 13-21 * * 1-5'
@@ -24,6 +25,8 @@ jobs:
       - run: pip install requests beautifulsoup4
       - name: Fetch all available public delayed panel quotes
         run: python radar_byma/discover_byma.py
+      - name: Rank all published quotes (quality and indicative liquidity, NOT buy signals)
+        run: python radar_byma/rank_snapshot.py
       - name: Save quotes and scan validation
         if: always()
         uses: actions/upload-artifact@v4
