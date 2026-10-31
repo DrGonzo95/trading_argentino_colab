@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - 'radar_byma/events_public.py'
-      - 'radar_byma/fundamentals_snapshot.py'
       - '.github/workflows/byma_eventos.yml'
   schedule:
     - cron: '20 13-22 * * 1-5'
@@ -27,8 +26,6 @@ jobs:
         run: python radar_byma/discover_byma.py
       - name: Monitor CNV filings, company-name news and optional public social discussion
         run: python radar_byma/events_public.py
-      - name: Obtain labeled BCBA fundamental ratios from public secondary source
-        run: python radar_byma/fundamentals_snapshot.py
       - name: Preserve published events, dates and source links
         if: always()
         uses: actions/upload-artifact@v4
@@ -36,7 +33,6 @@ jobs:
           name: eventos-balance-noticias-byma
           path: |
             resultados/eventos/
-            resultados/fundamentales/
             resultados/discovery/snapshot.json
           retention-days: 30
           if-no-files-found: warn
