@@ -228,6 +228,19 @@ def main():
             for phase,a,b in (("entrenamiento",begin,cut),("prueba",cut+pd.Timedelta(days=1),finish)):
                 result,_,_=simulate(data,selected,a,b,cap)
                 scenario.append({"fase":phase,**result})
+    # Sensitivity is a POST-HOC robustness inspection, NOT fresh out-of-sample confirmation.
+    # The RSI14 candidate was noticed after seeing the test. Never call it validated.
+    global FEE,SLIP
+    baseline_fee,baseline_slip=FEE,SLIP
+    sensitivity=[]
+    for label,fee,slip in (("base",.003,.001),("costo_alto",.005,.002),("costo_bajo",.0015,.001)):
+        FEE,SLIP=fee,slip
+        for cap in (50000,100000):
+            for phase,a,b in (("entrenamiento",begin,cut),("prueba",cut+pd.Timedelta(days=1),finish)):
+                result,_,_=simulate(data,"reversion_rsi14",a,b,cap)
+                sensitivity.append({"escenario":label,"comision_por_lado":fee,"deslizamiento_por_lado":slip,"fase":phase,**result})
+    FEE,SLIP=baseline_fee,baseline_slip
+    csvsave("sensibilidad_RSI14.csv",sensitivity)
     csvsave("entrenamiento_12_modelos.csv",train)
     csvsave("prueba_12_modelos.csv",test)
     csvsave("trades_prueba.csv",test_trades)
@@ -237,6 +250,7 @@ def main():
               "activos_incluidos":sorted(data),"activos_rechazados":rejected,
               "fecha_inicio":str(begin.date()),"corte_entrenamiento":str(cut.date()),"fecha_fin":str(finish.date()),
               "candidatos_entrenamiento":len(eligible),"modelo_preseleccionado":selected,
+              "RSI14_posthoc":"Consistente en ambos periodos SOLO como observacion exploratoria; seleccionado despues de ver test. Exige prueba forward.",
               "seleccion_en_prueba":next((x for x in test if x["estrategia"]==selected),None),
               "advertencia":"Las doce estrategias y el umbral fueron fijados antes de observar el test. Backtest basado en barras diarias, sin CCL independiente, corporate actions completa ni profundidad de puntas. No garantiza rentabilidad ni es una orden."}
     (OUT/"resumen.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
