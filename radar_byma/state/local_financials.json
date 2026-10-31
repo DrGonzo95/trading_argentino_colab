@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "records": {
+    "A3": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "AGRO": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "ALUA": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "AUSO": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "BBAR": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "BHIP": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "BMA": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "BOLT": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "BPAT": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "BYMA": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CADO": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CAPX": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CARC": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CECO2": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CELU": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CEPU": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-10-31T20:48:55.836312-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    }
+  },
+  "last_run": "2026-10-31T20:48:55.836312-03:00",
+  "source": "stockanalysis.com/quote/bcba (third-party summary; ARS millions)",
+  "all_listed": 68
+}
