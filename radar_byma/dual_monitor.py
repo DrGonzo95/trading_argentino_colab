@@ -39,7 +39,7 @@ def data():
     datasets={}; errors=[]
     for f in sorted((ROOT/"resultados").glob("*_ohlcv.csv")):
         s=f.name.replace("_ohlcv.csv","")
-        if s in ("AL30","GD30","AL35"):continue
+        if s in ("AL29","AL30","AL35","AE38","AL41","GD29","GD30","GD35","GD38","GD41","GD46","TX28","TX31"):continue
         try:
             frame=pd.read_csv(f,parse_dates=["date"])
             if len(frame)<400 or (frame[["open","high","low","close"]]<=0).any().any():raise ValueError("Datos insuficientes o incorrectos")
