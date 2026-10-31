@@ -148,22 +148,23 @@ def fetch_cnv():
 def fetch_news(ticker,query):
     url="https://news.google.com/rss/search?"+urlencode({"q":query+" when:7d","hl":"es-419","gl":"AR","ceid":"AR:es-419"})
     r=SESSION.get(url,timeout=12);r.raise_for_status()
-    soup=BeautifulSoup(r.content,"xml")
-    if soup.find("rss") is None:raise ValueError("RSS invalido")
+    from xml.etree import ElementTree as ET
+    root=ET.fromstring(r.content)
+    if root.tag!="rss":raise ValueError("RSS invalido")
     records=[]
-    for item in soup.select("item")[:12]:
-        title=item.find("title")
-        link=item.find("link")
-        date=item.find("pubDate")
-        if title is None or link is None or not link.text.startswith("https://"):continue
-        dt=parse_date(date.text) if date else None
+    for item in root.findall(".//item")[:12]:
+        title=item.findtext("title")
+        link=item.findtext("link")
+        published=item.findtext("pubDate")
+        if not title or not link or not link.startswith("https://"):continue
+        dt=parse_date(published) if published else None
         if dt and (dt>TODAY or TODAY-dt>WINDOW):continue
-        pub=item.find("source")
+        pub=item.findtext("source")
         records.append({"ticker":ticker,"empresa_fuente":query,
           "fecha_publicacion":dt.isoformat() if dt else None,
-          "titulo":title.text[:500],"categorias":";".join(tag(title.text)),
-          "fuente":"GOOGLE_NEWS_RSS_TERCEROS","medio":pub.text[:100] if pub else None,
-          "url":link.text.strip(),
+          "titulo":title[:500],"categorias":";".join(tag(title)),
+          "fuente":"GOOGLE_NEWS_RSS_TERCEROS","medio":pub[:100] if pub else None,
+          "url":link.strip(),
           "prioridad_fuente":"NOTICIA_NO_CONFIRMADA_EN_DOCUMENTO",
           "estado":"VERIFICAR_EN_IR_O_CNV","no_fundamental_ratios":True})
     return records
