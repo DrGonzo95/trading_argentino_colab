@@ -31,14 +31,24 @@ def main():
     if status_file.exists():
         with status_file.open(encoding="utf-8-sig",newline="") as f:
             states={r["simbolo"]:r for r in csv.DictReader(f)}
+    discovery_path=OUT/"discovery"/"snapshot.json"
+    snapshot={}
+    if discovery_path.exists():
+        try:snapshot=json.loads(discovery_path.read_text(encoding="utf-8"))
+        except (ValueError,OSError):snapshot={}
+    dynamic_groups=snapshot.get("historical_extra_by_type",{})
+    extra_stocks=dynamic_groups.get("accion",[])
+    extra_cedears=dynamic_groups.get("cedear",[])
+    extra=[s for s in extra_stocks+extra_cedears if s not in ALL]
+    all_names=ALL+list(dict.fromkeys(extra))
     rows=[];bonds=[]
-    for s in ALL:
-        group="acción argentina" if s in STOCKS else "CEDEAR en ARS" if s in CEDEARS else ("bono soberano USD / especie ARS" if s in USD_BONDS else "bono CER / especie ARS")
+    for s in all_names:
+        group="acción argentina" if s in STOCKS+extra_stocks else "CEDEAR en ARS" if s in CEDEARS+extra_cedears else ("bono soberano USD / especie ARS" if s in USD_BONDS else "bono CER / especie ARS")
         state=states.get(s,{})
         status=state.get("estado","SIN_DATOS")
         dfile=OUT/f"{s}_ohlcv.csv"
         row={"simbolo":s,"grupo":group,"estado_datos":status,
-             "uso":"paper RSI14" if s in STOCKS+CEDEARS else "observación de precio sin PNL",
+             "uso":"paper RSI14" if s in STOCKS+CEDEARS+extra else "observación de precio sin PNL",
              "señal":flag(status),"fecha_ultima_rueda":state.get("ultima",""),
              "ruedas_validadas":int(state.get("velas",0) or 0),
              "reparaciones_ohlc":int(state.get("correcciones_ohlc",0) or 0)}
@@ -68,7 +78,10 @@ def main():
         elif state.get("detalle"):
             row["detalle"]=state["detalle"]
         rows.append(row)
-    counts={"universo":len(rows),"acciones":len(STOCKS),"cedears":len(CEDEARS),"bonos":len(BONDS),
+    counts={"universo_historico_consultado":len(rows),"acciones":len(STOCKS+extra_stocks),"cedears":len(CEDEARS+extra_cedears),"bonos_historicos":len(BONDS),
+            "todos_los_paneles_cotizaciones":snapshot.get("snapshot_counts",{}),
+            "cotizaciones_observadas_total":snapshot.get("quote_rows_total",0),
+            "paneles_errores":snapshot.get("errors",{}),
             "series_validas":sum(r["ruedas_validadas"]>=400 and r["estado_datos"] in ("SIN_SENAL","CANDIDATO_SOLO_PAPEL","BONO_SOLO_SEGUIMIENTO_PRECIO") for r in rows),
             "bonos_observables":len(bonds),"acciones_cedears_validos":sum(r["uso"]=="paper RSI14" and r["estado_datos"] in ("SIN_SENAL","CANDIDATO_SOLO_PAPEL") for r in rows)}
     with (REPORT/"universo_completo.csv").open("w",newline="",encoding="utf-8") as f:
@@ -78,11 +91,14 @@ def main():
         if bonds:
             fields=list(dict.fromkeys(k for row in bonds for k in row))
             writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader();writer.writerows(bonds)
-    info={"fecha_revision":now.isoformat(),"tipos":counts,"bonos":bonds,"acciones_cedears":rows[:len(STOCKS+CEDEARS)],
-          "restricciones":["El universo de 49 es una lista de seguimiento, no todas las especies de BYMA.",
+    info={"fecha_revision":now.isoformat(),"tipos":counts,"bonos":bonds,"acciones_cedears":[r for r in rows if r["uso"]=="paper RSI14"],
+          "descubrimiento":{"paneles":snapshot.get("panels",{}),"totales":snapshot.get("snapshot_counts",{}),
+                           "paneles_con_error":snapshot.get("errors",{}),
+                           "extra_historicos_seleccionados":snapshot.get("historical_extra_symbols",[])},
+          "restricciones":["Las cotizaciones observadas abarcan los símbolos publicados en cinco paneles públicos consultados, NO el padrón completo BYMA ni precios en vivo.",
           "Sin flujo de cupones/amortizaciones/TIR y sin libro de órdenes, no se dan órdenes de bonos.",
           "Series de IOL son diarias y diferidas, no precios en tiempo real.",
-          "Los activos con históricos rechazados continúan en vigilancia pero sin señal operable."]}
+          "Solo las series OHLCV con calidad y longitud suficientes pueden generar señales; símbolos nuevos se recorren de manera rotativa."]}
     (REPORT/"reporte.json").write_text(json.dumps(info,indent=2,ensure_ascii=False,default=str),encoding="utf-8")
     print("MULTI_ASSET_WATCH "+json.dumps({"tipos":counts,"bonos_observados":[r["simbolo"] for r in bonds],
                                           "rejected":[r["simbolo"] for r in rows if "ERROR" in r["estado_datos"] or r["estado_datos"].startswith("RECHAZADO")]},ensure_ascii=False))
