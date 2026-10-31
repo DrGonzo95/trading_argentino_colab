@@ -1,0 +1,77 @@
+name: PULSO BYMA - dashboard web de oportunidades
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docs/index.html'
+      - 'docs/styles.css'
+      - 'docs/app.js'
+      - 'radar_byma/dashboard_export.py'
+      - '.github/workflows/byma_dashboard_pages.yml'
+  schedule:
+    - cron: '7,22,37,52 13-21 * * 1-5'
+    - cron: '7,37 22 * * 1-5'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pulso-byma-pages-public
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies without private API keys
+        run: pip install requests beautifulsoup4 pandas numpy
+      - name: Scan delayed public quote panels
+        run: python radar_byma/discover_byma.py
+      - name: Confirm daily historical data and theoretical paper levels
+        run: python radar_byma/rank_byma.py
+      - name: Export complete market dashboard with data quality warnings
+        run: python radar_byma/dashboard_export.py
+      - name: Validate browser code and market data
+        run: |
+          node --check docs/app.js
+          python -m py_compile radar_byma/dashboard_export.py
+          python -m json.tool docs/data/market.json >/dev/null
+          test -s docs/data/market.json
+      - name: Persist latest public delayed dashboard snapshot
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add docs/data/market.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish delayed BYMA dashboard data [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Configure Pages after repo owner enables Pages
+        uses: actions/configure-pages@v5
+        continue-on-error: true
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+      - name: Publish GitHub Pages website
+        id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Show publication status
+        run: |
+          if [ "${{ steps.deployment.outcome }}" != "success" ]; then
+            echo "::warning::Web source and data saved; GitHub Pages needs activation in Settings > Pages > Source > GitHub Actions."
+          fi
+          echo "Source: docs/index.html"
+          echo "Data: docs/data/market.json"
+          echo "Web URL after Pages activation: https://drgonzo95.github.io/trading_argentino_colab/"
