@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'radar_byma/fusion_byma.py'
+      - 'radar_byma/financials_secondary.py'
       - '.github/workflows/byma_ranking_integral.yml'
   schedule:
     - cron: '50 13-22 * * 1-5'
