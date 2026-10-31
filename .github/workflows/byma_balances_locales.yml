@@ -1,0 +1,46 @@
+name: Radar BYMA - cobertura gradual balances locales
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'radar_byma/financials_local.py'
+      - '.github/workflows/byma_balances_locales.yml'
+  schedule:
+    - cron: '15 13,18,23 * * 1-5'
+permissions:
+  contents: write
+concurrency:
+  group: byma-local-financials
+  cancel-in-progress: false
+jobs:
+  local-statements:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests beautifulsoup4
+      - name: Discover currently quoted Argentine shares
+        run: python radar_byma/discover_byma.py
+      - name: Check 16 companies per batch and read ARS annual income balance cashflow tables
+        run: python radar_byma/financials_local.py
+      - name: Persist cumulative local financial coverage
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add radar_byma/state/local_financials.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update research-only local balance snapshots [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Upload annual financial comparison and coverage status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: byma-balances-locales
+          path: resultados/fundamentales/
+          if-no-files-found: warn
+          retention-days: 30
