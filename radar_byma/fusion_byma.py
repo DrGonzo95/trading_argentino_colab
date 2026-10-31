@@ -38,10 +38,13 @@ def main():
     events=jread(STATE/"events_latest.json")
     sec=jread(STATE/"sec_latest.json")
     arg=jread(STATE/"arg_latest.json")
+    secondary=jread(STATE/"secondary_latest.json")
     study=jread(STATE/"events_study_latest.json")
     e_recent=recent(events.get("revisado_en")) and not events.get("errores",{}).get("cnv")
     s_recent=recent(sec.get("fecha"))
     a_recent=recent(arg.get("fecha"))
+    third_recent=recent(secondary.get("fetched_at")) and secondary.get("status")=="SECONDARY_SNAPSHOT_ONLY"
+    secondary_by={r["ticker"]:r for r in secondary.get("results",[]) if r.get("ticker")} if third_recent else {}
     ev_by={r["ticker"]:r for r in events.get("top_prioridad_revision",[]) if r.get("ticker")} if e_recent else {}
     sec_by={}
     if s_recent:
@@ -56,16 +59,18 @@ def main():
         tech=technical_by.get(symbol,{})
         e=ev_by.get(symbol)
         fs=sec_by.get(symbol)
+        f3=secondary_by.get(symbol)
         fa=ar_by.get(symbol,{})
         tscore=asfloat(tech.get("puntaje_tecnico"))
         official=int(e.get("documentos_cnv") or 0) if e else 0
         headlines=int(e.get("titulares") or 0) if e else 0
         social=int(e.get("social_no_verificado") or 0) if e else 0
         metric=fs is not None or fa.get("estado")=="CIFRAS_DE_TABLA_CORPORATIVA_HISTORICAS"
+        third_metric=f3 is not None and not metric
         # A transparent observation priority, not a probabilistic trade score.
         score=(min(35,official*8)+min(12,headlines*2)+
                (min(30,tscore*.3) if tscore is not None else 0)+
-               (12 if metric else 0))
+               (12 if metric else 0)+(4 if third_metric else 0))
         spread=asfloat(quote_row.get("spread_pct_delayed"))
         if spread is not None and spread>2:score=max(0,score-10)
         low=asfloat(quote_row.get("turnover_indicative")) or 0
@@ -74,13 +79,15 @@ def main():
         if e_recent and e:quality.append("EMISOR_NOVEDAD_EN_CNV_O_RSS")
         if tscore is not None:quality.append("TECNICO_DATOS_DIARIOS_VALIDOS")
         if metric:quality.append("FUNDAMENTAL_NUMERICO_PARCIAL")
+        if third_metric:quality.append("TERCERO_SNAPSHOT_ANUAL_NO_PUNTO_EN_TIEMPO")
         if spread is not None:quality.append("SPREAD_PUBLICO_DEMORADO")
         if not quality:quality.append("SOLO_PANEL_PRECIO_DEMORADO")
         reasons=[]
         if group in ("bono","on"):
             reasons.append("SIN_TIR_CUPONES_TASA_MONEDA_Y_LIQUIDEZ_VERIFICADOS")
         else:
-            if not metric:reasons.append("SIN_BALANCE_NUMERICO_VERIFICADO")
+            if not metric:reasons.append("SIN_BALANCE_OFICIAL_NUMERICO_VERIFICADO")
+            if third_metric:reasons.append("TERCERO_SIN_FECHA_PRESENTACION_NO_BACKTEST")
             if tscore is None:reasons.append("SIN_SERIE_TECNICA_VALIDADA")
         if not e_recent:reasons.append("NOTICIAS_NO_ACTUALIZADAS_O_NO_VINCULADAS")
         if spread is None:reasons.append("SPREAD_Y_PROFUNDIDAD_NO_VERIFICADOS")
@@ -97,10 +104,13 @@ def main():
             "novedades_cnv_oficiales_vinculadas":official if e_recent else None,
             "titulares_asociados":headlines if e_recent else None,
             "menciones_sociales_sin_verificar":social if e_recent else None,
-            "fundamental_numerico": "PARCIAL_VERIFICADO" if metric else "SIN_DATOS_VALIDOS",
+            "fundamental_numerico": "PARCIAL_VERIFICADO" if metric else "TABLA_TERCERO_SOLO_SNAPSHOT" if third_metric else "SIN_DATOS_VALIDOS",
             "fundamental_anual_cierre":fs.get("asof") if fs else None,
             "crecimiento_ventas_anual_sec_pct":fs.get("yoy_pct") if fs else None,
             "margen_neto_sec_pct":fs.get("net_margin_pct") if fs else None,
+            "crecimiento_anual_terceros_pct":f3.get("revenue_growth_nominal_pct") if f3 else None,
+            "margen_neto_terceros_pct":f3.get("net_profit_margin_pct") if f3 else None,
+            "fecha_publicacion_terceros":"DESCONOCIDA" if third_metric else None,
             "spread_pct_informativo":spread,
             "monto_operado_unidad_sin_verificar":low,
             "estado_operativo":trade,"evidencia":";".join(quality),
@@ -123,6 +133,7 @@ def main():
       "on":sum(r["clase"]=="on" for r in rows),
       "con_historico_valido_para_indicadores":sum(r["tecnico_puntaje_heuristico"] is not None for r in rows),
       "con_fundamental_numerico_parcial":sum(r["fundamental_numerico"]=="PARCIAL_VERIFICADO" for r in rows),
+      "con_tabla_terceros_solo_snapshot":sum(r["fundamental_numerico"]=="TABLA_TERCERO_SOLO_SNAPSHOT" for r in rows),
       "novedades_verificadas_recientes":e_recent,
       "fundamentales_sec_estado":sec.get("SEC_API") if s_recent else "NO_ACTUALIZADO",
       "fundamentales_arg_numero_emisores":arg.get("emisores_con_cifras_extraidas") if a_recent else None,
@@ -138,6 +149,7 @@ def main():
         "Las noticias y balances se observan en workflows distintos con fechas verificadas; estado desactualizado no agrega puntos.",
         "Las menciones en redes sociales no suman puntos de compra y pueden contener rumores.",
         "Fuentes SEC bloqueadas con HTTP403 no se sustituyen por datos inventados.",
+        "Los ratios de fuentes de terceros no tienen fecha de publicación contable verificable: NO sirven para backtests históricos, sólo para investigación actual.",
         "Para operar faltan puntas reales, profundidad, impuestos y una validación prospectiva de la señal." ]}
     (OUT/"resumen.json").write_text(json.dumps(summary,indent=2,ensure_ascii=False),encoding="utf-8")
     print("FUSION_BYMA "+json.dumps({k:v for k,v in summary.items() if k!="top_solo_investigacion"},ensure_ascii=False))
