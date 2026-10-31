@@ -41,10 +41,22 @@ def fetch(url,timeout=27):
     r.raise_for_status()
     return r.json()
 def ticker_map():
-    raw=fetch(SEC_TICKERS)
-    items=raw.values() if isinstance(raw,dict) else raw
-    return {str(p["ticker"]).upper():int(p["cik_str"]) for p in items
+    # An official SEC directory may return HTTP403 from shared cloud runner IPs.
+    # Use a small previously documented fallback for DIRECT endpoint diagnostics;
+    # report fallback and do NOT pretend full market ticker coverage.
+    fallback={"AAPL":320193,"NVDA":1045810,"MSFT":789019,"AMZN":1018724,
+              "GOOGL":1652044,"META":1326801,"TSLA":1318605,"MELI":1099590,
+              "AVGO":1730168,"JPM":19617,"XOM":34088,"KO":21344}
+    try:
+        raw=fetch(SEC_TICKERS)
+        items=raw.values() if isinstance(raw,dict) else raw
+        result={str(p["ticker"]).upper():int(p["cik_str"]) for p in items
              if isinstance(p,dict) and p.get("ticker") and p.get("cik_str") is not None}
+        return result,"SEC_TICKER_MAP_OFFICIAL"
+    except requests.HTTPError as exc:
+        if exc.response is not None and exc.response.status_code in (403,429):
+            return fallback,"FALLBACK_KNOWN_CIK_OFFICIAL_MAP_403"
+        raise
 def candidates(mapping):
     names=set()
     if ROOT.exists():
@@ -149,13 +161,17 @@ def summarize(sym,cik,record,adr_local=[]):
 def main():
     status={"fecha":NOW.isoformat(),"SEC_API":"NO_CONECTADO","resultados":[],"errores":[],
       "nota":"Todos los hechos usan filed<=fecha de evaluación; todavía no son ratios de todos los balances argentinos."}
-    try:mapping=ticker_map()
+    try:mapping,map_origin=ticker_map()
     except Exception as e:
         status["errores"].append({"fase":"ticker_map","error":type(e).__name__+": "+str(e)[:200]})
         (OUT/"sec_estado.json").write_text(json.dumps(status,ensure_ascii=False,indent=2),encoding="utf-8")
         print("SEC_XBRL "+json.dumps({"status":"SIN_DATOS_SEC","errores":status["errores"]},ensure_ascii=False))
         return
     selected,adr,names_count=candidates(mapping)
+    status["ticker_map_origin"]=map_origin
+    if map_origin.startswith("FALLBACK_"):
+        selected=[s for s in ("AAPL","NVDA","MSFT") if s in mapping]
+        status["restricciones_fallback"]="La API oficial rechazó el directorio; se verifican tres CIK documentados, no todos los CEDEAR."
     details=[];flat=[]
     for sym in selected:
         cik=mapping[sym];local=[a for a,t in adr.items() if t==sym]
