@@ -50,7 +50,11 @@ def download(ticker):
     d=d.loc[d.date<=cutoff].sort_values("date").drop_duplicates("date",keep="last").reset_index(drop=True)
     if len(d)==0:raise ValueError("Sin fechas <= corte")
     if (d[["open","high","low","close"]]<=0).any().any() or (d.volume<0).any():raise ValueError("Precios/volumen inválidos")
-    if (d.high<d[["open","low","close"]].max(axis=1)).any() or (d.low>d[["open","high","close"]].min(axis=1)).any():raise ValueError("OHLC inconsistente")
+    bad=(d.high<d[["open","low","close"]].max(axis=1)) | (d.low>d[["open","high","close"]].min(axis=1))
+    if bad.any():
+        sample=d.loc[bad,["date","open","high","low","close"]].head(3).copy()
+        sample["date"]=sample["date"].dt.strftime("%Y-%m-%d")
+        raise ValueError(f"OHLC inconsistente: {int(bad.sum())} de {len(d)} velas; ejemplos: {sample.to_dict(orient='records')}")
     if ((d.open/d.close.shift()-1).abs()>.35).any():raise ValueError("Gap >35%, posible split o cambio de ratio")
     if len(d)>1 and d.date.diff().dt.days.max()>21:raise ValueError("Hay brecha >21 días en el histórico")
     return d,url
