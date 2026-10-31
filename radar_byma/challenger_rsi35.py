@@ -7,11 +7,12 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import json
 import pandas as pd
+import research_advanced as ra
 from research_advanced import load,simulate,STRATEGIES
 
 NAME="rsi35_challenger_2026_11"
 START=pd.Timestamp("2026-11-02")
-COST_NOTE="Estimated 0.30% fee + 0.10% slippage per side from research_advanced, not broker verified."
+COST_NOTE="0.50% fee + 0.05% rights with 21% VAT, plus 0.10% slippage per side (illustrative)."
 OUT=Path("resultados/challenger")
 OUT.mkdir(parents=True,exist_ok=True)
 def main():
@@ -19,6 +20,9 @@ def main():
     for df in data.values():
         df[NAME]=df["reversion_rsi14"].fillna(False)
     STRATEGIES[NAME]={"stop":1.5,"target":4.5,"hold":15}
+    ra.FEE=(.005+.0005)*1.21
+    ra.SLIPPAGE=.001 if hasattr(ra,'SLIPPAGE') else .001
+    ra.SLIP=.001
     today=datetime.now(ZoneInfo("America/Argentina/Cordoba")).date()
     # Refuse to use incomplete same-day candles even when IOL publishes them.
     cut=pd.Timestamp(today)-pd.Timedelta(days=1)
