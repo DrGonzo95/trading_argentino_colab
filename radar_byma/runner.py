@@ -10,7 +10,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-TICKERS=["GGAL","YPFD","PAMP","CEPU","BMA","AAPL","GOOGL","NVDA","SPY","AL30","GD30","AL35"]
+TICKERS=["GGAL","YPFD","PAMP","CEPU","BMA","AAPL","GOOGL","NVDA","SPY","AL30","GD30","AL35","BBAR","BYMA","COME","ALUA","TXAR","TGSU2","CRES","EDN","SUPV","VALO","QQQ","MSFT","AMZN","MELI","META","TSLA","KO","JPM","XOM"]
 RISK=.005
 MAX_POSITION=.20
 FEE=.003
