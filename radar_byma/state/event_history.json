@@ -1152,6 +1152,21 @@
       "first_seen": "2026-10-31T20:27:17.960447-03:00",
       "asof_usable": "2026-10-31T20:27:17.960447-03:00",
       "no_es_recomendacion": true
+    },
+    "2ca980e38bb477866b232c391baf61c8229615b1d9133de892b9690aa240742e": {
+      "ticker": "LEDE",
+      "published": "2026-10-27T08:35:25-03:00",
+      "title": "Eusebio Ledesma, Premio al Deporte Canario 2026 - Radio Televisión Canaria",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNcTZCSl9melRwZTB6QmRfQ0NuSE1Sdl9ycnVfV0hOTU1tOTdvaHJLd0I0UHFrdWdyMlU4RVVXNllwdUQ2eGdzWkdCdnctVjdQWDduaFRqNUhFSHlBZzZNak1GRW5ZTTM3Tzd4SzdlNUlhZUlXaS1ZdVRBUDFabFMxR3VoMkpoZw?oc=5",
+      "source": "NEWS_HEADLINE",
+      "topic": "[]",
+      "confidence": "headline_only",
+      "sentiment_score_lexical": 0,
+      "sentiment": "indeterminado",
+      "palabras_coincidentes": [],
+      "first_seen": "2026-10-31T20:27:59.579280-03:00",
+      "asof_usable": "2026-10-31T20:27:59.579280-03:00",
+      "no_es_recomendacion": true
     }
   }
 }
