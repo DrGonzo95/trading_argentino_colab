@@ -22,7 +22,7 @@ SELL=1-COST-TRADING["slippage"]
 SOURCE="https://www.iamc.com.ar/informesmes/"
 def base():
     return {"version":1,"started_after":INITIAL_DATE,"last_processed":INITIAL_DATE,
-            "paper":{str(c):{"cash":float(c),"positions":{},"pending":{},"trades":[],
+            "paper":{str(c):{"cash":float(c),"positions":{},"pending":{},"orders":[],
                               "rejections":[],"signals":[],"equity":float(c)} for c in (50000,100000)}}
 def load():
     if not STATE.exists():return base()
@@ -31,8 +31,8 @@ def load():
     defaults=base()["paper"]
     for cap,initial in defaults.items():
         account=p.setdefault("paper",{}).setdefault(cap,initial)
-        if "trades" not in account:
-            account["trades"]=account.pop("orders",[])
+        if "orders" not in account:
+            account["orders"]=account.pop("orders",[])
         for key,value in initial.items():account.setdefault(key,value)
     return p
 def data():
@@ -79,7 +79,7 @@ def update_day(p,day,bars,datasets):
         elif pos["days"]>=13:px=float(b["close"]);reason="time_exit"
         if px is not None:
             proceeds=pos["qty"]*px*SELL;p["cash"]+=proceeds
-            p["trades"].append({"ticker":sym,"entry_date":pos["date"],"exit_date":str(day.date()),"qty":pos["qty"],
+            p["orders"].append({"ticker":sym,"entry_date":pos["date"],"exit_date":str(day.date()),"qty":pos["qty"],
                                 "entry":round(pos["entry"],2),"exit":round(px,2),"pnl":round(proceeds-pos["spent"],2),"reason":reason})
             del p["positions"][sym]
         else:pos["days"]+=1
@@ -163,7 +163,7 @@ def main():
             "portfolios":{str(c):{"cash":round(state["paper"][str(c)]["cash"],2),
                "equity":state["paper"][str(c)]["equity"],
                "return_pct":round((state["paper"][str(c)]["equity"]/c-1)*100,3),
-               "closed_trades":len(state["paper"][str(c)]["trades"]),
+               "closed_trades":len(state["paper"][str(c)]["orders"]),
                "positions":sorted(state["paper"][str(c)]["positions"]),
                "pending_paper_entries":sorted(state["paper"][str(c)]["pending"])} for c in (50000,100000)},
             "caucion":caucion(),
