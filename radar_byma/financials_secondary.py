@@ -63,11 +63,22 @@ def parse(ticker):
     for row in tr:
         cells=[c.get_text(" ",strip=True) for c in row.select("th,td")]
         if len(cells)<=max(i,j):continue
-        label=cells[0].strip()
-        if label in ("Revenue","Net Income","Operating Income","Gross Profit"):
+        label=" ".join(cells[0].strip().lower().split())
+        aliases={
+            "revenue":"Revenue",
+            "net income":"Net Income",
+            "operating income":"Operating Income",
+            "gross profit":"Gross Profit"
+        }
+        selected=None
+        for prefix,key in aliases.items():
+            if label==prefix or label.startswith(prefix+" "+prefix+" growth"):
+                selected=key
+                break
+        if selected:
             a,b=n(cells[i]),n(cells[j])
             if a is not None and b is not None:
-                values[label]={"current":a,"previous":b}
+                values[selected]={"current":a,"previous":b}
     if not all(x in values for x in ("Revenue","Net Income")):
         raise ValueError("Faltan Revenue y Net Income con unidades explícitas")
     v=values["Revenue"];p=values["Net Income"]
