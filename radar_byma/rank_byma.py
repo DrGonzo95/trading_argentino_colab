@@ -99,6 +99,17 @@ def tech(candidate):
         })
         if signal and (rr is None or rr<2):candidate["estado"]="RECHAZAR_RIESGO_RETORNO"
         if signal and max(affordable.values())==0:candidate["estado"]="RECHAZAR_TAMAÑO_MINIMO"
+        if candidate["monto_operado_indicativo"]<5e6:
+            candidate["liquidez_especial"]="BAJA_ACTIVIDAD_INDICATIVA"
+            candidate["spread_verificado"]=False
+            candidate["profundidad_mercado_verificada"]=False
+            candidate["riesgo_ejecucion"]="El spread/impacto no está modelado; sin órdenes hasta verificar puntas y profundidad."
+            if signal:
+                candidate["estado"]="OPORTUNIDAD_ILIQUIDA_SOLO_ESTUDIO"
+        else:
+            candidate["liquidez_especial"]="ACTIVIDAD_INDICATIVA_MAYOR"
+            candidate["spread_verificado"]=False
+            candidate["profundidad_mercado_verificada"]=False
         return candidate
     except Exception as e:
         return {**candidate,"estado":"HISTORICO_NO_UTILIZABLE","puntaje_tecnico":None,"motivo":str(e)[:170]}
@@ -115,7 +126,9 @@ def main():
     screen=[one_asset(row,peer) for row in raw]
     for row in screen:
         flags=row["control"]
-        valid=not ("poco_monto" in flags or "posible_especie" in flags or "variacion_extrema" in flags)
+        valid=not ("posible_especie" in flags or "variacion_extrema" in flags or "precio_ausente" in flags)
+        row["baja_liquidez"]="poco_monto" in flags
+        row["requiere_verificar_spread_y_profundidad"]=row["baja_liquidez"]
         row["apto_para_segunda_etapa"]=valid and row["tipo"] in ("accion","cedear")
         row["etapa_2"]="PENDIENTE_DE_HISTORICO" if row["apto_para_segunda_etapa"] else "NO_APLICA"
     screen.sort(key=lambda x:(x["tipo"],-x["puntaje_preseleccion"]))
@@ -139,6 +152,9 @@ def main():
     studies={g:top[g][:20] for g in ("bono","on")}
     candidates=[r for r in technical if r.get("estado")=="SEÑAL_RSI35_PAPEL"]
     signalable=[r for r in candidates if max(r["unidades_referencia"].values())>0]
+    special_low=[r for r in technical if r.get("liquidez_especial")=="BAJA_ACTIVIDAD_INDICATIVA"]
+    special_flags=[r for r in special_low if r.get("estado")=="OPORTUNIDAD_ILIQUIDA_SOLO_ESTUDIO"]
+    write_csv(OUT/"baja_liquidez_investigacion.csv",special_low)
     report={
         "scanned_at":snap.get("scanned_at"),"ranked_at":NOW.isoformat(),
         "panels_complete":not bool(snap.get("errors")),
@@ -149,6 +165,9 @@ def main():
         "technical_filled":len(technical),
         "rsi35_signal_watchlist":len(candidates),
         "candidates_reference_with_units":len(signalable),
+        "low_turnover_historical_studied":len(special_low),
+        "low_turnover_unexecutable_special_watch":len(special_flags),
+        "special_low_liquidity_watchlist":special_low[:20],
         "top_equity_by_screen":top["accion"][:10],
         "top_cedear_by_screen":top["cedear"][:10],
         "top_by_technical_quality":technical[:12],
@@ -161,6 +180,7 @@ def main():
             "Top screen lists are NOT investment recommendations; daily change and turnover do not predict gains.",
             "Daily technical RSI14/RSI35 signals only after completed session, and entry must be next session OPEN; displayed stop/target from previous CLOSE are NOT executable.",
             "Bonds and ONs ranked for REVIEW ONLY (no TIR, coupon schedule, amortization, spread or effective currency).",
+            "Un instrumento de baja liquidez NO se descarta por volumen, pero ninguna señal es operable sin spread, profundidad y frecuencia histórica de ruedas verificados.",
             "A symbol without a verified >=400-session OHLCV is not eligible for trading recommendations.",
             "A capital allocation cannot be completed without a chosen portfolio amount and real brokerage fees.",
             "No automatic real orders or intraday live notifications."
