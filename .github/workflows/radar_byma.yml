@@ -9,6 +9,7 @@ on:
       - 'radar_byma/challenger_rsi35.py'
       - 'radar_byma/watch_universe.py'
       - 'radar_byma/rank_byma.py'
+      - 'radar_byma/fusion_byma.py'
       - 'radar_byma/discover_byma.py'
       - '.github/workflows/radar_byma.yml'
   schedule:
@@ -39,6 +40,8 @@ jobs:
         run: python radar_byma/watch_universe.py
       - name: Rank all public BYMA quotes and corroborate equity candidates on histories
         run: python radar_byma/rank_byma.py
+      - name: Fuse technical, official filings, numerical statements and news evidence
+        run: python radar_byma/fusion_byma.py
       - name: Monitor RSI14 paper forward and indicative caucion yields
         run: python radar_byma/dual_monitor.py
       - name: Run frozen RSI35 challenger on future completed bars (paper only)
