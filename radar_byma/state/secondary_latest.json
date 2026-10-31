@@ -1,0 +1,31 @@
+{
+  "fetched_at": "2026-10-31T20:29:48.537706-03:00",
+  "status": "UNAVAILABLE",
+  "queried": [
+    "AAPL",
+    "NVDA",
+    "MSFT",
+    "AMZN",
+    "GOOGL",
+    "META",
+    "TSLA",
+    "MELI",
+    "AVGO",
+    "JPM"
+  ],
+  "verified_table_rows": 0,
+  "errors": {
+    "AAPL": "ValueError: Faltan Revenue y Net Income con unidades explícitas",
+    "NVDA": "ValueError: Faltan Revenue y Net Income con unidades explícitas",
+    "MSFT": "ValueError: Faltan Revenue y Net Income con unidades explícitas",
+    "AMZN": "ValueError: Faltan Revenue y Net Income con unidades explícitas",
+    "GOOGL": "ValueError: Faltan Revenue y Net Income con unidades explícitas",
+    "META": "ValueError: Faltan Revenue y Net Income con unidades explícitas",
+    "TSLA": "ValueError: Faltan Revenue y Net Income con unidades explícitas",
+    "MELI": "ValueError: Faltan Revenue y Net Income con unidades explícitas",
+    "AVGO": "ValueError: Faltan Revenue y Net Income con unidades explícitas",
+    "JPM": "ValueError: Faltan Revenue y Net Income con unidades explícitas"
+  },
+  "results": [],
+  "policy": "Never combine a third-party undated table with historic prices as a point-in-time backtest; compare ONLY current issuer ratios, no ARS CEDEAR valuation."
+}
