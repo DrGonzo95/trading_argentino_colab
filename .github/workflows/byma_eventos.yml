@@ -6,7 +6,7 @@ on:
       - 'radar_byma/events_public.py'
       - '.github/workflows/byma_eventos.yml'
   schedule:
-    - cron: '20 13,22 * * 1-5'
+    - cron: '20 13-22 * * 1-5'
 permissions:
   contents: read
 concurrency:
