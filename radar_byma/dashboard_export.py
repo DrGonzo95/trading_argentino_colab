@@ -6,7 +6,7 @@ exchange timestamp. Full generated_at is the retrieval/processing time ONLY.
 An actionable paper setup requires a previously completed daily candle,
 consistent finite levels and reward/risk >= 2 after modeled expenses.
 """
-import csv, json, math
+import ast, csv, json, math
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -44,6 +44,15 @@ def recent(s,maxdays):
     return dt is not None and timedelta(0)<=NOW-dt<=timedelta(days=maxdays)
 def event_sort(e):
     return date_parse(e.get("published")) or datetime(1970,1,1,tzinfo=TZ)
+def qty_from_csv(t,cap):
+    raw=t.get("unidades_referencia") or {}
+    if isinstance(raw,str):
+        try:raw=ast.literal_eval(raw)
+        except (SyntaxError,ValueError):raw={}
+    if not isinstance(raw,dict):return 0
+    try:return max(0,int(raw.get(str(cap),0) or 0))
+    except (TypeError,ValueError):return 0
+
 def level_ok(t):
     price=numeric(t.get("entrada_teorica_basada_en_cierre"))
     stop=numeric(t.get("stop_teorico"))
@@ -92,7 +101,7 @@ def main():
                 and level_ok(t)
                 and turnover is not None and turnover>=5000000
                 and not r.get("possible_fx_variant")
-                and (int((t.get("unidades_referencia") or {}).get("100000") or 0)>0))
+                and (qty_from_csv(t,100000)>0))
         has_negative=change is not None and change<=-3
         has_recent_news=bool(actual_events)
         if active:status="ENTRADA_TEORICA_PAPEL"
@@ -148,12 +157,12 @@ def main():
             "trend_bull":t.get("en_tendencia_larga") if technical_score is not None else None,
             "daily_bar_date":t.get("fecha_historico"),
             "bars":int(t.get("ruedas") or 0),
-            "entry_ref":entry if level_ok(t) else None,
-            "stop_ref":stop if level_ok(t) else None,
-            "target_ref":target if level_ok(t) else None,
-            "rr_net_est":rr if level_ok(t) else None,
-            "example_qty_50k":int((t.get("unidades_referencia") or {}).get("50000") or 0) if level_ok(t) else None,
-            "example_qty_100k":int((t.get("unidades_referencia") or {}).get("100000") or 0) if level_ok(t) else None,
+            "entry_ref":entry if active else None,
+            "stop_ref":stop if active else None,
+            "target_ref":target if active else None,
+            "rr_net_est":rr if active else None,
+            "example_qty_50k":qty_from_csv(t,50000) if active else None,
+            "example_qty_100k":qty_from_csv(t,100000) if active else None,
             "events_official":official,"events_news":news,
             "events":event_objects,"fundamental":fundamental,
             "warnings":warnings[:5],
