@@ -8,6 +8,7 @@ on:
       - 'radar_byma/dual_monitor.py'
       - 'radar_byma/challenger_rsi35.py'
       - 'radar_byma/watch_universe.py'
+      - 'radar_byma/discover_byma.py'
       - '.github/workflows/radar_byma.yml'
   schedule:
     - cron: '35 13-20 * * 1-5'
@@ -20,13 +21,15 @@ concurrency:
 jobs:
   backtest:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install pandas numpy requests beautifulsoup4
+      - name: Discover public stocks, CEDEARs, bonds and notes (delayed panels)
+        run: python radar_byma/discover_byma.py
       - name: Run paper-trading radar with public historical data
         run: python radar_byma/runner.py
       - name: Test advanced strategies with untouched holdout
