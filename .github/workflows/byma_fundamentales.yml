@@ -9,7 +9,7 @@ on:
   schedule:
     - cron: '5 23 * * 1-5'
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: byma-sec-companyfacts
   cancel-in-progress: true
@@ -29,6 +29,18 @@ jobs:
         run: python radar_byma/financials_arg.py
       - name: Read numerical SEC companyfacts without auth keys
         run: python radar_byma/financials_sec.py
+      - name: Persist latest verified fundamental source status
+        run: |
+          cp resultados/fundamentales/arg_estado.json radar_byma/state/arg_latest.json
+          cp resultados/fundamentales/sec_estado.json radar_byma/state/sec_latest.json
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add radar_byma/state/arg_latest.json radar_byma/state/sec_latest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh verified numeric fundamentals or source outage status [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
       - name: Upload filing-date aware numerical ratios
         if: always()
         uses: actions/upload-artifact@v4
