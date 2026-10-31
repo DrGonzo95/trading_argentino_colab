@@ -1167,6 +1167,21 @@
       "first_seen": "2026-10-31T20:27:59.579280-03:00",
       "asof_usable": "2026-10-31T20:27:59.579280-03:00",
       "no_es_recomendacion": true
+    },
+    "31e428862077885bf02380bd4f1e98f0bffb4e8f76b6316ba0e8e912a2612288": {
+      "ticker": "BMA",
+      "published": "2026-10-29T06:00:32-03:00",
+      "title": "Banco Macro authorizes repurchase of up to 20M shares - TradingView",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPc0RIcnp4eGFNR0Jab3dCckNRZ052bUpQWEpUQlZ5S2RVaDlXSmt4bmtGNFQyU2V0N0NvUF84djBYbTQ3Qkc1a19ON2JRLTlGMUhyS2RWd1NhOGcydDlGemVKZzdKMlpuZWxqMEtjTDRKQ0VTOE9abXdjQ3NjZUNTMm94Y2FYZzlyMUZURkxFOVkxTzNCb2VhT1BXbDVreGxrd3JBZ09namlKY1pDQUxiRzRFNUhZUQ?oc=5",
+      "source": "NEWS_HEADLINE",
+      "topic": "[]",
+      "confidence": "headline_only",
+      "sentiment_score_lexical": 0,
+      "sentiment": "indeterminado",
+      "palabras_coincidentes": [],
+      "first_seen": "2026-10-31T20:29:08.099571-03:00",
+      "asof_usable": "2026-10-31T20:29:08.099571-03:00",
+      "no_es_recomendacion": true
     }
   }
 }

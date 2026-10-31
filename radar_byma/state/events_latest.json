@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-10-31T20:27:44.364939-03:00",
+  "revisado_en": "2026-10-31T20:28:53.565673-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -52,14 +52,14 @@
   "total_hechos_cnv": 155,
   "hechos_cnv_coincidentes": 36,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 41,
+  "noticias_con_nombre_coincidente": 42,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
       "documentos_cnv": 4,
-      "titulares": 10,
+      "titulares": 11,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
