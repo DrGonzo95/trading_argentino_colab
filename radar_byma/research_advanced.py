@@ -76,12 +76,12 @@ def features(d):
     x["ruptura_volumen"]=x.bull&(x.close>x.prior_hi20)&(x.rv>1.5)&x.rsi14.between(53,80)
     return x.set_index("date",drop=False)
 def load():
-    files=sorted(DATA.glob("*_ohlcv.csv"))
+    files=sorted(DATA.glob("*_ohlcv.csv"))+sorted(Path("radar_byma/cache/ohlcv").glob("*.csv"))
     out={}
     reasons=[]
     for f in files:
         symbol=f.stem.removesuffix("_ohlcv")
-        if symbol in BONDS:continue
+        if symbol in out or symbol in BONDS:continue
         try:
             d=pd.read_csv(f,parse_dates=["date"])
             if len(d)<400:raise ValueError("Menos de 400 velas")
