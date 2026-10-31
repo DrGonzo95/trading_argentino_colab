@@ -5,6 +5,7 @@ on:
     paths:
       - 'radar_byma/events_public.py'
       - 'radar_byma/events_study.py'
+      - 'radar_byma/merge_event_state.py'
       - '.github/workflows/byma_eventos.yml'
   schedule:
     - cron: '20 13-22 * * 1-5'
@@ -29,16 +30,20 @@ jobs:
         run: python radar_byma/events_public.py
       - name: Archive events when first observed and run gated forward-safe event study
         run: python radar_byma/events_study.py
-      - name: Persist first-seen event history without changing paper trades
+      - name: Persist first-seen event history with conflict-safe merge
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          cp resultados/eventos/reporte.json radar_byma/state/events_latest.json
-          cp resultados/eventos/prediccion_estado.json radar_byma/state/events_study_latest.json
+          mkdir -p /tmp/byma-state
+          cp radar_byma/state/event_history.json /tmp/byma-state/event_history.json
+          cp resultados/eventos/reporte.json /tmp/byma-state/events_latest.json
+          cp resultados/eventos/prediccion_estado.json /tmp/byma-state/events_study_latest.json
+          git fetch origin main
+          git reset --hard origin/main
+          python radar_byma/merge_event_state.py
           git add radar_byma/state/event_history.json radar_byma/state/events_latest.json radar_byma/state/events_study_latest.json
           if ! git diff --cached --quiet; then
             git commit -m "Record first-seen public event dates [skip ci]"
-            git pull --rebase origin main
             git push origin HEAD:main
           fi
       - name: Preserve published events, dates and source links
