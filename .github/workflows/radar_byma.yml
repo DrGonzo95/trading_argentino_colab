@@ -7,6 +7,7 @@ on:
       - 'radar_byma/research_advanced.py'
       - 'radar_byma/dual_monitor.py'
       - 'radar_byma/challenger_rsi35.py'
+      - 'radar_byma/watch_universe.py'
       - '.github/workflows/radar_byma.yml'
   schedule:
     - cron: '35 13-20 * * 1-5'
@@ -30,6 +31,8 @@ jobs:
         run: python radar_byma/runner.py
       - name: Test advanced strategies with untouched holdout
         run: python radar_byma/research_advanced.py
+      - name: Categorize Argentine stocks, CEDEARs, and sovereign bonds
+        run: python radar_byma/watch_universe.py
       - name: Monitor RSI14 paper forward and indicative caucion yields
         run: python radar_byma/dual_monitor.py
       - name: Run frozen RSI35 challenger on future completed bars (paper only)
