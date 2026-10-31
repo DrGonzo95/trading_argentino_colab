@@ -59,6 +59,8 @@ def tech(candidate):
     sym=candidate["simbolo"]; typ=candidate["tipo"]
     if typ not in ("accion","cedear"):return None
     f=ROOT/f"{sym}_ohlcv.csv"
+    if not f.exists():
+        f=Path("radar_byma/cache/ohlcv")/f"{sym}.csv"
     if not f.exists():return {**candidate,"estado":"NO_HISTORICO_VALIDADO","puntaje_tecnico":None}
     try:
         d=pd.read_csv(f,parse_dates=["date"]).sort_values("date")
@@ -148,8 +150,9 @@ def main():
     source_symbols={r["simbolo"]:r for r in screen if r["tipo"] in ("accion","cedear")
                     and not "posible_especie" in r["control"]}
     checked={}
-    for f in sorted(ROOT.glob("*_ohlcv.csv")):
+    for f in list(sorted(ROOT.glob("*_ohlcv.csv")))+list(sorted(Path("radar_byma/cache/ohlcv").glob("*.csv"))):
         sym=f.stem.replace("_ohlcv","")
+        if sym in checked:continue
         if sym in source_symbols:
             row=tech(dict(source_symbols[sym]))
             if row:checked[sym]=row
