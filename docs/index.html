@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Radar BYMA: seguimiento de acciones, CEDEARs, bonos y ON con datos públicos demorados, catalizadores, niveles técnicos y simulador de cartera ficticia.">
+  <title>Pulso BYMA · Radar de oportunidades</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-glyph">◉</span><div><span class="brand-name">PULSO<span class="accent">/</span>BYMA</span><span class="brand-sub">Market intelligence · Simulación</span></div></div>
+      <div class="topright">
+        <span class="status-pill"><span class="status-dot"></span><span id="connection">Cargando datos</span></span>
+        <span id="marketClock" class="market-clock">—</span>
+        <button class="ghost refresh" id="refreshBtn" type="button" title="Actualizar datos publicados">↻ <span class="hide-sm">Actualizar</span></button>
+      </div>
+    </header>
+    <div class="delaybar" role="status">
+      <span class="delay-icon">◷</span>
+      <span><strong>COTIZACIONES DEMORADAS.</strong> El panel se actualiza periódicamente con datos públicos; la hora de descarga <strong>no</strong> es la hora de negociación ni garantiza precio de ejecución.</span>
+      <a href="https://open.bymadata.com.ar/" target="_blank" rel="noopener noreferrer">Fuente oficial ↗</a>
+    </div>
+    <main>
+      <div class="eyebrow"><span class="eyedot"></span> MONITOR DEL MERCADO ARGENTINO</div>
+      <div class="hero">
+        <div class="hero-copy">
+          <h1>Detectar antes.<br><span>Decidir con evidencia.</span></h1>
+          <p>Acciones argentinas, CEDEARs y renta fija. Identificá catalizadores, revisá niveles técnicos y registrá tus operaciones ficticias sin enviar órdenes al mercado.</p>
+        </div>
+        <div class="hero-time">
+          <span>ÚLTIMA DESCARGA DEL RADAR</span>
+          <strong id="lastUpdate">Sin datos</strong>
+          <small id="freshness">Comprobando disponibilidad…</small>
+          <small id="scanSummary"></small>
+        </div>
+      </div>
+      <section class="stats" aria-label="Estado del radar">
+        <article class="metric"><span class="metric-label">Símbolos observados</span><div class="metric-value" id="statTotal">—</div><span class="metric-foot">Paneles públicos BYMA / IOL</span></article>
+        <article class="metric"><span class="metric-label">Entradas teóricas</span><div class="metric-value positive" id="statSignals">—</div><span class="metric-foot">Solo papel · cierre diario</span></article>
+        <article class="metric"><span class="metric-label">Caídas con novedades</span><div class="metric-value warning" id="statCatalysts">—</div><span class="metric-foot">Coincidencia, no causalidad</span></article>
+        <article class="metric"><span class="metric-label">Con indicadores válidos</span><div class="metric-value" id="statTech">—</div><span class="metric-foot">Series diarias comprobadas</span></article>
+      </section>
+      <section class="work-area">
+        <div class="mainpanel">
+          <div class="sectiontop">
+            <div><span class="kicker">SELECCIÓN DE OPORTUNIDADES</span><h2>Radar de instrumentos</h2></div>
+            <span id="matches" class="muted count-label">— resultados</span>
+          </div>
+          <div class="controls">
+            <div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="Buscar símbolo (GGAL, YPFD, AAPL…)" aria-label="Buscar instrumento"></div>
+            <select id="assetType" aria-label="Tipo de instrumento">
+              <option value="acciones-cedears">Acciones + CEDEARs</option>
+              <option value="accion">Acciones argentinas</option>
+              <option value="cedear">CEDEARs</option>
+              <option value="bono">Bonos</option>
+              <option value="on">Obligaciones negociables</option>
+              <option value="todos">Todos los instrumentos</option>
+            </select>
+            <select id="statusFilter" aria-label="Filtrar oportunidades">
+              <option value="relevantes">Interesantes primero</option>
+              <option value="paper">Entradas teóricas</option>
+              <option value="caidas">Caídas + novedades</option>
+              <option value="tecnicos">Con análisis técnico</option>
+              <option value="watch">Mi lista guardada</option>
+              <option value="todos">Ver todos</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Instrumento</th><th>Último precio*</th><th>Var. del panel</th><th>Prioridad</th><th>Estado</th><th></th></tr></thead>
+              <tbody id="assetsBody"><tr><td colspan="6" class="empty">Cargando cotizaciones del radar…</td></tr></tbody>
+            </table>
+          </div>
+          <div class="table-footer"><span id="paginationInfo">—</span><button id="loadMore" class="ghost" hidden type="button">Mostrar más ↓</button></div>
+          <div class="footnote">* Último precio informado por el proveedor, con hora real de negociación desconocida. No es una punta compradora/vendedora ni una cotización ejecutable. Las prioridades no son probabilidades de ganancia.</div>
+        </div>
+        <aside class="detailpanel" id="detailPanel" aria-label="Ficha del instrumento">
+          <div class="detail-placeholder"><div class="symbol-art">⌁</div><h3>Elegí un instrumento</h3><p>Seleccioná una fila para ver su situación técnica, noticias, entrada de referencia, stop, objetivo y simulador.</p></div>
+        </aside>
+      </section>
+      <section class="ledger-section" id="paper">
+        <div class="sectiontop">
+          <div><span class="kicker">OPERACIONES REGISTRADAS POR VOS</span><h2>Mi cartera de papel</h2></div>
+          <div class="ledger-actions"><button id="exportCsv" class="ghost" type="button">Exportar CSV ↓</button><button id="clearPaper" class="ghost subtle" type="button">Vaciar</button></div>
+        </div>
+        <div class="privacy-note">☷ Las simulaciones se guardan <strong>solo en este navegador</strong>. No están conectadas a un broker ni sincronizadas con otros dispositivos. No se crean posiciones por recibir una alerta.</div>
+        <div class="table-wrap">
+          <table><thead><tr><th>Fecha</th><th>Especie</th><th>Cantidad</th><th>Entrada anotada</th><th>Stop / Objetivo</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="paperBody"><tr><td colspan="7" class="empty">Todavía no registraste operaciones ficticias.</td></tr></tbody></table>
+        </div>
+      </section>
+      <div class="disclaimer"><strong>Alcance:</strong> herramienta de investigación y simulación, no asesoramiento personalizado. No opera en BYMA, no promete rentabilidad y no dispone de streaming en vivo. La noticia negativa no demuestra que vaya a producirse un rebote. Confirmá siempre símbolo, moneda, plazo, bid/ask y precio directamente con tu broker antes de una operación real.</div>
+    </main>
+    <footer><span>◉ PULSO/BYMA · Radar experimental</span><span>Argentina · Datos públicos demorados · <a href="https://github.com/DrGonzo95/trading_argentino_colab" target="_blank" rel="noopener noreferrer">Código y metodología ↗</a></span></footer>
+  </div>
+  <dialog id="paperDialog">
+    <form id="paperForm" method="dialog">
+      <div class="dialog-head"><div><span class="kicker">PAPER TRADING</span><h2 id="dialogTitle">Registrar operación ficticia</h2></div><button type="button" id="closeDialog" class="ghost" aria-label="Cerrar">✕</button></div>
+      <p class="muted small">Los campos son editables para registrar lo que realmente simulaste. La cotización del panel no implica que tu orden se hubiera ejecutado.</p>
+      <div class="form-grid">
+        <label>Capital ficticio total (ARS)<input id="capital" type="number" min="1000" step="1000" value="100000" required></label>
+        <label>Precio de entrada anotado<input id="paperEntry" type="number" min=".001" step="any" required></label>
+        <label>Stop teórico<input id="paperStop" type="number" min=".001" step="any" required></label>
+        <label>Objetivo teórico<input id="paperTarget" type="number" min=".001" step="any" required></label>
+        <label>Cantidad de unidades<input id="paperQty" type="number" min="1" step="1" required></label>
+        <label>Fecha de tu simulación<input id="paperDate" type="date" required></label>
+      </div>
+      <div id="paperCalc" class="calculation muted">Completá los precios para calcular riesgo y resultado teórico.</div>
+      <div class="dialog-bottom"><button class="ghost" id="cancelDialog" type="button">Cancelar</button><button class="primary" id="submitPaper" type="submit" disabled>Registrar en mi simulador</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
