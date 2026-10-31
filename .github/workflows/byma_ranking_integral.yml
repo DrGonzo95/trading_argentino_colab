@@ -1,0 +1,40 @@
+name: Radar BYMA - ranking integral de evidencias
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'radar_byma/fusion_byma.py'
+      - '.github/workflows/byma_ranking_integral.yml'
+  schedule:
+    - cron: '50 13-22 * * 1-5'
+permissions:
+  contents: read
+concurrency:
+  group: byma-integral-evidence-ranking
+  cancel-in-progress: true
+jobs:
+  rank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pandas numpy requests beautifulsoup4
+      - name: Download all publicly visible delayed BYMA panels
+        run: python radar_byma/discover_byma.py
+      - name: Rank only verified historical equity series in local cache
+        run: python radar_byma/rank_byma.py
+      - name: Combine confirmed official public reports, numerical filings and market risk
+        run: python radar_byma/fusion_byma.py
+      - name: Publish ranked opportunities with evidence and explicit missing fields
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: byma-ranking-evidencias
+          path: |
+            resultados/integrado/
+            resultados/ranking/
+          if-no-files-found: warn
+          retention-days: 14
