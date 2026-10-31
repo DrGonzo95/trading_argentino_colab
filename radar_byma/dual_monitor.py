@@ -28,6 +28,12 @@ def load():
     if not STATE.exists():return base()
     p=json.loads(STATE.read_text(encoding="utf-8"))
     if p.get("started_after")!=INITIAL_DATE:raise RuntimeError("Inicio del forward test alterado")
+    defaults=base()["paper"]
+    for cap,initial in defaults.items():
+        account=p.setdefault("paper",{}).setdefault(cap,initial)
+        if "trades" not in account:
+            account["trades"]=account.pop("orders",[])
+        for key,value in initial.items():account.setdefault(key,value)
     return p
 def data():
     datasets={}; errors=[]
