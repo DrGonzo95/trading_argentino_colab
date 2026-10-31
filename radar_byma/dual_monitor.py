@@ -88,40 +88,61 @@ def update_day(p,day,bars,datasets):
                 p["pending"][sym]=signal;p["signals"].append(signal)
     p["equity"]=round(p["cash"]+sum(pos["qty"]*float(bars[s]["close"])*SELL for s,pos in p["positions"].items() if s in bars),2)
 def caucion():
-    report={"source":SOURCE,"queried":str(TODAY),"state":"NO_VERIFIED_RATE","kind":"public VWAP, NOT executable quote","examples":[]}
+    """Observe publicly reported IOL last traded taker rate, NEVER an executable lender offer."""
+    url="https://iol.invertironline.com/mercado/cotizaciones/argentina/cauciones"
+    report={"source":url,"queried":str(TODAY),"state":"NO_VERIFIED_RATE",
+            "kind":"DELAYED_LAST_TAKER_RATE_NOT_EXECUTABLE","examples":[]}
     try:
-        rsp=requests.get(SOURCE,timeout=18,headers={"User-Agent":"Mozilla/5.0 (educational paper finance monitor)"})
+        rsp=requests.get(url,timeout=22,headers={"User-Agent":"Mozilla/5.0 (educational paper-trading research)"})
         rsp.raise_for_status()
-        page=re.sub(r"\s+"," ",BeautifulSoup(rsp.text,"html.parser").get_text(" ",strip=True))
-        dm=re.search(r"Rueda\s+(\d{2})[-/ ]([A-Za-z]{3})[-/ ](\d{2,4})",page,re.I)
-        rm=re.search(r"Cauci[oó]n\s+pesos\s*[·:\-]?\s*1\s+d[ií]a\s+h[aá]bil\s+([\d,.]+)\s*%",page,re.I)
-        if not dm or not rm:
-            report["reason"]="Fecha y TNA de la caucion ARS a un dia no verificables en HTML"
+        soup=BeautifulSoup(rsp.text,"html.parser")
+        rates=[]
+        for table in soup.select("table"):
+            for row in table.select("tr"):
+                td=[x.get_text(" ",strip=True) for x in row.select("td")]
+                if len(td)<7 or td[1].upper()!="PESOS":continue
+                try:
+                    days=int(td[0])
+                    rate=float(td[5].replace("%","").replace(" ","").replace(",","."))
+                    timestamp=datetime.strptime(td[6],"%d/%m/%Y %H:%M:%S")
+                    if 1<=days<=30 and .1<=rate<=200 and timestamp.date()<=TODAY:
+                        rates.append({"days":days,"rate":rate,"date":timestamp.date(),"time":td[6]})
+                except (ValueError,IndexError):continue
+        if not rates:
+            report["reason"]="No hay tabla pública de tasas legibles y fechadas"
             return report
-        months={"jan":1,"feb":2,"mar":3,"apr":4,"may":5,"jun":6,"jul":7,"aug":8,"sep":9,"oct":10,"nov":11,"dec":12}
-        dd,mm,yy=dm.groups();year=int(yy);year=year+2000 if year<100 else year
-        asof=date(year,months[mm.lower()],int(dd))
-        rate=float(rm.group(1).replace(",","."))
-        report.update(asof=asof.isoformat(),tna=rate)
-        if asof>TODAY or (TODAY-asof).days>2 or not 0<=rate<=200:
-            report["state"]="STALE_RATE";return report
-        settlement=asof+timedelta(days=1)
-        while settlement.weekday()>4:settlement+=timedelta(days=1)
-        days=(settlement-asof).days
-        for cap in (50000,100000):
-            gross=cap*rate/100*days/365
-            broker=cap*TARIFF["commission_month"]*days/30
-            rights=cap*TARIFF["rights_90days"]*days/90
-            iva=(broker+rights)*TARIFF["iva"]
-            report["examples"].append({"capital":cap,"calendar_days_assumed":days,"gross_ars":round(gross,2),
-                                       "broker_ars":round(broker,2),"rights_ars":round(rights,2),
-                                       "vat_ars":round(iva,2),"estimated_net_ars":round(gross-broker-rights-iva,2)})
-        report["state"]="PUBLIC_REFERENCE_ONLY"
-        report["reason"]="IOL illustrative prorated tariff; no broker quote, no holiday calendar or minimum fees confirmed"
+        latest=max(r["date"] for r in rates)
+        report["last_date"]=str(latest)
+        if (TODAY-latest).days>2:
+            report["state"]="STALE_NO_SIGNAL"
+            report["reason"]="La última pizarra pública tiene más de dos días"
+            return report
+        # One rate for each contractual calendar-day tenor, most recently dated only.
+        rates=[r for r in rates if r["date"]==latest]
+        selected={}
+        for r in rates:
+            if r["days"] not in selected or r["time"]>selected[r["days"]]["time"]:
+                selected[r["days"]]=r
+        for days in sorted(selected)[:12]:
+            r=selected[days]
+            row={"days_calendar":days,"tna_last_taker_pct":r["rate"],
+                 "trade_datetime":r["time"],"example_only":True}
+            for cap in (50000,100000):
+                gross=cap*(r["rate"]/100)*days/365
+                broker=cap*.0015*days/30
+                rights=cap*.00045*days/90
+                vat=(broker+rights)*.21
+                net=gross-broker-rights-vat
+                row[f"net_illustrative_{cap}_ars"]=round(net,2)
+                row[f"positive_after_estimated_costs_{cap}"]=bool(net>0)
+            report["examples"].append(row)
+        report["state"]="REFERENCE_RATES_ONLY"
+        report["reason"]="Tarifa ilustrativa de IOL; las tasas son tomadoras de última operación, no puntas colocadoras ejecutables. Sin mínimos, IVA efectivo ni costos de otros brokers confirmados."
         return report
     except Exception as e:
-        report["reason"]=type(e).__name__+": "+str(e)[:120]
+        report["reason"]=type(e).__name__+": "+str(e)[:170]
         return report
+
 def main():
     state=load();datasets,errors=data()
     completed=sorted({dt for frame in datasets.values() for dt in frame.index
