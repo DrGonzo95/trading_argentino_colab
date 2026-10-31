@@ -43,7 +43,14 @@ def one_asset(r,peer_max):
     if amount<5e6:flag.append("poco_monto_indicativo")
     if change is not None and abs(change)>10:flag.append("variacion_extrema_verificar_evento")
     if not r.get("last_delayed"):flag.append("precio_ausente")
+    spread=r.get("spread_pct_delayed")
+    spread=float(spread) if spread is not None else None
+    if spread is not None and spread>2:flag.append("spread_delayed_alto")
     return {"simbolo":sym,"tipo":typ,"ultimo_precio_demorado":r.get("last_delayed"),
+            "spread_pct_delayed":spread,
+            "best_bid_delayed":r.get("best_bid_delayed"),"best_ask_delayed":r.get("best_ask_delayed"),
+            "bid_qty_delayed":r.get("bid_qty_delayed"),"ask_qty_delayed":r.get("ask_qty_delayed"),
+            "spread_estado":r.get("spread_data_state","NO_DATOS"),
             "variacion_diaria_pct":change,"monto_operado_indicativo":amount,
             "puntaje_preseleccion":score,"control":";".join(flag) or "solo_cribado_diferido",
             "fuente":r.get("provider"),"hora_cotizacion":"NO_VERIFICADA",
@@ -103,6 +110,8 @@ def tech(candidate):
             candidate["liquidez_especial"]="BAJA_ACTIVIDAD_INDICATIVA"
             candidate["spread_verificado"]=False
             candidate["profundidad_mercado_verificada"]=False
+            candidate["spread_solo_informativo"]=candidate.get("spread_pct_delayed")
+            candidate["spread_solo_informativo"]=candidate.get("spread_pct_delayed")
             candidate["riesgo_ejecucion"]="El spread/impacto no está modelado; sin órdenes hasta verificar puntas y profundidad."
             if signal:
                 candidate["estado"]="OPORTUNIDAD_ILIQUIDA_SOLO_ESTUDIO"
