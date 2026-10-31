@@ -10,7 +10,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
-TICKERS=["GGAL","YPFD","PAMP","CEPU","BMA","AAPL","GOOGL","NVDA","SPY","AL30","GD30","AL35","BBAR","BYMA","COME","ALUA","TXAR","TGSU2","CRES","EDN","SUPV","VALO","QQQ","MSFT","AMZN","MELI","META","TSLA","KO","JPM","XOM"]
+TICKERS=["GGAL","YPFD","PAMP","CEPU","BMA","BBAR","BYMA","COME","ALUA","TXAR","TGSU2","CRES","EDN","SUPV","VALO","LOMA","METR","TECO2","TGNO4","TRAN","IRSA","MIRG","HARG","AAPL","GOOGL","NVDA","SPY","QQQ","MSFT","AMZN","MELI","META","TSLA","KO","JPM","XOM","AL29","AL30","AL35","AE38","AL41","GD29","GD30","GD35","GD38","GD41","GD46","TX28","TX31"]
 RISK=.005
 MAX_POSITION=.20
 FEE=.003
@@ -63,7 +63,7 @@ def download(ticker):
         deviation=pd.concat([(upper-d.high).clip(lower=0),(d.low-lower).clip(lower=0)],axis=1).max(axis=1)/d.close
         # Allow corrections to <=2% of rows with <1% deviation (closing auction/capture issues).
         # Each repair is logged, never silently converted into an authentic high/low.
-        allowance=.05 if ticker in ["AL30","GD30","AL35"] else .02
+        allowance=.05 if ticker in ["AL29","AL30","AL35","AE38","AL41","GD29","GD30","GD35","GD38","GD41","GD46","TX28","TX31"] else .02
         if corrections>max(1,int(allowance*len(d))) or float(deviation.max())>.01:
             sample=d.loc[bad,["date","open","high","low","close"]].head(2).copy()
             sample["date"]=sample["date"].dt.strftime("%Y-%m-%d")
@@ -154,8 +154,13 @@ for ticker in TICKERS:
         record.update(fuente=url,velas=len(d),primera=str(d.date.iloc[0].date()),ultima=str(d.date.iloc[-1].date()),correcciones_ohlc=d.attrs.get("correcciones_ohlc",0),split_ypfd_ajustado=d.attrs.get("split_ypfd_ajustado",False))
         if len(d)<MIN_BARS:
             record["estado"]="RECHAZADO_MENOS_400"
-        elif ticker in ["AL30","GD30","AL35"]:
-            record["estado"]="EXCLUIDO_DE_PNL: faltan cupones/amortizaciones"
+        elif ticker in ["AL29","AL30","AL35","AE38","AL41","GD29","GD30","GD35","GD38","GD41","GD46","TX28","TX31"]:
+            # Preserve verified bond prices for bond surveillance, never claim total return.
+            d.to_csv(OUT/f"{ticker}_ohlcv.csv",index=False)
+            x=calculate(d)
+            latest=x.iloc[-1]
+            record.update(estado="BONO_SOLO_SEGUIMIENTO_PRECIO",ema50=round(latest.ema50,2),ema200=round(latest.ema200,2),rsi14=round(latest.rsi14,2),
+                          advertencia="Sin flujos de cupones/amortizaciones, spreads, ni TIR de la especie. NO backtest de PNL ni orden de compra.")
         else:
             x=calculate(d)
             d.to_csv(OUT/f"{ticker}_ohlcv.csv",index=False)
