@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'radar_byma/financials_sec.py'
+      - 'radar_byma/financials_arg.py'
       - '.github/workflows/byma_fundamentales.yml'
   schedule:
     - cron: '5 23 * * 1-5'
@@ -21,7 +22,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install requests
+      - run: pip install requests beautifulsoup4
+      - name: Discover public IOL list for Argentine issuer coverage
+        run: python radar_byma/discover_byma.py
+      - name: Read issuer-owned numeric Argentine tables conservatively
+        run: python radar_byma/financials_arg.py
       - name: Read numerical SEC companyfacts without auth keys
         run: python radar_byma/financials_sec.py
       - name: Upload filing-date aware numerical ratios
