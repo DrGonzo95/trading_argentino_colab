@@ -1,0 +1,53 @@
+name: Radar BYMA - ampliar historicos y contratos
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'radar_byma/history_coverage.py'
+      - 'radar_byma/bond_cashflows.py'
+      - '.github/workflows/byma_research.yml'
+  schedule:
+    - cron: '40 23 * * 1-5'
+permissions:
+  contents: write
+concurrency:
+  group: radar-byma-main
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pandas numpy requests beautifulsoup4
+      - name: Discover and classify public delayed IOL panels
+        run: python radar_byma/discover_byma.py
+      - name: Download rotating BYMA stock CEDEAR histories and validate
+        run: python radar_byma/history_coverage.py
+      - name: Fetch sovereign bond contract schedules
+        run: python radar_byma/bond_cashflows.py
+      - name: Persist checked OHLCV research cache
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add -A radar_byma/cache/ohlcv
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh research-only BYMA historical cache [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Upload data coverage and bond flows
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: byma-historicos-y-flujos
+          path: |
+            resultados/expansion/
+            resultados/bonos/
+          if-no-files-found: warn
+          retention-days: 30
