@@ -6,6 +6,7 @@ on:
       - 'radar_byma/runner.py'
       - 'radar_byma/research_advanced.py'
       - 'radar_byma/dual_monitor.py'
+      - 'radar_byma/challenger_rsi35.py'
       - '.github/workflows/radar_byma.yml'
   schedule:
     - cron: '35 13-20 * * 1-5'
@@ -31,6 +32,8 @@ jobs:
         run: python radar_byma/research_advanced.py
       - name: Monitor RSI14 paper forward and indicative caucion yields
         run: python radar_byma/dual_monitor.py
+      - name: Run frozen RSI35 challenger on future completed bars (paper only)
+        run: python radar_byma/challenger_rsi35.py
       - name: Save simulation ledger between runs
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
