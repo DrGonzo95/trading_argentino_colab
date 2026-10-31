@@ -17,7 +17,7 @@ RISK=0.005
 CONCENTRATION=0.20
 MIN_RR=2.0
 SPLIT=pd.Timestamp("2026-03-24")
-BONDS={"AL30","GD30","AL35"}
+BONDS={"AL29","AL30","AL35","AE38","AL41","GD29","GD30","GD35","GD38","GD41","GD46","TX28","TX31"}
 STRATEGIES={
     "ruptura_20":{"stop":1.5,"target":4.0,"hold":20},
     "ruptura_55":{"stop":2.0,"target":5.6,"hold":30},
