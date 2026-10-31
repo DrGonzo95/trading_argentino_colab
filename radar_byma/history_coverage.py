@@ -4,7 +4,7 @@ Rotate across stocks, CEDEARs including lower-turnover instruments.
 Use cached datasets as RESEARCH, never silently re-label as tradable if <400 bars,
 without adjusted corporate actions, or without bid/ask and market-depth history.
 """
-import csv,json,os,re,time
+import ast,csv,json,os,re,time
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote
@@ -74,10 +74,24 @@ def choose():
     snapshot=json.loads(PANELS.read_text(encoding="utf-8"))
     if snapshot.get("errors"):raise RuntimeError("Paneles incompletos")
     raw=snapshot["snapshot"]
+    # The hourly runner already downloads 49 default instruments; use nightly
+    # requests to broaden coverage, not repeat the same validated symbols.
+    module=ast.parse(Path("radar_byma/runner.py").read_text(encoding="utf-8"))
+    base=set()
+    for node in module.body:
+        if isinstance(node,ast.Assign) and any(isinstance(t,ast.Name) and t.id=="TICKERS" for t in node.targets):
+            base=set(ast.literal_eval(node.value));break
+    fresh_cache=set()
+    for f in CACHE.glob("*.csv"):
+        try:
+            d=pd.read_csv(f,usecols=["date"],parse_dates=["date"])
+            if len(d)>=400 and (TODAY-d.date.max().date()).days<=MAX_AGE_DAYS:fresh_cache.add(f.stem)
+        except (OSError,ValueError):pass
     pools={}
     for group in GROUPS:
         all_codes={r["symbol"] for r in raw if r["class"]==group}
         rows=[r for r in raw if r["class"]==group and r.get("last_delayed",0)>0
+              and r["symbol"] not in base and r["symbol"] not in fresh_cache
               and not (r["symbol"].endswith(("D","C")) and r["symbol"][:-1] in all_codes)
               and re.fullmatch(r"[A-Z][A-Z0-9]{0,11}",r["symbol"])]
         high=sorted([r for r in rows if float(r.get("turnover_indicative") or 0)>=5e6],
