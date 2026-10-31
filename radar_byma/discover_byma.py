@@ -105,22 +105,33 @@ def main():
     old=set(core_symbols())
     candidates=[]
     selected_by={}
-    for group,limit in (("accion",16),("cedear",20)):
+    low_selected_by={}
+    high_selected_by={}
+    for group,limit,low_reserved in (("accion",16,6),("cedear",20,6)):
         usable=[r for r in by[group] if r["symbol"] not in old
-                and not r.get("possible_fx_variant") and r["last_delayed"]>=100
-                and r["turnover_indicative"]>=MIN_TURNOVER]
-        # Deterministic round-robin across days, after sorting by turnover.
-        usable.sort(key=lambda r:(-r["turnover_indicative"],r["symbol"]))
-        pool=usable[:min(110,len(usable))]
-        selected=[]
-        if pool:
-            start=(NOW.timetuple().tm_yday*limit)%len(pool)
-            for off in range(len(pool)):
-                row=pool[(start+off)%len(pool)]
-                if row["symbol"] not in selected:
-                    selected.append(row["symbol"])
+                and not r.get("possible_fx_variant") and r["last_delayed"]>0
+                and r["turnover_indicative"]>0]
+        # Both liquid and thinly traded instruments deserve research.
+        # Low turnover alone NEVER makes a candidate eligible for a paper buy order.
+        high=sorted((r for r in usable if r["turnover_indicative"]>=MIN_TURNOVER),
+                    key=lambda r:(-r["turnover_indicative"],r["symbol"]))[:110]
+        low=sorted((r for r in usable if r["turnover_indicative"]<MIN_TURNOVER),
+                   key=lambda r:(-r["turnover_indicative"],r["symbol"]))[:110]
+        def rotate(pool,n,offset):
+            if not pool or n<=0:return []
+            start=(NOW.timetuple().tm_yday*n+offset)%len(pool)
+            return [pool[(start+i)%len(pool)]["symbol"] for i in range(min(n,len(pool)))]
+        low_selections=rotate(low,low_reserved,7)
+        high_selections=rotate(high,limit-len(low_selections),0)
+        # Fill unused slots from either group, still bounded.
+        selected=list(dict.fromkeys(high_selections+low_selections))
+        if len(selected)<limit:
+            for symbol in rotate(high+low,len(high+low),11):
+                if symbol not in selected:selected.append(symbol)
                 if len(selected)>=limit:break
         selected_by[group]=selected
+        low_selected_by[group]=low_selections
+        high_selected_by[group]=high_selections
         candidates+=selected
     # Capture the broad snapshot without inventing signals from delayed prices.
     payload={"scanned_at":NOW.isoformat(),"source":"IOL quote panels; delayed",
@@ -129,7 +140,9 @@ def main():
              "quote_rows_total":len(rows),
              "historical_extra_symbols":candidates,
              "historical_extra_by_type":selected_by,
-             "history_policy":"bounded 36 rotating liquid-looking ARS candidates; price/turnover only indicative; OHLCV validation required",
+             "historical_extra_high_activity_by_type":high_selected_by,
+             "historical_extra_low_activity_by_type":low_selected_by,
+             "history_policy":"bounded 36 rotating stocks/CEDEARs including max 12 thin-traded candidates for RESEARCH ONLY; units/currency unverified; no buys without spread/depth and OHLCV",
              "not_live":True,"snapshot":rows}
     (OUT/"snapshot.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     (OUT/"history_candidates.json").write_text(json.dumps({"tickers":candidates,"groups":selected_by,"scanned_at":NOW.isoformat()},ensure_ascii=False,indent=2),encoding="utf-8")
