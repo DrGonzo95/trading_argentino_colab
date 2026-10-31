@@ -28,8 +28,8 @@ MIN_TURNOVER=5_000_000.0  # indicative ARS turnover; screen only, not full liqui
 def parse_num(x):
     x=str(x).strip().replace("\u00a0","").replace("$","").replace("%","").replace(" ","")
     if x in ("-","", "—"):return None
-    if "." in x and "," in x:x=x.replace(".","").replace(",",".")
-    elif "," in x:x=x.replace(",",".")
+    if "," in x: x=x.replace(".","").replace(",",".")
+    elif re.fullmatch(r"\d{1,3}(?:\.\d{3})+",x): x=x.replace(".","")
     try:return float(x)
     except ValueError:return None
 def core_symbols():
