@@ -66,9 +66,23 @@ def analyze(page,kind):
             if len(td)<=amount_index:continue
             turnover=parse_num(td[amount_index].get_text(" ",strip=True))
             if price is None or price<=0:continue
+            # IOL panel lists bid/ask quantities and prices in columns 3..6.
+            # In many delayed public snapshots these are '-', and MUST remain unavailable.
+            bid_qty=parse_num(td[3].get_text(" ",strip=True)) if len(td)>3 else None
+            bid=parse_num(td[4].get_text(" ",strip=True)) if len(td)>4 else None
+            ask=parse_num(td[5].get_text(" ",strip=True)) if len(td)>5 else None
+            ask_qty=parse_num(td[6].get_text(" ",strip=True)) if len(td)>6 else None
+            good=bool(bid and ask and bid>0 and ask>=bid)
+            spread=round(100*(ask-bid)/((ask+bid)/2),4) if good else None
             rows.append({"symbol":sym,"class":kind,"last_delayed":price,
                          "variation_pct":parse_num(td[2].get_text(" ",strip=True)),
                          "turnover_indicative":turnover or 0.0,
+                         "best_bid_delayed":bid if good else None,
+                         "bid_qty_delayed":bid_qty if good else None,
+                         "best_ask_delayed":ask if good else None,
+                         "ask_qty_delayed":ask_qty if good else None,
+                         "spread_pct_delayed":spread,
+                         "spread_data_state":"DELAYED_SNAPSHOT_ONLY" if good else "NO_QUOTED_BID_ASK",
                          "provider":"IOL public delayed panel",
                          "scraped_at":NOW.isoformat(),
                          "quote_time":"unknown; panel typically delayed by >=20 min",
