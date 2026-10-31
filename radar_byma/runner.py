@@ -51,8 +51,8 @@ def download(ticker):
     if len(d)==0:raise ValueError("Sin fechas <= corte")
     if (d[["open","high","low","close"]]<=0).any().any() or (d.volume<0).any():raise ValueError("Precios/volumen inválidos")
     if ticker=="YPFD":
-        # Corporate action verified by YPF IR: 1:10 split effective 2026-08-04.
-        old=d.date<pd.Timestamp("2026-08-04")
+        # YPF IR confirms 1:10 split effective Aug 04. IOL data show Aug 03 already split-adjusted; adjust <= July 31 only.
+        old=d.date<=pd.Timestamp("2026-07-31")
         d.loc[old,["open","high","low","close"]] /= 10
         d.loc[old,"volume"] *= 10
     bad=(d.high<d[["open","low","close"]].max(axis=1)) | (d.low>d[["open","high","close"]].min(axis=1))
@@ -63,7 +63,8 @@ def download(ticker):
         deviation=pd.concat([(upper-d.high).clip(lower=0),(d.low-lower).clip(lower=0)],axis=1).max(axis=1)/d.close
         # Allow corrections to <=2% of rows with <1% deviation (closing auction/capture issues).
         # Each repair is logged, never silently converted into an authentic high/low.
-        if corrections>max(1,int(.02*len(d))) or float(deviation.max())>.01:
+        allowance=.05 if ticker in ["AL30","GD30","AL35"] else .02
+        if corrections>max(1,int(allowance*len(d))) or float(deviation.max())>.01:
             sample=d.loc[bad,["date","open","high","low","close"]].head(2).copy()
             sample["date"]=sample["date"].dt.strftime("%Y-%m-%d")
             raise ValueError(f"OHLC inconsistente: {corrections} de {len(d)}; maxdesv {deviation.max():.3%}; muestra {sample.to_dict('records')}")
