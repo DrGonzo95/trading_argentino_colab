@@ -6,6 +6,7 @@ on:
       - 'radar_byma/events_public.py'
       - 'radar_byma/events_study.py'
       - 'radar_byma/merge_event_state.py'
+      - 'radar_byma/events_ml_backtest.py'
       - '.github/workflows/byma_eventos.yml'
   schedule:
     - cron: '20 13-22 * * 1-5'
@@ -30,6 +31,8 @@ jobs:
         run: python radar_byma/events_public.py
       - name: Archive events when first observed and run gated forward-safe event study
         run: python radar_byma/events_study.py
+      - name: Check whether dated event outcomes permit leak-free predictive modelling
+        run: python radar_byma/events_ml_backtest.py
       - name: Persist first-seen event history with conflict-safe merge
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
