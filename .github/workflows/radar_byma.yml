@@ -5,7 +5,7 @@ on:
     paths:
       - 'radar_byma/runner.py'
       - 'radar_byma/research_advanced.py'
-      - 'radar_byma/forward_monitor.py'
+      - 'radar_byma/dual_monitor.py'
       - '.github/workflows/radar_byma.yml'
   schedule:
     - cron: '35 13-20 * * 1-5'
@@ -29,13 +29,13 @@ jobs:
         run: python radar_byma/runner.py
       - name: Test advanced strategies with untouched holdout
         run: python radar_byma/research_advanced.py
-      - name: Monitor RSI14 forward and indicative caucion yields
-        run: python radar_byma/forward_monitor.py
+      - name: Monitor RSI14 paper forward and indicative caucion yields
+        run: python radar_byma/dual_monitor.py
       - name: Save simulation ledger between runs
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add radar_byma/data/forward_state.json
+          git add radar_byma/state/paper_ledger.json
           if ! git diff --cached --quiet; then
             git commit -m "Update paper-trading ledger [skip ci]"
             git push origin HEAD:main
