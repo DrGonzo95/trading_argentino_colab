@@ -1092,6 +1092,66 @@
       "first_seen": "2026-10-31T20:25:17.427306-03:00",
       "asof_usable": "2026-10-31T20:25:17.427306-03:00",
       "no_es_recomendacion": true
+    },
+    "9733910cf5b8380f8aae68945a182a19e6cbf967dd1074edce2a34432fe1d5dc": {
+      "ticker": "LEDE",
+      "published": "2026-10-30T10:52:04-03:00",
+      "title": "Tulipanes Patagonia adelantó el cierre de visitas al cultivo y Ledesma destacó una temporada histórica para la región - FM del Lago Esquel",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNaGgxSGFYNVkySm5MWlpsdGkzTjFfWENnaWpfeVZscTVNbkNVa1BsOEFNZFlrQVphdjJWQWZCRmdKSW04MWpmNlRvb2haNUd0elh1YmozV1pBNkE2Y1NMeTJSMVJLQmZySFdyV2ZtN1p2ZzVCcEVqSTByZ1VWRVJaRmJFLUJrVW1WblMzdWxPaEVHN2FmVlVXYmNGcUJ5UGg4UVViVTg1NktkR2lWeUliNnh2a29IWVhmQkNLUnNTcGtJYmhkTS04ZzdsWm5MN3k4ZEVacFFlb3VPclI2b1VfbEhDa9IB6AFBVV95cUxOdzB2U0xRaXljeE1aUWpfbjNObjNXdXRVakZZWVZJc3E5WjNwaWZoVnpIVkpjaDZwRW5idlM0cHM4NU12Y2xlamNfWWYzZ0Z0akZZenFuVmlzRnloMlZ6aElzazR0ajVTanV0dWVjbGlSWlNhbC1Id3NMRmpqSHkxMDF6Sl8xZEFqb2lNMWJfOWlqY01Xc3hDbWFUZHFuRWhhdXFmdzJSUkJKX0VkY0hRS1VZVFZvZzVabXYxYmxaQXZ4RDdNcGpyUkZTNzVKNjIzOUc1d3N0UkNFNXZCQnBmcGdnQzE1VU9P?oc=5",
+      "source": "NEWS_HEADLINE",
+      "topic": "[]",
+      "confidence": "headline_only",
+      "sentiment_score_lexical": 0,
+      "sentiment": "indeterminado",
+      "palabras_coincidentes": [],
+      "first_seen": "2026-10-31T20:27:17.960447-03:00",
+      "asof_usable": "2026-10-31T20:27:17.960447-03:00",
+      "no_es_recomendacion": true
+    },
+    "b7352465c0fb67fd5ea0c95e27c786f9f65bf1c448d6a326047f615cb848be68": {
+      "ticker": "LEDE",
+      "published": "2026-10-30T21:31:06-03:00",
+      "title": "Ledesma profundiza sus pérdidas y uno de los Blaquier avanza con un nuevo polo azucarero en Tucumán - https://diariolapluma.com.ar/",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPZXY4elhqM1Vuc2NXeWFpZzY5YWdHQ3E5T3RNVHY1TW1IeGFHS1JLQ1RJZFZZb1F3Q3Z3S0VBV05QdkN2TDlSRUtsWTBCRnE2VEozSFhwVVBNWDRYMnp4OTRrekhWd3dZcEk2b1lmMk9GUThwTF9ySTNDRjFxaGpNbXFjd1NveGRBQmFSVW1sdVF1SE5oUG5UenFVNFoyNVlobkh5ZGhZWnlVRW5YRnpRWkFqYi1TbExVOVNZWUlMNTlRc0JveEFkZQ?oc=5",
+      "source": "NEWS_HEADLINE",
+      "topic": "[]",
+      "confidence": "headline_only",
+      "sentiment_score_lexical": 0,
+      "sentiment": "indeterminado",
+      "palabras_coincidentes": [],
+      "first_seen": "2026-10-31T20:27:17.960447-03:00",
+      "asof_usable": "2026-10-31T20:27:17.960447-03:00",
+      "no_es_recomendacion": true
+    },
+    "73d6d1f63dbeba69bfa5dcbf5784361198d2049dae4cb7e4aa003de6d4ad8eb2": {
+      "ticker": "LEDE",
+      "published": "2026-10-25T21:00:23-03:00",
+      "title": "Dominio absoluto de Franco Ledesma en la visita rosarina de la F2 Argentina - Solo Motores",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxONTVLT2hKbzNvSlJfYWpKQ09VQ2NGQzJKMDJGVXRfYVU0R043OWxKSzJPQXN1QXZlNTlldnhVMDhtbzV4S0NZSmRjcGlkTHl3YmRRdXB1ZUNZbjlOQm1tUy1tRTcwYnNIZ2V1TDNjdnhZT1Q4d2hFTkFZU0RkUjVHUkdZNXN2c0RiQjRWcm5VMzFBaUx5TWlxbmpRTXhEelF3V2xXbXFB?oc=5",
+      "source": "NEWS_HEADLINE",
+      "topic": "[]",
+      "confidence": "headline_only",
+      "sentiment_score_lexical": 0,
+      "sentiment": "indeterminado",
+      "palabras_coincidentes": [],
+      "first_seen": "2026-10-31T20:27:17.960447-03:00",
+      "asof_usable": "2026-10-31T20:27:17.960447-03:00",
+      "no_es_recomendacion": true
+    },
+    "46d1bdec93b2a89195d618ecd067c56ba4fe9c27c3f6c24f349781e4dd618099": {
+      "ticker": "LEDE",
+      "published": "2026-10-25T10:35:35-03:00",
+      "title": "Un globo de ensayo «democrático», por Marianella Ledesma - La República",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOWnRiZ1c4QjJROVpMQS1xM0hwRDluX1V5dG0wUmh2a3Y4VnlWei1ScW9fTTU2R3JsaTI1Y3hXenZ1STZuUWlVLUdRRTZMWEhNWkpQUjBJUjVTWXJFcjdrRkphX1JOUUNENjlHME4wT2VrbkZIcjhESXhqX2ZRSlBPQVVTLW53UUtlbE01empyVXpGUEZSSTBpYjZXRU1uRkpZQTMyd1FveWpTMk830gGyAUFVX3lxTE9MLWlSc05HNXNETVNTdlNSS1VBUk9oRlhoRVlkQnZhdkVhNWRJV0xsYXc5U3RVaGk3LWRrbTFGcmdUZ2lhdHJzdWdKWmJJblNvRFp1WTJ3SDRmZGY2Q1ktYmlSM1FRVGs5V0NvenVCOW1OVkxrTjM5MDUyN3N5TjdoQXRYeVladUtFdkJyTXhxTzZCZ1V2bDBtVWVqOVpUTFJBNFJEczVvOWJxbkRDdXdkenc?oc=5",
+      "source": "NEWS_HEADLINE",
+      "topic": "[]",
+      "confidence": "headline_only",
+      "sentiment_score_lexical": 0,
+      "sentiment": "indeterminado",
+      "palabras_coincidentes": [],
+      "first_seen": "2026-10-31T20:27:17.960447-03:00",
+      "asof_usable": "2026-10-31T20:27:17.960447-03:00",
+      "no_es_recomendacion": true
     }
   }
 }

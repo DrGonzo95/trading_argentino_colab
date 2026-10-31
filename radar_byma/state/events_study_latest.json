@@ -1,0 +1,25 @@
+{
+  "analizado": "2026-10-31T20:27:17.960447-03:00",
+  "events_stored": 75,
+  "newly_observed": 4,
+  "ticker_prices_available": 11,
+  "lexicon_quality": "LOW, audit headlines manually; NOT a trained or validated sentiment model",
+  "study": {
+    "status": "INSUFFICIENT_POINT_IN_TIME_HISTORY",
+    "params_locked": "next trading day open to fifth later trading session close; fixed lexicon; fees+slip 0.7655% each side",
+    "eligible_independent_events": 0,
+    "distinct_tickers": 0,
+    "span_days": 0,
+    "minimums": {
+      "events": 30,
+      "tickers": 8,
+      "calendar_span": 60,
+      "positive": 10,
+      "negative": 10
+    },
+    "returns_withheld_due_to_low_sample": true,
+    "note": "Even if gate met, this is hypothesis-generating, NOT independent validation; need walk-forward and market/sector baseline to make a claim."
+  },
+  "prediction_status": "NOT_VALIDATED_DO_NOT_USE_FOR_TRADING",
+  "no_future_data": "asof_usable=max(first observed by radar, publication date); never silently backfill"
+}

@@ -1,0 +1,230 @@
+{
+  "revisado_en": "2026-10-31T20:27:03.417036-03:00",
+  "total_acciones_panel": 87,
+  "acciones_mapeadas_a_emisora": 46,
+  "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
+  "completo_balance_cuantitativo": false,
+  "anotaciones": [],
+  "errores": {},
+  "acciones_sin_mapeo": [
+    "A3",
+    "ALUAD",
+    "BBARD",
+    "BMA.D",
+    "BYMAD",
+    "CADO",
+    "CECO2",
+    "CEPUD",
+    "COMED",
+    "CRESD",
+    "DOME",
+    "ECOG",
+    "ECOGD",
+    "EDND",
+    "FIPL",
+    "GAMI",
+    "GBAN",
+    "GCDI",
+    "GCLA",
+    "GGALD",
+    "GRIM",
+    "HAVA",
+    "IEB",
+    "INTR",
+    "IRSAD",
+    "LOMAD",
+    "METRD",
+    "MOLA",
+    "MORI",
+    "OEST",
+    "PAMPD",
+    "PATA",
+    "ROSE",
+    "SUPVD",
+    "TECOD",
+    "TGN4D",
+    "TGSUD",
+    "TRAND",
+    "TXARD",
+    "VALOD",
+    "YPFDD"
+  ],
+  "total_hechos_cnv": 155,
+  "hechos_cnv_coincidentes": 36,
+  "consultas_noticias": 32,
+  "noticias_con_nombre_coincidente": 42,
+  "estado_redes": "DISPONIBLE",
+  "publicaciones_sociales_mencionando_ticker": 0,
+  "top_prioridad_revision": [
+    {
+      "ticker": "BMA",
+      "documentos_cnv": 4,
+      "titulares": 11,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "recompra"
+      ],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "CEPU",
+      "documentos_cnv": 5,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
+      ],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "CTIO",
+      "documentos_cnv": 5,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "YPFD",
+      "documentos_cnv": 4,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "TXAR",
+      "documentos_cnv": 3,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "produccion",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 90,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BOLT",
+      "documentos_cnv": 2,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
+      ],
+      "prioridad_lectura": 66,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BHIP",
+      "documentos_cnv": 2,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 60,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BYMA",
+      "documentos_cnv": 2,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "recompra"
+      ],
+      "prioridad_lectura": 60,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "IRSA",
+      "documentos_cnv": 2,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "dividendos"
+      ],
+      "prioridad_lectura": 60,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "LOMA",
+      "documentos_cnv": 1,
+      "titulares": 3,
+      "social_no_verificado": 0,
+      "temas": [
+        "financiamiento"
+      ],
+      "prioridad_lectura": 48,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "METR",
+      "documentos_cnv": 0,
+      "titulares": 8,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 48,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "LEDE",
+      "documentos_cnv": 0,
+      "titulares": 7,
+      "social_no_verificado": 0,
+      "temas": [
+        "produccion"
+      ],
+      "prioridad_lectura": 42,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "CELU",
+      "documentos_cnv": 1,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 36,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "CRES",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "dividendos"
+      ],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "MOLI",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
+      ],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    }
+  ],
+  "restricciones": [
+    "NO es análisis de ratios fundamentales, valor razonable, PER, EV/EBITDA ni crecimiento; faltan balances numéricos estandarizados por emisor.",
+    "Publicaciones posteriores al cierre de rueda NO pueden ser usadas para predecir precio previo.",
+    "Mención en noticias/redes no equivale a tono positivo o cambio fundamental; no autocomprar.",
+    "Identidades de empresas se mapean a alias concretos: ticker solo es ambiguo y no se usa como verdad.",
+    "Análisis de redes públicas depende de accesibilidad; si falla se declara NO DISPONIBLE.",
+    "No hay datos en tiempo real, ni fuente privada, ni garantía de anticipar el mercado."
+  ]
+}
