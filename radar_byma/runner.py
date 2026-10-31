@@ -11,6 +11,16 @@ import requests
 from bs4 import BeautifulSoup
 
 TICKERS=["GGAL","YPFD","PAMP","CEPU","BMA","BBAR","BYMA","COME","ALUA","TXAR","TGSU2","CRES","EDN","SUPV","VALO","LOMA","METR","TECO2","TGNO4","TRAN","IRSA","MIRG","HARG","AAPL","GOOGL","NVDA","SPY","QQQ","MSFT","AMZN","MELI","META","TSLA","KO","JPM","XOM","AL29","AL30","AL35","AE38","AL41","GD29","GD30","GD35","GD38","GD41","GD46","TX28","TX31"]
+# Discover extra ARS-looking liquid stocks/CEDEARs from public panels, bounded
+# to a manageable amount of historical requests per cloud run.
+discovery=Path("resultados/discovery/history_candidates.json")
+if discovery.exists():
+    try:
+        selection=json.loads(discovery.read_text(encoding="utf-8"))
+        extra=[s for s in selection.get("tickers",[]) if isinstance(s,str) and s.isalnum() and len(s)<=12]
+        TICKERS=list(dict.fromkeys(TICKERS+extra))[:90]
+    except Exception as exc:
+        print("AVISO: universo dinámico no disponible; usando lista fija:",type(exc).__name__)
 RISK=.005
 MAX_POSITION=.20
 FEE=.003
