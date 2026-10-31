@@ -38,6 +38,7 @@ jobs:
           git add radar_byma/state/paper_ledger.json
           if ! git diff --cached --quiet; then
             git commit -m "Update paper-trading ledger [skip ci]"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
       - name: Upload reports
