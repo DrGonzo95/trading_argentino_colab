@@ -35,7 +35,7 @@ function inspect(symbol){
    if(id("assetType"))id("assetType").value="todos";
    if(id("statusFilter"))id("statusFilter").value="todos";
    if(id("search"))id("search").value=symbol;
-   renderRows();renderDetail();
+   renderRows();window.renderDetail?.();
  }else document.dispatchEvent(new CustomEvent("byma:selection",{detail:{symbol}}));
  render();
  id("workstation")?.scrollIntoView({behavior:"smooth",block:"start"});
@@ -88,7 +88,7 @@ function setAudit(){
   "ESTRATEGIA NO VALIDADA. "+(audit.conclusion||"Sin evidencia suficiente.")+
   " La muestra sufre sesgo de selección y no dispone de spread ni precios ajustados de forma independiente."));
 }
-function renderDetail(){
+function renderSignal(){
  const a=current();const root=id("proSignal");if(!root)return;root.replaceChildren();
  if(!a){root.appendChild(node("p","", "Seleccioná una especie para interpretar la señal publicada."));return;}
  root.appendChild(node("h3","",a.symbol+" · "+(a.kind==="accion"?"acción":"CEDEAR")));
@@ -115,7 +115,7 @@ function renderDetail(){
  details.type="button";details.addEventListener("click",()=>{
    s.selected=a.symbol;s.assetType="todos";s.filter="todos";s.query=a.symbol;
    id("assetType").value="todos";id("statusFilter").value="todos";id("search").value=a.symbol;
-   renderRows();renderDetail();
+   renderRows();window.renderDetail?.();
    id("detailPanel")?.scrollIntoView({behavior:"smooth",block:"start"});
  });
  const watch=node("button","pro-cta",s.watch.has(a.symbol)?"★ Quitar seguimiento":"☆ Guardar seguimiento");
@@ -128,11 +128,12 @@ function renderDetail(){
 function render(){
  if(!id("proBoard"))return;
  const data=items();
+ if(!active&&data.length){active=(getRows()[0]||data.find(x=>hasChart(x.symbol))||data[0]).symbol;}
  setText(id("proCoverage"),data.length+" catalogados · "+data.filter(x=>x.technical_score!=null).length+" con técnico · "+Object.keys(history).length+" con velas");
  const time=s?.meta?.generated_at ? new Date(s.meta.generated_at) :null;
  const label=time&&Number.isFinite(time.getTime())?datefmt.format(time)+" (exportación; hora de negociación desconocida)":"sin hora verificable";
  setText(id("proFreshness"),"Última exportación: "+label);
- renderCards();renderDetail();setAudit();
+ renderCards();renderSignal();setAudit();
 }
 function setup(){
  const root=id("proTerminal");if(!root)return;
