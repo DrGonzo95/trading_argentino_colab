@@ -13,8 +13,6 @@ on:
     - cron: '7,37 22 * * 1-5'
 permissions:
   contents: write
-  pages: write
-  id-token: write
 concurrency:
   group: pulso-byma-pages-public
   cancel-in-progress: false
@@ -22,9 +20,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     timeout-minutes: 14
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -56,19 +51,10 @@ jobs:
             git pull --rebase origin main
             git push origin HEAD:main
           fi
-      - name: Enable GitHub Pages automatically if repository permission allows
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - name: Upload website
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./docs
-      - name: Publish GitHub Pages website
-        id: deployment
-        uses: actions/deploy-pages@v4
-      - name: Confirm site deployment
+      - name: Report public site activation instructions
         run: |
-          test "${{ steps.deployment.outcome }}" = "success"
-          echo "Pages deployment confirmed at: ${{ steps.deployment.outputs.page_url }}"
-          echo "Data: docs/data/market.json"
+          echo "Static HTML/JS and docs/data/market.json are updated successfully."
+          echo "GitHub Actions cannot create/enable Pages due insufficient integration permissions."
+          echo "Repository owner must open Settings > Pages and select Source: Deploy from a branch; Branch: main; Folder: /docs."
+          echo "The branch-published page will then update automatically when docs/data/market.json changes."
+          echo "Do not claim the public site is live until repository Pages is enabled."
