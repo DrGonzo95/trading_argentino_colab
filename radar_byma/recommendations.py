@@ -85,6 +85,16 @@ def decision(a, chart, cross, audit_unproven, feed_healthy):
         reasons.append("La coincidencia con una noticia no prueba causalidad ni anticipa recuperación.")
         next_step="Leer la comunicación original, evaluar impacto y buscar nueva señal técnica; no comprar solo porque cayó."
         level="investigar"
+    elif status=="ENTRADA_TEORICA_PAPEL":
+        action="ESPERAR_VALIDACION";label="Señal incompleta: solo observar"
+        reasons.append("El radar marcó una señal de papel, pero faltan velas recientes, niveles compatibles u otra validación necesaria.")
+        next_step="Comprobar histórico y niveles de la misma rueda antes de considerar siquiera una simulación."
+        level="sin_datos"
+    elif status=="NOVEDAD_OFICIAL":
+        action="REVISAR_CNV";label="Leer hecho relevante; esperar"
+        reasons.append("Existe una presentación oficial asociada, pero no hay entrada técnica confirmada.")
+        next_step="Consultar el documento en CNV, separar noticia de impacto y volver a evaluar luego del próximo cierre."
+        level="investigar"
     elif not finite(score) or not daily or tech_age is None or tech_age>MAX_DAY_AGE:
         action="ESPERAR_TECNICO";label="Esperar datos técnicos válidos"
         reasons.append("No existe una serie técnica reciente y validada suficiente para fundamentar una entrada.")
@@ -96,11 +106,6 @@ def decision(a, chart, cross, audit_unproven, feed_healthy):
         if finite(rsi):reasons.append("RSI 14 último: "+str(round(rsi,1))+".")
         next_step="Esperar nuevo cierre que cumpla la regla RSI35 y calcular el riesgo neto; corroborar puntas antes de simular."
         level="vigilancia"
-    elif status=="NOVEDAD_OFICIAL":
-        action="REVISAR_CNv";label="Leer hecho relevante; esperar"
-        reasons.append("Existe una presentación oficial asociada, pero no hay entrada técnica confirmada.")
-        next_step="Consultar el documento en CNV, separar noticia de impacto y volver a evaluar luego del próximo cierre."
-        level="investigar"
     else:
         action="OBSERVAR";label="Observar; sin señal"
         reasons.append("El radar no detectó condiciones completas de entrada de papel.")
