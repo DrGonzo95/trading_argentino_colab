@@ -9,6 +9,7 @@ on:
       - 'docs/charts.js'
       - 'docs/charts_v3.js'
       - 'radar_byma/quote_crosscheck.py'
+      - 'radar_byma/chart_expand.py'
       - 'docs/pro.js'
       - 'docs/pro.css'
       - 'radar_byma/strategy_audit.py'
@@ -49,8 +50,10 @@ jobs:
         run: python radar_byma/dashboard_export.py
       - name: Export validated daily candles for professional trading chart
         run: python radar_byma/dashboard_charts.py
+      - name: Expand daily historical chart coverage without filling missing candles
+        run: MAX_EXTRA_CHART_REQUESTS=26 python radar_byma/chart_expand.py
       - name: Independent closing-price crosscheck (second public provider)
-        run: python radar_byma/quote_crosscheck.py
+        run: python radar_byma/quote_crosscheck.py radar_byma/chart_expand.py
       - name: Audit RSI35 strategy without lookahead or synthetic prices
         run: python radar_byma/strategy_audit.py
       - name: Render public GitHub opportunity bulletin
