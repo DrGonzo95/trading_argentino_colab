@@ -64,7 +64,7 @@ for(const [name,viewport] of [["desktop",{width:1440,height:900}],["mobile",{wid
       method:typeof window.PULSOPositionMath?.assess,
       capital:document.querySelector("#simCapitalLabel")?.textContent||""};
   });
-  assert.equal(simulation.cells,9,"Simulation table must present all 9 columns");
+  assert.equal(simulation.cells,12,"Simulation table must present all 12 columns");
   assert.equal(simulation.method,"function","Position math module is absent");
   assert(simulation.text.includes("NO ABRIR") || simulation.text.includes("PAPEL"),"No honest position state");
   await page.locator("#positionCapital").fill("250000");
