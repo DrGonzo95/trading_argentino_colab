@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-10-31T23:43:54.235757-03:00",
+  "kind": "FORWARD_LEDGER_ONLY",
+  "strategy_state": "EXPERIMENTAL_NOT_PROVEN",
+  "from_exclusive": "2026-10-30",
+  "last_processed_session": "2026-10-30",
+  "portfolio_tracking": {
+    "50000": {
+      "closed_or_recorded_orders": 0,
+      "open_positions": 0,
+      "pending_entries": 0,
+      "rejections": 0,
+      "signals_seen": 0,
+      "portfolio_equity_ars": 50000.0,
+      "capital_ars": 50000.0
+    },
+    "100000": {
+      "closed_or_recorded_orders": 0,
+      "open_positions": 0,
+      "pending_entries": 0,
+      "rejections": 0,
+      "signals_seen": 0,
+      "portfolio_equity_ars": 100000.0,
+      "capital_ars": 100000.0
+    }
+  },
+  "description": "Operaciones de papel prospectivas registradas desde el inicio del monitor; nunca registros inventados. Cartera del radar NO sincronizada con el navegador.",
+  "warning": "El historial 0 o pequeño no demuestra ventaja. Deslizamiento, corporate actions y spreads no están comprobados. El seguimiento no equivale a ejecución de broker."
+}
