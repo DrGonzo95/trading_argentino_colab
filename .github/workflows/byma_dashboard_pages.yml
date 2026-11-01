@@ -16,6 +16,8 @@ on:
       - 'docs/pro.js'
       - 'docs/positions.js'
       - 'docs/position_math.js'
+      - 'docs/research_engine.js'
+      - 'tests/research_engine.test.cjs'
       - 'tests/position_math.test.cjs'
       - 'docs/pro.css'
       - 'radar_byma/strategy_audit.py'
@@ -75,8 +77,10 @@ jobs:
           node --check docs/charts_v3.js
           node --check docs/pro.js
           node --check docs/position_math.js
+          node --check docs/research_engine.js
           node --check docs/positions.js
           node tests/position_math.test.cjs
+          node tests/research_engine.test.cjs
           node --check docs/pwa.js
           node --check docs/sw.js
           python -m py_compile radar_byma/dashboard_export.py radar_byma/dashboard_charts.py radar_byma/dashboard_markdown.py radar_byma/strategy_audit.py radar_byma/quote_crosscheck.py radar_byma/chart_expand.py radar_byma/forward_report.py radar_byma/recommendations.py
