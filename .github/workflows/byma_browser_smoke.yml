@@ -29,6 +29,8 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
+      - name: Generate deterministic forward snapshot for smoke test
+        run: python3 radar_byma/forward_report.py
       - name: Start real app server
         run: |
           mkdir -p artifacts
