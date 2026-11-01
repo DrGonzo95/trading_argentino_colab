@@ -1,0 +1,24 @@
+{
+  "name": "Pulso BYMA · Radar y paper trading",
+  "short_name": "Pulso BYMA",
+  "description": "App instalable para estudiar oportunidades en acciones argentinas y CEDEARs con datos diferidos, gráficos reales y posiciones ficticias.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#080d17",
+  "theme_color": "#0b1220",
+  "lang": "es-AR",
+  "categories": [
+    "finance",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
