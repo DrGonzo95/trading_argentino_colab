@@ -1,0 +1,104 @@
+{
+  "generated_at": "2026-10-31T22:47:49.868232-03:00",
+  "method": "RSI14 crosses above 35, closing price above EMA200. Signal at close. Next session OPEN, ATR14 stop 1.2x / target 3.5x, max hold 14 sessions.",
+  "basis": "Unadjusted public daily candles from locally cached IOL BCBA; not independently matched to official settlement, adjustments, bid/ask or corporate actions.",
+  "version": "frozen-rsi35-v1",
+  "assumptions": {
+    "commission_iva_each_side_pct": 0.6655,
+    "slippage_each_side_pct": 0.1,
+    "stop_first_when_both_hit": true,
+    "no_same_symbol_overlap": true,
+    "capital_exposure_not_modeled": true,
+    "spread_not_observed": true
+  },
+  "history_sources": 12,
+  "valid_symbols": 8,
+  "symbols": {
+    "BBAR": 500,
+    "BMA": 500,
+    "CEPU": 500,
+    "NIO": 500,
+    "SAMI": 500,
+    "TGSU2": 500,
+    "TRAN": 500,
+    "VALO": 500
+  },
+  "rejected": {
+    "ASTS": "menos de 400 ruedas o datos incompletos",
+    "BOLT": "salto diario >35%, revisar ajuste corporativo",
+    "METR": "salto diario >35%, revisar ajuste corporativo",
+    "SUPV": "salto diario >35%, revisar ajuste corporativo"
+  },
+  "split_date": "2026-01-09",
+  "train": {
+    "trades": 2,
+    "win_rate_pct": 0.0,
+    "mean_net_pct": -7.101,
+    "median_net_pct": -7.101,
+    "profit_factor": 0.0,
+    "max_drawdown_pct": -13.76,
+    "hypothetical_sequential_return_pct": -13.76
+  },
+  "test": {
+    "trades": 4,
+    "win_rate_pct": 25.0,
+    "mean_net_pct": -6.24,
+    "median_net_pct": -8.396,
+    "profit_factor": 0.052,
+    "max_drawdown_pct": -23.06,
+    "hypothetical_sequential_return_pct": -23.06
+  },
+  "sample_ok": false,
+  "status": "EXPLORATORY_NOT_PROVEN",
+  "conclusion": "La rentabilidad NO está demostrada. Se requieren más activos, ajustes corporativos, spreads reales, validación fuera de muestra y paper trading forward.",
+  "limitations": [
+    "Sesgo de selección y supervivencia: universo con históricos disponibles, no toda BYMA",
+    "Series no ajustadas por splits/dividendos/CEDEAR ratio/FX",
+    "No existe reconstrucción histórica del spread ni liquidez",
+    "El stop podría ejecutarse peor que el nivel teórico",
+    "La división temporal sin ajustes posteriores evita un tipo de sesgo, no todos",
+    "Resultados por operación, no rendimiento de cartera diversificada"
+  ],
+  "test_trades_recent": [
+    {
+      "symbol": "BBAR",
+      "signal_date": "2026-02-19",
+      "entry_date": "2026-02-20",
+      "exit_date": "2026-02-27",
+      "entry": 8208.2,
+      "exit": 7531.8795,
+      "return_pct": -9.54338,
+      "exit_reason": "stop"
+    },
+    {
+      "symbol": "BMA",
+      "signal_date": "2026-02-19",
+      "entry_date": "2026-02-20",
+      "exit_date": "2026-02-26",
+      "entry": 13413.4,
+      "exit": 12367.806,
+      "return_pct": -9.10526,
+      "exit_reason": "stop"
+    },
+    {
+      "symbol": "CEPU",
+      "signal_date": "2026-03-06",
+      "entry_date": "2026-03-09",
+      "exit_date": "2026-03-27",
+      "entry": 2146.144,
+      "exit": 2207.0,
+      "return_pct": 1.37443,
+      "exit_reason": "tiempo"
+    },
+    {
+      "symbol": "BMA",
+      "signal_date": "2026-08-13",
+      "entry_date": "2026-08-14",
+      "exit_date": "2026-08-18",
+      "entry": 12712.7,
+      "exit": 11904.7391,
+      "return_pct": -7.68611,
+      "exit_reason": "stop"
+    }
+  ]
+}
