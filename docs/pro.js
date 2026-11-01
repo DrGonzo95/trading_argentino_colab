@@ -7,7 +7,7 @@ const fmt=new Intl.NumberFormat("es-AR",{maximumFractionDigits:2});
 const datefmt=new Intl.DateTimeFormat("es-AR",{dateStyle:"short",timeStyle:"short",timeZone:"America/Argentina/Cordoba"});
 const n=x=>Number.isFinite(Number(x))&&x!==null&&x!==undefined?fmt.format(Number(x)):"—";
 const cls=x=>Number(x)<0?"pro-neg":Number(x)>0?"pro-pos":"";
-let history={},audit=null,mode="destacados",active=null,chartsReady=false;
+let history={},audit=null,quoteCheck=null,mode="destacados",active=null,chartsReady=false;
 function node(tag,className,txt){const e=document.createElement(tag);if(className)e.className=className;if(txt!==undefined)e.textContent=txt;return e;}
 function setText(element,value){if(element)element.textContent=value;}
 function items(){try{return typeof s!=="undefined"&&Array.isArray(s.items)?s.items:[];}catch(_){return [];}}
@@ -95,7 +95,14 @@ function renderSignal(){
  root.appendChild(node("p","",scoreStatus(a)+". Precio público diferido: "+(a.quote_price==null?"sin valor":"$ "+n(a.quote_price))+"."));
  const finalBar=hasChart(a.symbol)?history[a.symbol].bars.at(-1):null;
  const quoteGap=finalBar&&a.quote_price!=null?100*Math.abs(Number(a.quote_price)-finalBar[4])/finalBar[4]:null;
+ const verifiedSecond=quoteCheck?.prices?.[a.symbol];
+ const verifiedMessage=verifiedSecond?
+   ("IOL $ "+n(verifiedSecond.historical_close)+" vs Gio Bursátil $ "+n(verifiedSecond.independent_close)+
+    " · "+verifiedSecond.market_date+" · "+n(verifiedSecond.difference_pct)+"% · "+
+    (verifiedSecond.status==="MATCH"?"Coincidencia (no precio ejecutable)":"DISCREPANCIA: investigar")):
+   "No disponible para esta especie o fecha; sin confirmación de segundo proveedor";
  const checks=[
+  ["Segundo proveedor (cierre)",verifiedMessage],
   ["Concordancia interna",quoteGap===null?"No comparable: falta precio o histórico":
     "Cierre histórico $ "+n(finalBar[4])+" ("+finalBar[0]+") vs panel $ "+n(a.quote_price)+
     " · diferencia "+n(quoteGap)+"%. "+(quoteGap>.5?"DESAJUSTE, no operar.":"Coincidencia interna, no cotejo independiente.")],
@@ -189,6 +196,9 @@ async function load(){
    b[2]>=Math.max(b[1],b[4])&&b[3]<=Math.min(b[1],b[4])&&b[5]>=0)));
  chartsReady=true;
  }catch(e){console.warn("PRO charts",e);chartsReady=false;history={};}
+ try{const response=await fetch("./data/quote_check.json?pro="+Date.now(),{cache:"no-store"});
+  if(response.ok){const j=await response.json();quoteCheck=j;}
+ }catch(e){console.warn("PRO second provider not available",e);}
  try{const response=await fetch("./data/strategy_audit.json?pro="+Date.now(),{cache:"no-store"});
    if(response.ok){const j=await response.json();if(j.version==="frozen-rsi35-v1")audit=j;}
  }catch(e){console.warn("PRO audit pending",e);}
