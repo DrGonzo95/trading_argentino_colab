@@ -42,3 +42,13 @@
 @media(max-width:1100px){.pro-board{grid-template-columns:repeat(3,minmax(0,1fr))}.pro-audit{grid-template-columns:1fr}}
 @media(max-width:720px){.pro-board{grid-template-columns:repeat(2,minmax(0,1fr))}.pro-body{padding:11px}.pro-head{padding:14px}.pro-head h2{font-size:19px}.pro-risk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.pro-riskstat{padding:7px}.pro-riskstat strong{font-size:14px}}
 @media(max-width:420px){.pro-board{grid-template-columns:1fr 1fr;gap:6px}.pro-asset{padding:9px}.pro-asset-title{font-size:15px}.pro-asset-price{font-size:16px}.pro-asset-top{flex-wrap:wrap}.pro-detail{font-size:10px}.pro-audit{gap:8px}.pro-panel{padding:11px}.pro-switches button{font-size:11px;padding:7px}.pro-riskstat span{font-size:9px}.pro-riskstat strong{font-size:12px}}
+
+/* v3 accessible native SVG chart. Avoid opaque canvas and stale PWA fallback. */
+.chart-picker-area{display:flex;flex-direction:column;gap:3px;min-width:120px}
+.chart-pick-label{font-size:10px;font-weight:600;color:#afcde2;text-transform:uppercase;letter-spacing:.04em}
+.chart-picker-area #chartSymbolPicker{font:700 13px system-ui;min-width:110px;max-width:160px!important;background:#18334a;color:#edf9ff;border:1px solid #6a98b5;padding:7px 10px;border-radius:7px}
+.chart-instrument-header{gap:9px;flex-wrap:wrap}
+#chartDrawing{display:block;width:100%;height:100%;overflow:hidden}
+#chartFrame .chart-a11y{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.chart-empty{pointer-events:none;z-index:4;top:auto;bottom:5px;left:50%;transform:translateX(-50%);max-width:92%;width:max-content;font-size:12px;line-height:1.4;padding:8px 12px}
+@media(max-width:650px){.chart-instrument-header{display:flex;flex-wrap:wrap;gap:7px}.chart-picker-area{min-width:100px}.chart-range-buttons{display:flex;flex-wrap:wrap;gap:4px}.chart-body{min-height:315px}}
