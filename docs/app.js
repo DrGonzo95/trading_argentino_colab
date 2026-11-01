@@ -80,8 +80,8 @@ function filterItems(){
     if(filt==="tecnicos")return r.technical_score!==null&&r.technical_score!==undefined;
     if(filt==="watch")return s.watch.has(r.symbol);
     if(filt==="decision_papel")return r.recommendation?.code==="SIMULAR_ENTRADA";
-    if(filt==="decision_investigar")return ["INVESTIGAR_CAIDA","REVISAR_CNv"].includes(r.recommendation?.code);
-    if(filt==="decision_esperar")return ["ESPERAR_TECNICO","ESPERAR_DATOS","REVISAR_DISCREPANCIA","ESPERAR_FUENTES"].includes(r.recommendation?.code);
+    if(filt==="decision_investigar")return ["INVESTIGAR_CAIDA","REVISAR_CNV"].includes(r.recommendation?.code);
+    if(filt==="decision_esperar")return ["ESPERAR_TECNICO","ESPERAR_DATOS","REVISAR_DISCREPANCIA","ESPERAR_FUENTES","ESPERAR_VALIDACION"].includes(r.recommendation?.code);
     if(filt==="decision_vigilar")return ["VIGILAR_TECNICA","OBSERVAR"].includes(r.recommendation?.code);
     if(filt==="relevantes")return r.score>0;
     return true;
