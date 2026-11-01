@@ -1,6 +1,6 @@
 "use strict";
-const SHELL="pulso-byma-shell-v9", DATA="pulso-byma-data-v1";
-const FILES=["./","./index.html","./styles.css","./app.js?v=6","./charts_v3.js?v=4","./pro.js?v=5","./position_math.js?v=1","./research_engine.js?v=1","./positions.js?v=5","./pro.css?v=7","./pwa.js","./manifest.webmanifest","./icon.svg"];
+const SHELL="pulso-byma-shell-v10", DATA="pulso-byma-data-v1";
+const FILES=["./","./index.html","./styles.css","./app.js?v=7","./charts_v3.js?v=4","./pro.js?v=5","./position_math.js?v=1","./research_engine.js?v=1","./positions.js?v=5","./pro.css?v=7","./pwa.js","./manifest.webmanifest","./icon.svg"];
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(SHELL).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()));
 });
