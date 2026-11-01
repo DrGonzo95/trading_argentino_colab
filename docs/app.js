@@ -79,9 +79,25 @@ function filterItems(){
     if(filt==="caidas")return r.status==="CAIDA_CON_NOVEDAD_INVESTIGAR";
     if(filt==="tecnicos")return r.technical_score!==null&&r.technical_score!==undefined;
     if(filt==="watch")return s.watch.has(r.symbol);
+    if(filt==="decision_papel")return r.recommendation?.code==="SIMULAR_ENTRADA";
+    if(filt==="decision_investigar")return ["INVESTIGAR_CAIDA","REVISAR_CNv"].includes(r.recommendation?.code);
+    if(filt==="decision_esperar")return ["ESPERAR_TECNICO","ESPERAR_DATOS","REVISAR_DISCREPANCIA","ESPERAR_FUENTES"].includes(r.recommendation?.code);
+    if(filt==="decision_vigilar")return ["VIGILAR_TECNICA","OBSERVAR"].includes(r.recommendation?.code);
     if(filt==="relevantes")return r.score>0;
     return true;
   });
+}
+function researchRec(r){
+  return r?.recommendation||{code:"NO_EVALUADO",label:"Sin evaluación publicada",category:"sin_datos",
+    reasons:["No hay evaluación actual verificable para esta especie."],
+    next_step:"Actualizar el radar y revisar fecha y calidad de precios.",
+    price_quality:"SOLO_FUENTE_PRINCIPAL"};
+}
+function recPill(r){
+  const rec=researchRec(r);
+  const chip=el("span","rec-pill "+(rec.category||"observacion"),rec.label);
+  chip.title=rec.next_step||"";
+  return chip;
 }
 function makeRow(r){
   const tr=el("tr","table-row"+(r.symbol===s.selected?" selected":""));
@@ -93,8 +109,9 @@ function makeRow(r){
   fill.style.width=Math.max(0,Math.min(100,Number(r.score)||0))+"%";
   append(track,fill);append(score,track,el("span","rank-number",num(r.score)));rank.appendChild(score);
   const stat=el("td");stat.appendChild(pill(r.status));
+  const action=el("td");action.appendChild(recPill(r));
   const last=el("td","open-chevron","›");
-  append(tr,first,quote,change,rank,stat,last);
+  append(tr,first,quote,change,rank,stat,action,last);
   const select=()=>{s.selected=r.symbol;renderRows();renderDetail();if(window.innerWidth<901)$("detailPanel").scrollIntoView({behavior:"smooth",block:"start"});};
   tr.addEventListener("click",select);
   tr.addEventListener("keydown",(e)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select();}});
@@ -103,7 +120,7 @@ function makeRow(r){
 function renderRows(){
   const rows=filterItems();const body=$("assetsBody");body.replaceChildren();
   const visible=rows.slice(0,s.show);
-  if(!visible.length){const tr=el("tr");const td=el("td","empty","No hay instrumentos que cumplan estos filtros. Probá otra búsqueda o seleccioná “Ver todos”.");td.colSpan=6;tr.appendChild(td);body.appendChild(tr);}
+  if(!visible.length){const tr=el("tr");const td=el("td","empty","No hay instrumentos que cumplan estos filtros. Probá otra búsqueda o seleccioná “Ver todos”.");td.colSpan=7;tr.appendChild(td);body.appendChild(tr);}
   else{const frag=document.createDocumentFragment();visible.forEach(r=>frag.appendChild(makeRow(r)));body.appendChild(frag);}
   $("matches").textContent=num(rows.length)+" resultados";
   $("paginationInfo").textContent="Mostrando "+num(visible.length)+" de "+num(rows.length);
@@ -230,6 +247,20 @@ function renderDetail(){
   append(top,priceCol,el("span","change "+(a.change_pct<0?"red":"green"),signed(a.change_pct)));
   append(price,top,el("div","caption","Fecha de descarga: "+scanTime(a.quote_retrieved_at)+" · hora real del precio desconocida"));
   root.appendChild(price);
+  const rec=researchRec(a);
+  const recommendation=section(root,"Qué hacer con esta especie");
+  const recHeader=el("div","rec-head");
+  recHeader.append(recPill(a),el("span","rec-small","Evaluación automática · investigación, NO orden real"));
+  recommendation.append(recHeader);
+  (rec.reasons||[]).forEach(reason=>note(recommendation,reason,rec.category==="riesgo_datos"));
+  infoRow(recommendation,"Próximo paso",rec.next_step||"Esperar actualización con fuentes verificadas.");
+  const qualityText=rec.price_quality==="SEGUNDA_FUENTE_COINCIDE"?
+    "Cierre cotejado con segundo proveedor (no es precio ejecutable)":
+    rec.price_quality==="SEGUNDA_FUENTE_DISCREPA"?"Discrepancia entre proveedores":
+    "Sin contraste independiente de cierre disponible para esta fecha";
+  infoRow(recommendation,"Verificación de precio",qualityText);
+  infoRow(recommendation,"Fecha del histórico",rec.close_date||"No verificada");
+  note(recommendation,"La estrategia RSI35 no tiene rentabilidad validada. Sin puntas actuales ni composición de tu cartera, ninguna etiqueta justifica una compra o venta real.",true);
   const tech=section(root,"Análisis técnico");const grid=el("div","detail-grid");
   append(grid,dataTile("RSI 14",num(a.rsi14)),dataTile("Volumen relativo",a.rvol===null?"—":num(a.rvol)+"x"),
     dataTile("Calidad técnica",a.technical_score===null?"Sin serie":num(a.technical_score)+"/100"),
@@ -340,7 +371,7 @@ async function loadMarket(){
     $("connection").textContent="Sin datos disponibles";
     $("connection").parentElement.classList.add("is-error");
     $("freshness").textContent=e.message||"No se pudo cargar";
-    if(!s.items.length)$("assetsBody").replaceChildren(append(el("tr"),Object.assign(el("td","empty","Todavía no se publicó el archivo de mercado. Probá “Actualizar” cuando termine la tarea de GitHub."),{colSpan:6})));
+    if(!s.items.length)$("assetsBody").replaceChildren(append(el("tr"),Object.assign(el("td","empty","Todavía no se publicó el archivo de mercado. Probá “Actualizar” cuando termine la tarea de GitHub."),{colSpan:7})));
   }finally{$("refreshBtn").disabled=false;}
 }
 $("search").addEventListener("input",onFilterChanged);
