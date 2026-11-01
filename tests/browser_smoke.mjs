@@ -34,6 +34,26 @@ for(const [name,viewport] of [["desktop",{width:1440,height:900}],["mobile",{wid
   assert(info.visible&&info.chartWidth>200&&info.chartHeight>280,"No visible chart viewport");
   assert(info.overlay,"Unexpected error overlay on CEPU");
   assert(/Cierre/.test(info.text),"OHLC hover/last close missing");
+  // Every researched instrument must carry an explained no-real-order action.
+  await page.selectOption("#assetType","todos");
+  await page.selectOption("#statusFilter","todos");
+  await page.fill("#search","CEPU");
+  await page.waitForFunction(()=>document.querySelectorAll("#assetsBody .rec-pill").length>0);
+  await page.locator("#assetsBody tr").first().click();
+  const advice=await page.evaluate(()=>{
+    const r=window.s?.items?.find?.(x=>x.symbol==="CEPU")||null;
+    return {label:document.querySelector("#detailPanel .rec-pill")?.textContent||"",
+      next:document.querySelector("#detailPanel")?.textContent||"",
+      row:document.querySelector("#assetsBody .rec-pill")?.textContent||"",
+      monitor:document.querySelector("#proSignal .pro-action-tag")?.textContent||"",
+      market:document.querySelector("#statTotal")?.textContent||""};
+  });
+  assert(advice.label && advice.row,"Recommendations missing from table or instrument detail");
+  assert(advice.next.includes("Próximo paso")&&advice.next.includes("Qué hacer con esta especie"),
+    "Explanation and trigger absent from recommendation");
+  assert(advice.monitor,"Professional monitor does not show researched action");
+  await page.screenshot({path:`artifacts/${name}-recommendations.png`,fullPage:true});
+  console.log("recommendations_on_all_assets",name,JSON.stringify({label:advice.label,table:advice.row}));
   await page.screenshot({path:`artifacts/${name}-cepu.png`,fullPage:true});
   // Verify unmatched symbol never impersonates a valid chart.
   await page.evaluate(()=>document.dispatchEvent(new CustomEvent("byma:selection",{detail:{symbol:"__MISSING__"}})));
