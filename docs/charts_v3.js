@@ -29,7 +29,8 @@ function note(msg){const box=$("chartEmpty");if(!box)return;box.textContent=msg;
 function updateInfo(){
  const sym=state.selected,rec=state.symbols[sym],a=assetFor(sym);
  $("chartSymbol").textContent=sym||"Sin datos";
- $("chartInfo").textContent=rec?("Velas 1D publicadas · "+rec.bars.length+" ruedas · última "+rec.last_candle+" · "+(rec.source||"IOL") ):
+ $("chartInfo").textContent=rec?("Velas 1D publicadas · "+rec.bars.length+" ruedas · última "+rec.last_candle+" · "+(rec.source||"IOL") +
+   (rec.omitted_inconsistent_sessions?" · "+rec.omitted_inconsistent_sessions+" ruedas anómalas omitidas":"") ):
  "No hay histórico verificable";
  const ok=a?.status==="ENTRADA_TEORICA_PAPEL"&&[a.entry_ref,a.stop_ref,a.target_ref].every(isNum);
  $("chartTradeStatus").textContent=ok?"◉ Niveles teóricos de papel":"◌ Sin entrada confirmada";
