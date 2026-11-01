@@ -9,7 +9,21 @@ const count=x=>typeof x==="number"&&Number.isFinite(x)?fmt.format(x):"—";
 let charts={};let cross=null;let capital=100000;let filter="chart";let search="";
 function assets(){try{return Array.isArray(s.items)?s.items:[]}catch{return []}}
 function el(tag,css,text){const n=document.createElement(tag);if(css)n.className=css;if(text!==undefined)n.textContent=String(text);return n}
-function plan(a){return window.PULSOPositionMath?.assess(a,charts[a.symbol],capital)||null}
+function plan(a){
+ const fallback=window.PULSOPositionMath?.assess(a,charts[a.symbol],capital)||null;
+ const analysis=window.PULSOResearch?.analyze(a,charts[a.symbol],{capital,cross});
+ if(!analysis)return fallback;
+ const candidate=analysis.plan;
+ const base={...(fallback||{}),symbol:a.symbol,kind:a.kind,capital,referenceDate:analysis.date,openUnits:0};
+ if(!candidate)return {...base,mode:"NO_ABRIR",plan:null,scenario:null,
+  reason:analysis.risks?.[0]||"Histórico o valoración insuficiente para formular un escenario."};
+ const amounts=window.PULSOPositionMath?.amount(capital,candidate.entry,candidate.stop,candidate.tp1);
+ if(!amounts)return {...base,mode:"NO_ABRIR",plan:null,scenario:null,reason:"No se pudieron validar riesgo y tamaños del plan."};
+ const accepted=candidate.type==="PAPEL_RSI35"&&candidate.validTrade;
+ return {...base,mode:accepted?"ENTRADA_SOLO_PAPEL":"ESTUDIO_SIN_SENAL",
+  openUnits:accepted?amounts.units:0,plan:accepted?amounts:null,scenario:amounts,
+  reason:analysis.next+" "+candidate.method};
+}
 function riskBadge(rec){
  return rec?.mode==="ENTRADA_SOLO_PAPEL"?"Abrir en PAPEL":"0 unidades a abrir";
 }
@@ -92,7 +106,7 @@ function renderAsset(a,root){
   section.append(el("p","sim-intro",
     p.mode==="ENTRADA_SOLO_PAPEL"?
      "Plan de papel basado en el cierre y los niveles publicados. Actualizar con la próxima apertura antes de registrarlo.":
-     "ESCENARIO HIPOTÉTICO, NO RECOMENDADO: si se estudiara una operación basada en el último cierre y ATR14. La estrategia no dio entrada."));
+     "ESCENARIO HIPOTÉTICO, NO RECOMENDADO: si se estudiara una operación basada en el último cierre, soporte y ATR14. La estrategia no dio entrada."));
   const grid=el("div","sim-stats");
   amountRow(grid,"Entrada de referencia",cash(current.entry));
   amountRow(grid,"Stop hipotético",cash(current.stop));
