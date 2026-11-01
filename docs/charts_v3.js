@@ -5,7 +5,7 @@
 const $=id=>document.getElementById(id);
 const NS="http://www.w3.org/2000/svg";
 const F=new Intl.NumberFormat("es-AR",{maximumFractionDigits:2});
-const state={symbols:{},selected:null,requested:null,range:84,ready:false,error:null};
+const state={symbols:{},selected:null,requested:null,range:84,ready:false,error:null,positionMode:"radar",showPosition:true};
 const isNum=x=>typeof x==="number"&&Number.isFinite(x);
 const fmt=x=>isNum(x)?F.format(x):"—";
 function el(tag,attrs={},txt){
@@ -26,25 +26,81 @@ function validBars(bars){
 }
 function assetFor(sym){return typeof s!=="undefined"&&Array.isArray(s.items)?s.items.find(a=>a.symbol===sym):null;}
 function note(msg){const box=$("chartEmpty");if(!box)return;box.textContent=msg;box.hidden=!msg;}
+
+function positionFor(sym){
+ const rec=state.symbols[sym],asset=assetFor(sym);
+ if(!rec||!asset)return null;
+ if(state.positionMode==="paper"){
+  const saved=(typeof s!=="undefined"&&Array.isArray(s.paper)?s.paper:[])
+   .filter(x=>x.ticker===sym).at(-1);
+  if(!saved)return null;
+  const {entry,stop,target,qty}=saved;
+  if(![entry,stop,target,qty].every(isNum)||!(0<stop&&stop<entry&&entry<target)||!(qty>0))return null;
+  const side=(window.PULSOPositionMath?.FEE??.006655),slip=(window.PULSOPositionMath?.SLIP??.001);
+  const paid=entry*(1+side)*(1+slip),sell=(1-side)*(1-slip);
+  const risk=qty*(paid-stop*sell),gain=qty*(target*sell-paid);
+  if(![risk,gain].every(isNum)||risk<=0)return null;
+  return {source:"paper",label:"OPERACIÓN FICTICIA GUARDADA",entry,stop,tp1:target,
+   tp2:null,units:qty,unitsToOpen:0,capital:null,loss:risk,gain,rr:gain/risk,date:saved.date||null,
+   note:"Registro local ficticio: precios de entrada/salida cargados manualmente. No implica ejecución en bolsa."};
+ }
+ const result=window.PULSOPositions?.plan?.(asset);
+ const prices=result?.plan||result?.scenario;
+ if(!prices||result?.referenceDate!==rec.last_candle ||
+  ![prices.entry,prices.stop,prices.target].every(isNum)||
+  !(prices.stop>0&&prices.stop<prices.entry&&prices.entry<prices.target))return null;
+ return {source:"radar",label:result.mode==="ENTRADA_SOLO_PAPEL"?
+    "SEÑAL RSI35 · SOLO PAPEL":"ESCENARIO HIPOTÉTICO · SIN ENTRADA",
+    entry:prices.entry,stop:prices.stop,tp1:prices.target,
+    tp2:isNum(result.tp2)&&result.tp2>prices.target?result.tp2:null,
+    units:prices.units||0,unitsToOpen:result.openUnits||0,
+    capital:prices.capital,loss:prices.loss,gain:prices.gain,rr:prices.rr,date:result.referenceDate,
+    note:result.mode==="ENTRADA_SOLO_PAPEL"?
+     "Señal de papel al cierre; comprobar próxima apertura y puntas antes de simular ejecución.":
+     "No hay entrada validada. Niveles de estudio por ATR y soporte, no pronóstico ni recomendación de compra."};
+}
+function riskRow(parent,label,value){
+ const div=document.createElement("div");div.className="chart-trade-stat";
+ const caption=document.createElement("span");caption.textContent=label;
+ const amount=document.createElement("strong");amount.textContent=value;
+ div.append(caption,amount);parent.append(div);
+}
+
 function updateInfo(){
- const sym=state.selected,rec=state.symbols[sym],a=assetFor(sym);
+ const sym=state.selected,rec=state.symbols[sym],a=assetFor(sym),p=positionFor(sym);
  $("chartSymbol").textContent=sym||"Sin datos";
- $("chartInfo").textContent=rec?("Velas 1D publicadas · "+rec.bars.length+" ruedas · última "+rec.last_candle+" · "+(rec.source||"IOL") +
-   (rec.omitted_inconsistent_sessions?" · "+rec.omitted_inconsistent_sessions+" ruedas anómalas omitidas":"") ):
+ $("chartInfo").textContent=rec?("Velas 1D publicadas · "+rec.bars.length+" ruedas · última "+rec.last_candle+" · "+(rec.source||"IOL")+
+   (rec.omitted_inconsistent_sessions?" · "+rec.omitted_inconsistent_sessions+" ruedas anómalas omitidas":"")):
  "No hay histórico verificable";
- const ok=a?.status==="ENTRADA_TEORICA_PAPEL"&&[a.entry_ref,a.stop_ref,a.target_ref].every(isNum);
- $("chartTradeStatus").textContent=ok?"◉ Niveles teóricos de papel":"◌ Sin entrada confirmada";
- $("chartTradeStatus").className="chart-signal-label "+(ok?"signal-ok":"signal-off");
+ const trade=p?.source==="paper"?"paper":p?.unitsToOpen>0?"paper":"study";
+ $("chartTradeStatus").textContent=p?(p.source==="paper"?"▣ Registro en papel":p.unitsToOpen>0?"◉ Entrada RSI35 de papel":"◇ Hipótesis, NO comprar"):
+  (state.positionMode==="paper"?"◌ Sin posición ficticia guardada":"◌ Sin niveles verificables");
+ $("chartTradeStatus").className="chart-signal-label "+(p&&trade==="paper"?"signal-ok":"signal-off");
  const risk=$("chartRiskDetails");risk.replaceChildren();
- if(ok){
-  for(const [label,value] of [["Entrada de papel",a.entry_ref],["Stop de papel",a.stop_ref],["Objetivo de papel",a.target_ref]]){
-   const div=document.createElement("div");div.className="chart-trade-stat";
-   const span=document.createElement("span");span.textContent=label;
-   const strong=document.createElement("strong");strong.textContent="$ "+fmt(value);
-   div.append(span,strong);risk.append(div);
-  }
- }else{const d=document.createElement("div");d.className="chart-trade-none";
-  d.textContent="Sin entrada validada. No hay niveles operativos; esto es seguimiento con información demorada.";risk.append(d);}
+ if(p){
+  const banner=document.createElement("div");banner.className="chart-position-banner "+(p.unitsToOpen>0||p.source==="paper"?"is-paper":"is-study");
+  banner.textContent=p.label;risk.append(banner);
+  for(const [label,value] of [
+   ["Entrada histórica", "$ "+fmt(p.entry)],
+   ["Stop loss", "$ "+fmt(p.stop)],
+   ["Take profit 1", "$ "+fmt(p.tp1)],
+   ...(p.tp2?[["Take profit 2", "$ "+fmt(p.tp2)]]:[]),
+   ["Unidades del escenario",fmt(p.units)],
+   ["Unidades para abrir según radar",fmt(p.unitsToOpen)],
+   ["Pérdida al stop*", "$ "+fmt(p.loss)],
+   ["Ganancia al TP1*", "$ "+fmt(p.gain)],
+   ["R:R neta*",fmt(p.rr)+":1"]
+  ])riskRow(risk,label,value);
+  const note=document.createElement("div");note.className="chart-trade-none";
+  note.textContent=p.note+" *Costos y deslizamiento estimados. El stop NO garantiza el precio de salida.";
+  risk.append(note);
+ }else{
+  const d=document.createElement("div");d.className="chart-trade-none";
+  d.textContent=state.positionMode==="paper"?
+   "Todavía no guardaste una operación ficticia de "+sym+". Registrala desde su ficha para ver entrada, stop y objetivo sobre el gráfico.":
+   "Sin escenario técnico trazable para este símbolo; no se dibujan niveles inventados.";
+  risk.append(d);
+ }
 }
 function redraw(){
  const root=$("chartFrame");if(!root)return;
@@ -57,24 +113,40 @@ function redraw(){
  if(bars.length<2){note("La serie histórica es demasiado corta para graficarse.");return;}
  const W=1100,H=410, L=19,R=95,T=23,B=38,volumeH=85,gap=14;
  const OHLC_BOT=H-B-volumeH-gap,VTOP=OHLC_BOT+gap,VBOT=H-B;
- const asset=assetFor(state.selected);
- const levels=asset?.status==="ENTRADA_TEORICA_PAPEL"&&
-  [asset.entry_ref,asset.stop_ref,asset.target_ref].every(isNum)?[
-   {name:"ENTRADA",value:asset.entry_ref,color:"#a6c9ff"},
-   {name:"STOP",value:asset.stop_ref,color:"#f58196"},
-   {name:"OBJETIVO",value:asset.target_ref,color:"#50e4ad"}
+ const position=state.showPosition?positionFor(state.selected):null;
+ const levels=position?[
+   {name:"ENTRADA",value:position.entry,color:"#a6c9ff"},
+   {name:"STOP",value:position.stop,color:"#f58196"},
+   {name:"TP1",value:position.tp1,color:"#50e4ad"},
+   ...(position.tp2?[{name:"TP2",value:position.tp2,color:"#a5f6ca"}]:[])
   ]:[];
  const prices=bars.flatMap(b=>[b[2],b[3],...levels.map(l=>l.value)]);
  let low=Math.min(...prices),high=Math.max(...prices);
  const pad=Math.max((high-low)*.10,high*.002,1e-5);low-=pad;high+=pad;
  const valueY=v=>T+(high-v)/(high-low)*(OHLC_BOT-T);
- const cw=W-L-R;
+ const planSpace=position?165:0;
+ const cw=W-L-R-planSpace;
  const valueX=i=>L+(i+.5)*cw/bars.length;
  const width=Math.max(1.2,Math.min(13,cw/bars.length*.57));
  const svg=el("svg",{id:"chartDrawing",viewBox:`0 0 ${W} ${H}`,role:"img",
   "aria-label":`Gráfico de velas diarias históricas de ${state.selected}, ${bars.length} sesiones; precios públicos demorados`,
   preserveAspectRatio:"none",style:"display:block;width:100%;height:100%;background:#0c1522"});
- const grid=el("g"),maGroup=el("g"),vGroup=el("g"),cGroup=el("g"),labels=el("g");
+ const grid=el("g"),zones=el("g",{id:"chartPositionZones"}),maGroup=el("g"),vGroup=el("g"),cGroup=el("g"),labels=el("g");
+ if(position){
+  const x1=L+cw+10,x2=W-R-5,ww=x2-x1;
+  const topTP=valueY(position.tp1),atEntry=valueY(position.entry),bottomStop=valueY(position.stop);
+  zones.append(el("line",{x1:L+cw+3,y1:T,x2:L+cw+3,y2:OHLC_BOT,stroke:"#6c94b4",
+    "stroke-width":"1","stroke-dasharray":"3 5"}));
+  zones.append(el("rect",{x:x1,y:topTP,width:ww,height:Math.max(0,atEntry-topTP),
+    fill:"#1b965a",opacity:".24",class:"chart-reward-zone"}));
+  zones.append(el("rect",{x:x1,y:atEntry,width:ww,height:Math.max(0,bottomStop-atEntry),
+    fill:"#d55365",opacity:".24",class:"chart-risk-zone"}));
+  zones.append(el("text",{x:x1+5,y:T+13,fill:"#bed1e1","font-size":"11","font-weight":"700"},"PLAN · NO SON VELAS"));
+  zones.append(el("text",{x:x1+6,y:OHLC_BOT-8,fill:"#9bafc3","font-size":"10"},"R:R "+fmt(position.rr)+":1"));
+  svg.setAttribute("aria-label",svg.getAttribute("aria-label")+
+    "; "+position.label+", entrada "+fmt(position.entry)+", stop "+fmt(position.stop)+
+    ", take profit "+fmt(position.tp1)+", sin predicción de precio");
+ }
  for(let i=0;i<=5;i++){
   const y=T+(OHLC_BOT-T)*i/5,price=high-(high-low)*i/5;
   grid.append(el("line",{x1:L,x2:W-R+5,y1:y,y2:y,stroke:"#344357","stroke-width":"1","stroke-dasharray":"3 5"}));
@@ -120,7 +192,7 @@ function redraw(){
   labels.append(el("text",{x:W-R+7,y:yy+4,fill:l.color,"font-size":"12"},fmt(l.value)));
  }
  labels.append(el("text",{x:L+5,y:VTOP+14,fill:"#829eb3","font-size":"11"},"VOLUMEN"));
- svg.append(grid,maGroup,vGroup,cGroup,labels);
+ svg.append(grid,zones,maGroup,vGroup,cGroup,labels);
  // Keep SVG independent from browser canvas context, DPR or external CDN.
  root.append(svg);
  if(state.requested&&!state.symbols[state.requested]){
@@ -177,6 +249,10 @@ $("chartSymbolPicker")?.addEventListener("change",e=>{
 });
 document.addEventListener("byma:selection",e=>{if(e.detail?.symbol)select(e.detail.symbol);});
 document.addEventListener("byma:data",()=>redraw());
+document.addEventListener("byma:positions",()=>redraw());
+document.addEventListener("byma:paper",()=>redraw());
+$("chartPositionMode")?.addEventListener("change",e=>{state.positionMode=e.target.value==="paper"?"paper":"radar";redraw();});
+$("chartShowPosition")?.addEventListener("change",e=>{state.showPosition=!!e.target.checked;redraw();});
 window.addEventListener("resize",()=>{if(state.ready)redraw();});
 load();
 setInterval(load,300000);
