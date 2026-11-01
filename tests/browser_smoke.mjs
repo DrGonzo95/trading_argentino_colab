@@ -20,7 +20,7 @@ for(const [name,viewport] of [["desktop",{width:1440,height:900}],["mobile",{wid
    const chart=document.querySelector("#chartFrame").getBoundingClientRect();
    return {
     symbols:document.querySelector("#chartSymbolPicker").options.length,
-    candles:svg.querySelectorAll("g:nth-child(4) rect").length,
+    candles:svg.querySelectorAll("g:nth-child(5) rect").length,
     rects:svg.querySelectorAll("rect").length,
     chartWidth:chart.width,chartHeight:chart.height,
     text:document.querySelector("#chartHover").textContent,
@@ -34,6 +34,41 @@ for(const [name,viewport] of [["desktop",{width:1440,height:900}],["mobile",{wid
   assert(info.visible&&info.chartWidth>200&&info.chartHeight>280,"No visible chart viewport");
   assert(info.overlay,"Unexpected error overlay on CEPU");
   assert(/Cierre/.test(info.text),"OHLC hover/last close missing");
+
+  // Price candles are historical; shaded bands are an explicitly hypothetical risk/reward plan.
+  await page.waitForFunction(()=>document.querySelector("#chartDrawing .chart-risk-zone") &&
+    document.querySelector("#chartDrawing .chart-reward-zone"),{timeout:25000});
+  const zone=await page.evaluate(()=>{
+    const e=document.querySelector("#chartDrawing");
+    const p=typeof s!=="undefined"?s.items.find(x=>x.symbol==="CEPU"):null;
+    const planned=window.PULSOPositions?.plan?.(p);
+    return {risk:e.querySelectorAll(".chart-risk-zone").length,
+      reward:e.querySelectorAll(".chart-reward-zone").length,
+      rr:planned?.scenario?.rr??null,entry:planned?.scenario?.entry??null,
+      details:document.querySelector("#chartRiskDetails")?.textContent||"",
+      mode:document.querySelector("#chartPositionMode")?.value};
+  });
+  assert.equal(zone.risk,1,"Stop risk zone absent");
+  assert.equal(zone.reward,1,"TP reward zone absent");
+  assert.equal(zone.mode,"radar");
+  assert(zone.details.includes("Stop loss")&&zone.details.includes("Take profit 1"),"Position values absent from risk rail");
+  assert(zone.details.includes("Unidades para abrir según radar"),"No signal disclaimer absent");
+  await page.screenshot({path:"artifacts/"+name+"-position-chart.png",fullPage:true});
+  await page.locator("#chartShowPosition").uncheck();
+  await page.waitForFunction(()=>document.querySelectorAll("#chartDrawing .chart-risk-zone").length===0);
+  await page.locator("#chartShowPosition").check();
+  await page.waitForFunction(()=>document.querySelectorAll("#chartDrawing .chart-risk-zone").length===1);
+  await page.locator("#chartPositionMode").selectOption("paper");
+  await page.waitForFunction(()=>!document.querySelector("#chartRiskDetails")?.textContent.includes("Take profit 1"));
+  await page.evaluate(()=>{
+    s.paper.push({ticker:"CEPU",entry:1750,stop:1650,target:2000,qty:2,date:"2026-10-30"});
+    document.dispatchEvent(new CustomEvent("byma:paper"));
+  });
+  await page.waitForFunction(()=>document.querySelector("#chartRiskDetails")?.textContent.includes("OPERACIÓN FICTICIA GUARDADA"));
+  assert((await page.locator("#chartRiskDetails").innerText()).includes("2"),"Saved fictitious quantity missing");
+  await page.locator("#chartPositionMode").selectOption("radar");
+  console.log("POSITION_CHART",name,JSON.stringify({zones:zone.risk,rr:zone.rr,entry:zone.entry}));
+
   // Every researched instrument must carry an explained no-real-order action.
   await page.selectOption("#assetType","todos");
   await page.selectOption("#statusFilter","todos");
