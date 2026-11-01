@@ -150,17 +150,22 @@ function renderAlerts(){
   }
   const seen=new Set(stored("byma-alerts-seen-v1",[]));
   const ids=items.map(alertIdentity);
-  const firstVisit=!localStorage.getItem("byma-alerts-seen-v1");
+  const firstVisit=stored("byma-alerts-seen-v1",null)===null;
   const newlyObserved=items.filter(x=>!seen.has(alertIdentity(x)));
   const snapshotAge=age(s.meta.generated_at);
   const canNotify=!firstVisit&&snapshotAge!==null&&snapshotAge>=0&&snapshotAge<=55&&
        typeof Notification!=="undefined"&&Notification.permission==="granted";
   if(canNotify){
-    newlyObserved.filter(x=>x.status==="ENTRADA_TEORICA_PAPEL").slice(0,3).forEach(x=>{
+    newlyObserved.filter(x=>x.status==="ENTRADA_TEORICA_PAPEL" ||
+      (x.status==="CAIDA_CON_NOVEDAD_INVESTIGAR" && x.events_official>0 && x.score>=32)
+      ).slice(0,3).forEach(x=>{
       try{
+        const confirmed=x.status==="ENTRADA_TEORICA_PAPEL";
         new Notification(alertTitle(x),{
-          body:"Setup teórico basado en cierre diario, NO precio vivo. Revisá entrada, stop, objetivo y riesgo dentro del radar.",
-          tag:"byma-paper-"+x.symbol
+          body:confirmed?
+            "Entrada hipotética basada en vela diaria. NO precio vivo. Revisá stop, objetivo, liquidez y fecha.":
+            "Caída con hecho oficial coincidente. AÚN SIN ENTRADA; analizar noticia y confirmar eventual rebote.",
+          tag:"byma-alert-"+x.symbol+"-"+x.status
         });
       }catch(error){console.warn("Notificación bloqueada",error);}
     });
@@ -204,7 +209,7 @@ async function requestAlerts(){
     const permission=await Notification.requestPermission();
     updateNotificationButton();
     if(permission==="granted")
-      alert("Se avisará de nuevas ENTRADAS DE PAPEL mientras esta página permanezca abierta. No es push en segundo plano.");
+      alert("Se avisará de nuevas ENTRADAS DE PAPEL y caídas destacadas con documento oficial mientras la página permanezca abierta. No es push en segundo plano.");
   }catch(e){console.warn("No se pudo habilitar el permiso de aviso",e);}
 }
 function renderDetail(){
