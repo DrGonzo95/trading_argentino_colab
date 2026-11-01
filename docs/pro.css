@@ -52,3 +52,21 @@
 #chartFrame .chart-a11y{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .chart-empty{pointer-events:none;z-index:4;top:auto;bottom:5px;left:50%;transform:translateX(-50%);max-width:92%;width:max-content;font-size:12px;line-height:1.4;padding:8px 12px}
 @media(max-width:650px){.chart-instrument-header{display:flex;flex-wrap:wrap;gap:7px}.chart-picker-area{min-width:100px}.chart-range-buttons{display:flex;flex-wrap:wrap;gap:4px}.chart-body{min-height:315px}}
+
+/* Per-species evidence-based research recommendations, never live orders */
+.rec-pill,.pro-action-tag{display:inline-flex;max-width:100%;white-space:normal;align-items:center;line-height:1.25;border:1px solid #4a6683;color:#dae8fa;background:#27384f;border-radius:7px;font-size:11px;font-weight:700;padding:6px 8px}
+.rec-pill.papel,.pro-action-tag.papel{color:#9ad6c4;background:#163b35;border-color:#367d68}
+.rec-pill.investigar,.pro-action-tag.investigar{color:#f6d79b;background:#423522;border-color:#8f744b}
+.rec-pill.vigilancia,.pro-action-tag.vigilancia{color:#b2d5ff;background:#1c3d56;border-color:#426c8b}
+.rec-pill.sin_datos,.pro-action-tag.sin_datos,.rec-pill.sin_valuacion,.pro-action-tag.sin_valuacion{color:#b5c6d8;background:#273041;border-color:#475365}
+.rec-pill.riesgo_datos,.pro-action-tag.riesgo_datos{color:#ffbec6;background:#4d2830;border-color:#ac5c68}
+.rec-head{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.rec-small{font-size:10px;color:#90a9bf}
+.pro-asset-next{font-size:10px;line-height:1.45;color:#94b8cd;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pro-asset .pro-action-tag{align-self:flex-start;min-height:25px;font-size:10px;padding:4px 6px}
+.pro-recommendation{padding:12px;border-radius:11px;border:1px solid #38536e;background:#122a40;margin:10px 0 14px}
+.pro-recommendation .pro-rec-reason{margin:7px 0 4px;color:#c5d6e3}
+.pro-rec-step{font-size:12px;color:#e5f1fa;line-height:1.5;display:block;margin-top:10px}
+.table-wrap .rec-pill{font-size:10px;min-width:115px;max-width:190px}
+.table-wrap td:nth-child(6){min-width:135px}
+@media(max-width:680px){.table-wrap .rec-pill{max-width:142px;min-width:90px}.pro-recommendation{padding:9px}.rec-pill,.pro-action-tag{font-size:10px}}
