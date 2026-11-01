@@ -121,6 +121,92 @@ function infoRow(root,label,value,css){
 function note(root,value,isWarn){
   root.appendChild(el("div","note"+(isWarn?" warn":""),value));
 }
+function importantSignals(){
+  return s.items
+    .filter(x=>x.status==="ENTRADA_TEORICA_PAPEL"||
+               x.status==="CAIDA_CON_NOVEDAD_INVESTIGAR")
+    .sort((a,b)=>(a.status==="ENTRADA_TEORICA_PAPEL"?0:1)-
+                  (b.status==="ENTRADA_TEORICA_PAPEL"?0:1)||b.score-a.score)
+    .slice(0,14);
+}
+function alertIdentity(x){
+  // Same signal is NOT new merely because provider gets re-scraped.
+  const mostRecent=(x.events||[])[0];
+  const freshNews=mostRecent?(mostRecent.url||mostRecent.published||""):"";
+  const day=x.daily_bar_date||String(s.meta.generated_at||"").slice(0,10);
+  return [x.kind,x.symbol,x.status,day,freshNews].join("|");
+}
+function alertTitle(x){
+  return (x.status==="ENTRADA_TEORICA_PAPEL"?"🧪 Entrada para simulación: ":"🔎 Caída + novedad: ")+x.symbol;
+}
+function renderAlerts(){
+  const items=importantSignals();
+  const container=$("alertsList");container.replaceChildren();
+  $("alertCount").textContent=String(items.length);
+  if(!items.length){
+    container.appendChild(el("div","alert-placeholder",
+      "No hay entradas de papel ni caídas con novedades en el último escaneo. No se generan alertas sin una condición concreta."));
+    return;
+  }
+  const seen=new Set(stored("byma-alerts-seen-v1",[]));
+  const ids=items.map(alertIdentity);
+  const firstVisit=!localStorage.getItem("byma-alerts-seen-v1");
+  const newlyObserved=items.filter(x=>!seen.has(alertIdentity(x)));
+  const snapshotAge=age(s.meta.generated_at);
+  const canNotify=!firstVisit&&snapshotAge!==null&&snapshotAge>=0&&snapshotAge<=55&&
+       typeof Notification!=="undefined"&&Notification.permission==="granted";
+  if(canNotify){
+    newlyObserved.filter(x=>x.status==="ENTRADA_TEORICA_PAPEL").slice(0,3).forEach(x=>{
+      try{
+        new Notification(alertTitle(x),{
+          body:"Setup teórico basado en cierre diario, NO precio vivo. Revisá entrada, stop, objetivo y riesgo dentro del radar.",
+          tag:"byma-paper-"+x.symbol
+        });
+      }catch(error){console.warn("Notificación bloqueada",error);}
+    });
+  }
+  // Retain last known alert identity keys, not every continuously refreshed quote.
+  persist("byma-alerts-seen-v1",Array.from(new Set([...seen,...ids])).slice(-350));
+  for(const x of items){
+    const button=el("button","alert-item");button.type="button";
+    const tag=el("span","chip "+(statusStyles[x.status]||""),statusNames[x.status]);
+    const left=el("span","alert-content");
+    const title=el("strong","",x.symbol+" · "+kindName(x.kind));
+    const info=el("span","alert-info",
+      x.status==="ENTRADA_TEORICA_PAPEL"?
+        "Entrada ref. "+money(x.entry_ref)+" · stop "+money(x.stop_ref)+" · objetivo "+money(x.target_ref):
+        "Variación pública "+signed(x.change_pct)+" · noticia asociada; rebote NO confirmado");
+    append(left,title,info);
+    const right=el("span","alert-right");append(right,tag,el("span","alert-see","Ver ficha ›"));
+    append(button,left,right);
+    if(!firstVisit&&!seen.has(alertIdentity(x)))button.classList.add("alert-new");
+    button.addEventListener("click",()=>{
+      s.selected=x.symbol;s.assetType="todos";s.filter="todos";s.query=x.symbol;
+      $("assetType").value="todos";$("statusFilter").value="todos";$("search").value=x.symbol;
+      renderRows();renderDetail();$("detailPanel").scrollIntoView({behavior:"smooth",block:"start"});
+    });
+    container.appendChild(button);
+  }
+}
+function updateNotificationButton(){
+  const b=$("enableNotifications");
+  if(!("Notification" in window)){
+    b.textContent="Avisos del navegador no compatibles";b.disabled=true;return;
+  }
+  if(Notification.permission==="granted")b.textContent="✓ Avisos activos (página abierta)";
+  else if(Notification.permission==="denied"){
+    b.textContent="Avisos bloqueados por el navegador";b.disabled=true;
+  }else b.textContent="♧ Activar avisos en este navegador";
+}
+async function requestAlerts(){
+  if(!("Notification" in window))return;
+  try{
+    const permission=await Notification.requestPermission();
+    updateNotificationButton();
+    if(permission==="granted")
+      alert("Se avisará de nuevas ENTRADAS DE PAPEL mientras esta página permanezca abierta. No es push en segundo plano.");
+  }catch(e){console.warn("No se pudo habilitar el permiso de aviso",e);}
+}
 function renderDetail(){
   const root=$("detailPanel");root.replaceChildren();
   const a=s.items.find(x=>x.symbol===s.selected);
@@ -242,7 +328,7 @@ async function loadMarket(){
     const d=await resp.json();
     if(!d.meta||!Array.isArray(d.assets)||!d.summary)throw new Error("Formato de datos incorrecto");
     s.items=d.assets;s.meta=d.meta;s.summary=d.summary;s.latestFetch=Date.now();
-    setStats();renderRows();renderDetail();
+    setStats();renderRows();renderDetail();renderAlerts();
   }catch(e){
     $("connection").textContent="Sin datos disponibles";
     $("connection").parentElement.classList.add("is-error");
@@ -254,6 +340,7 @@ $("search").addEventListener("input",onFilterChanged);
 $("assetType").addEventListener("change",onFilterChanged);
 $("statusFilter").addEventListener("change",onFilterChanged);
 $("refreshBtn").addEventListener("click",loadMarket);
+$("enableNotifications").addEventListener("click",requestAlerts);
 $("loadMore").addEventListener("click",()=>{s.show+=55;renderRows();});
 $("closeDialog").addEventListener("click",()=>$("paperDialog").close());
 $("cancelDialog").addEventListener("click",()=>$("paperDialog").close());
@@ -273,6 +360,7 @@ $("clearPaper").addEventListener("click",()=>{
   }
 });
 renderPaper();
+updateNotificationButton();
 refreshClock();
 loadMarket();
 setInterval(refreshClock,10000);
