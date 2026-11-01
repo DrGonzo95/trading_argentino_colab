@@ -14,6 +14,7 @@ function items(){try{return typeof s!=="undefined"&&Array.isArray(s.items)?s.ite
 function hasChart(sym){return !!history[sym]?.bars?.length}
 function current(){return items().find(x=>x.symbol===active)||null}
 function scoreStatus(x){
+  if(x.recommendation?.label)return x.recommendation.label;
   if(x.status==="ENTRADA_TEORICA_PAPEL")return "Papel: verificar apertura";
   if(x.status==="CAIDA_CON_NOVEDAD_INVESTIGAR")return "Investigar hecho, sin entrada";
   if(x.status==="VIGILANCIA_TECNICA")return "Vigilar condiciones";
@@ -55,7 +56,9 @@ function renderCards(){
    const price=node("span","pro-asset-price",x.quote_price==null?"Precio no validado":"$ "+n(x.quote_price));
    const ch=node("span","pro-asset-change "+cls(x.change_pct),x.change_pct==null?"Var. —":(Number(x.change_pct)>0?"+":"")+n(x.change_pct)+"% · prioridad "+n(x.score));
    const desc=node("span","pro-detail",scoreStatus(x));
-   b.append(top,price,ch,desc);b.addEventListener("click",()=>inspect(x.symbol));board.append(b);
+   const next=node("span","pro-asset-next",x.recommendation?.next_step||"Todavía no se publicó una evaluación con fuentes cotejadas.");
+   const action=node("span","pro-action-tag "+(x.recommendation?.category||"sin_datos"),x.recommendation?.label||"Pendiente de evaluar");
+   b.append(top,price,ch,action,desc,next);b.addEventListener("click",()=>inspect(x.symbol));board.append(b);
  }
 }
 function link(url,title){
@@ -102,6 +105,17 @@ function renderSignal(){
  if(!a){root.appendChild(node("p","", "Seleccioná una especie para interpretar la señal publicada."));return;}
  root.appendChild(node("h3","",a.symbol+" · "+(a.kind==="accion"?"acción":"CEDEAR")));
  root.appendChild(node("p","",scoreStatus(a)+". Precio público diferido: "+(a.quote_price==null?"sin valor":"$ "+n(a.quote_price))+"."));
+ const rec=a.recommendation;
+ if(rec){
+   const explain=node("div","pro-recommendation");
+   explain.append(node("span","pro-action-tag "+(rec.category||"sin_datos"),rec.label||"Sin evaluar"));
+   (rec.reasons||[]).forEach(reason=>explain.append(node("p","pro-rec-reason",reason)));
+   explain.append(node("strong","pro-rec-step","Próximo paso: "+(rec.next_step||"Esperar datos.")));
+   explain.append(node("p","pro-method",rec.independent_verified?
+     "Cierre histórico confirmado contra segundo proveedor. No equivale a un precio de ejecución.":
+     "Cierre todavía no corroborado contra un segundo proveedor para la misma fecha."));
+   root.append(explain);
+ }
  const finalBar=hasChart(a.symbol)?history[a.symbol].bars.at(-1):null;
  const quoteGap=finalBar&&a.quote_price!=null?100*Math.abs(Number(a.quote_price)-finalBar[4])/finalBar[4]:null;
  const verifiedSecond=quoteCheck?.prices?.[a.symbol];
@@ -167,7 +181,16 @@ function setup(){
  graph.type="button";graph.addEventListener("click",()=>id("workstation")?.scrollIntoView({behavior:"smooth",block:"start"}));
  const portfolio=node("button","pro-cta","▤ Cartera simulada");
  portfolio.type="button";portfolio.addEventListener("click",()=>id("paper")?.scrollIntoView({behavior:"smooth",block:"start"}));
- nav.append(graph,portfolio);
+ const all=node("button","pro-cta","☷ Ver recomendaciones de todos");
+ all.type="button";all.addEventListener("click",()=>{
+   if(id("statusFilter"))id("statusFilter").value="todos";
+   if(id("assetType"))id("assetType").value="acciones-cedears";
+   if(id("search"))id("search").value="";
+   s.filter="todos";s.assetType="acciones-cedears";s.query="";
+   s.show=55;renderRows();
+   document.querySelector(".work-area")?.scrollIntoView({behavior:"smooth",block:"start"});
+ });
+ nav.append(graph,portfolio,all);
  title.append(nav);
  head.append(title,node("span","pro-livepill","● DATOS DIFERIDOS · NO LIVE"));root.append(head);
  const main=node("div","pro-body"),bar=node("div","pro-controlbar"),switches=node("div","pro-switches");
