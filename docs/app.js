@@ -347,7 +347,17 @@ function renderPaper(){
     const td=el("td");const remove=el("button","ghost","✕");remove.title="Eliminar registro";remove.addEventListener("click",()=>{
       if(!confirm("¿Eliminar esta operación ficticia del navegador?"))return;
       s.paper=s.paper.filter(z=>z.id!==p.id);persist("byma-paper-v1",s.paper);renderPaper();document.dispatchEvent(new CustomEvent("byma:paper"));
-    });td.appendChild(remove);tr.appendChild(td);body.appendChild(tr);
+    });
+    const chart=el("button","ghost","Ver gráfico");
+    chart.title="Ver los niveles de esta operación ficticia sobre las velas";
+    chart.type="button";
+    chart.addEventListener("click",()=>{
+      const selector=$("chartPositionMode");
+      if(selector){selector.value="paper";selector.dispatchEvent(new Event("change",{bubbles:true}));}
+      document.dispatchEvent(new CustomEvent("byma:selection",{detail:{symbol:p.ticker}}));
+      $("workstation")?.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+    td.append(chart,remove);tr.appendChild(td);body.appendChild(tr);
   });
 }
 function exportCsv(){
