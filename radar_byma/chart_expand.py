@@ -65,8 +65,12 @@ def fetch(symbol):
         if len(rows)<80:return symbol,None,"menos de 80 cierres públicos"
         # Prefer the last 260 sessions; price jumps / corrections are rejection flags.
         rows=rows[-260:]
-        bad=sum(not(r[2]>=max(r[1],r[3],r[4]) and r[3]<=min(r[1],r[2],r[4])) for r in rows)
-        if bad:return symbol,None,"OHLC inconsistente: "+str(bad)+" ruedas"
+        good=[r for r in rows if r[2]>=max(r[1],r[3],r[4]) and r[3]<=min(r[1],r[2],r[4])]
+        bad=len(rows)-len(good)
+        # A corrupt row is OMITTED, never replaced with invented high/low prices.
+        if bad>min(8,max(2,int(.03*len(rows)))):return symbol,None,"OHLC inconsistente: "+str(bad)+" ruedas; rechazo"
+        rows=good
+        if len(rows)<80:return symbol,None,"insuficientes barras válidas tras excluir errores"
         for a,b in zip(rows,rows[1:]):
             if abs(b[4]/a[4]-1)>.35:return symbol,None,"salto >35%: posible evento corporativo"
             gap=(date.fromisoformat(b[0])-date.fromisoformat(a[0])).days
@@ -75,7 +79,7 @@ def fetch(symbol):
         if not bars_valid(rows):return symbol,None,"históricos inválidos"
         return symbol,{"source":"IOL public historical daily BCBA (no corporate-action adjustments)",
                       "source_url":url,"last_candle":rows[-1][0],"timeframe":"1D",
-                      "chart_only":True,"bars":rows},None
+                      "chart_only":True,"omitted_inconsistent_sessions":bad,"bars":rows},None
     except Exception as e:return symbol,None,type(e).__name__+": "+str(e)[:120]
 def main():
     feed=json.loads(OUT.read_text(encoding="utf-8"))
