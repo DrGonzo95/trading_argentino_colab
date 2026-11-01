@@ -52,7 +52,28 @@ for(const [name,viewport] of [["desktop",{width:1440,height:900}],["mobile",{wid
   assert(advice.next.includes("Próximo paso")&&advice.next.includes("Qué hacer con esta especie"),
     "Explanation and trigger absent from recommendation");
   assert(advice.monitor,"Professional monitor does not show researched action");
-  await page.screenshot({path:`artifacts/${name}-recommendations.png`,fullPage:true});
+  // All instruments get an independent paper simulation outcome. A missing signal must show zero open units.
+  await page.waitForFunction(()=>document.querySelector("#simCount")?.textContent.includes("especies"),{timeout:20000});
+  await page.locator("#positionFilter").selectOption("chart");
+  await page.locator("#positionSearch").fill("CEPU");
+  await page.waitForFunction(()=>document.querySelectorAll("#simPositionsBody tr").length===1);
+  const simulation=await page.evaluate(()=>{
+    const row=document.querySelector("#simPositionsBody tr");
+    return {text:row?.textContent||"",cells:row?.querySelectorAll("td").length||0,
+      count:document.querySelector("#simCount")?.textContent||"",
+      method:typeof window.PULSOPositionMath?.assess,
+      capital:document.querySelector("#simCapitalLabel")?.textContent||""};
+  });
+  assert.equal(simulation.cells,9,"Simulation table must present all 9 columns");
+  assert.equal(simulation.method,"function","Position math module is absent");
+  assert(simulation.text.includes("NO ABRIR") || simulation.text.includes("PAPEL"),"No honest position state");
+  await page.locator("#positionCapital").fill("250000");
+  await page.waitForFunction(()=>document.querySelector("#simCapitalLabel")?.textContent.includes("250.000"));
+  await page.locator("#simPositionsBody tr button").first().click();
+  await page.waitForFunction(()=>document.querySelector("#detailPanel .sim-detail"));
+  assert((await page.locator("#detailPanel .sim-detail").innerText()).includes("unidades"),"Position sizing absent from selected asset");
+  console.log("POSITION_SIM",name,JSON.stringify(simulation));
+    await page.screenshot({path:`artifacts/${name}-recommendations.png`,fullPage:true});
   console.log("recommendations_on_all_assets",name,JSON.stringify({label:advice.label,table:advice.row}));
   await page.screenshot({path:`artifacts/${name}-cepu.png`,fullPage:true});
   // Verify unmatched symbol never impersonates a valid chart.
