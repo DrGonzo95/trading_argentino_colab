@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./pro.css?v=2">
   <script src="./app.js" defer></script>
-  <script src="./charts.js" defer></script>
+  <script src="./charts_v3.js?v=3" defer></script>
   <script src="./pro.js?v=2" defer></script>
   <script src="./pwa.js" defer></script>
 </head>
@@ -64,15 +64,15 @@
           <div class="chart-primary">
             <div class="chart-instrument-header">
               <div><span class="kicker">COTIZACIÓN HISTÓRICA · 1 DÍA</span><div class="chart-symbol-row"><strong id="chartSymbol">—</strong><span id="chartTradeStatus" class="chart-signal-label signal-off">◌ Sin entrada confirmada</span></div><span id="chartInfo" class="chart-chartinfo">Seleccioná una acción o CEDEAR para inspeccionarla</span></div>
-              <div class="chart-range-buttons" role="group" aria-label="Período del gráfico">
+              <div class="chart-picker-area"><label for="chartSymbolPicker" class="chart-pick-label">Activo con histórico</label><select id="chartSymbolPicker" aria-label="Elegir especie con velas históricas reales"><option value="">Cargando…</option></select></div><div class="chart-range-buttons" role="group" aria-label="Período del gráfico">
                 <button data-chart-range="25" type="button">1M</button>
                 <button data-chart-range="84" class="active" type="button">4M</button>
                 <button data-chart-range="260" type="button">1A</button>
               </div>
             </div>
             <div class="chart-body" id="chartFrame">
-              <canvas id="candleCanvas" role="img" aria-label="Velas diarias históricas reales con volumen, medias móviles y, cuando corresponde, niveles de operación ficticia"></canvas>
-              <div class="chart-empty" id="chartEmpty">Cargando históricos validados…</div>
+              <div id="chartAccessibility" class="chart-a11y">Precios históricos diarios verificados: seleccioná una especie en el menú superior.</div>
+              <div class="chart-empty" id="chartEmpty">Cargando velas publicadas…</div>
             </div>
             <div class="chart-foot">
               <div id="chartHover" class="chart-ohlc-data">—</div>
