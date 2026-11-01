@@ -115,3 +115,20 @@ border-radius:8px;padding:9px 11px;font-size:12px;font-weight:700;cursor:pointer
 .sim-summary strong{font-size:13px}.sim-summary span{font-size:9px}
 .sim-count{margin:0 12px 10px}.sim-disclaimer{padding:11px 13px}
 .sim-stat strong{font-size:13px}}
+
+/* Research rationale, technical conditions and conditional STOP/TP levels */
+.research-panel{border:1px solid #375e77;border-radius:12px;background:#0f2334;padding:14px;margin:14px 0}
+.research-panel h3,.research-monitor h3{font-size:16px;color:#e7f7ff;line-height:1.25;margin:0 0 8px}
+.research-panel h4{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#abcce0;margin:12px 0 6px}
+.research-panel .research-status{padding:8px 10px;border:1px solid #54788d;background:#173b51;color:#bce6f5;border-radius:7px;font-size:12px;font-weight:700}
+.research-panel .research-note{color:#b9d4df;font-size:12px;line-height:1.55;margin:5px 0}
+.research-panel .research-pro{color:#95e3bd;font-size:12px;line-height:1.5;margin:6px 0;overflow-wrap:anywhere}
+.research-panel .research-con{color:#e6bd9e;font-size:12px;line-height:1.5;margin:6px 0;overflow-wrap:anywhere}
+.research-panel .research-warning{color:#edc2b9;font-size:11px;line-height:1.55;margin:5px 0}
+.research-panel .research-date{color:#9cb4c4;font-size:10px;line-height:1.5;margin:6px 0}
+.research-panel .research-next{color:#c3e2ef;font-size:12px;font-weight:600;line-height:1.5;margin:10px 0}
+.research-panel .research-levels{border:1px solid #436b75;border-radius:10px;background:#14343b;padding:10px;margin-top:12px}
+.research-panel .sim-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.research-monitor{border-color:#427789}
+.research-monitor p{overflow-wrap:anywhere}
+@media(max-width:600px){.research-panel{padding:10px}.research-panel .sim-stat strong{font-size:12px}.research-panel .sim-stat span{font-size:9px}}
