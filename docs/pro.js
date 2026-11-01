@@ -7,7 +7,7 @@ const fmt=new Intl.NumberFormat("es-AR",{maximumFractionDigits:2});
 const datefmt=new Intl.DateTimeFormat("es-AR",{dateStyle:"short",timeStyle:"short",timeZone:"America/Argentina/Cordoba"});
 const n=x=>Number.isFinite(Number(x))&&x!==null&&x!==undefined?fmt.format(Number(x)):"—";
 const cls=x=>Number(x)<0?"pro-neg":Number(x)>0?"pro-pos":"";
-let history={},audit=null,quoteCheck=null,mode="destacados",active=null,chartsReady=false;
+let history={},audit=null,quoteCheck=null,forwardData=null,mode="destacados",active=null,chartsReady=false;
 function node(tag,className,txt){const e=document.createElement(tag);if(className)e.className=className;if(txt!==undefined)e.textContent=txt;return e;}
 function setText(element,value){if(element)element.textContent=value;}
 function items(){try{return typeof s!=="undefined"&&Array.isArray(s.items)?s.items:[];}catch(_){return [];}}
@@ -84,6 +84,15 @@ function setAudit(){
   "Entrenamiento: "+n(train.trades)+" operaciones · corte cronológico: "+(audit.split_date||"no disponible")+
   ". Comisión estimada por lado "+n(audit.assumptions?.commission_iva_each_side_pct)+"% + deslizamiento "+n(audit.assumptions?.slippage_each_side_pct)+"%. Stop conservador antes del objetivo en velas ambiguas. "+
   "Son resultados por operación, NO rentabilidad de una cartera."));
+ const states=forwardData?.portfolio_tracking||{};
+ const fwd=states["100000"]||states["50000"]||null;
+ if(fwd){
+   root.append(node("p","pro-method",
+    "SEGUIMIENTO PROSPECTIVO: "+n(fwd.closed_or_recorded_orders)+" operaciones registradas, "+
+    n(fwd.open_positions)+" posiciones abiertas y "+n(fwd.pending_entries)+" pendientes"+
+    " · última rueda procesada "+(forwardData.last_processed_session||"no disponible")+
+    ". No se infiere rentabilidad con una muestra insuficiente."));
+ }else root.append(node("p","pro-method","Seguimiento prospectivo todavía no publicado; no se supone ningún trade."));
  root.append(node("p","pro-nochart",
   "ESTRATEGIA NO VALIDADA. "+(audit.conclusion||"Sin evidencia suficiente.")+
   " La muestra sufre sesgo de selección y no dispone de spread ni precios ajustados de forma independiente."));
@@ -196,6 +205,9 @@ async function load(){
    b[2]>=Math.max(b[1],b[4])&&b[3]<=Math.min(b[1],b[4])&&b[5]>=0)));
  chartsReady=true;
  }catch(e){console.warn("PRO charts",e);chartsReady=false;history={};}
+ try{const response=await fetch("./data/forward_status.json?pro="+Date.now(),{cache:"no-store"});
+  if(response.ok){const j=await response.json();if(j.kind==="FORWARD_LEDGER_ONLY")forwardData=j;}
+ }catch(e){console.warn("PRO forward status not available",e);}
  try{const response=await fetch("./data/quote_check.json?pro="+Date.now(),{cache:"no-store"});
   if(response.ok){const j=await response.json();quoteCheck=j;}
  }catch(e){console.warn("PRO second provider not available",e);}
