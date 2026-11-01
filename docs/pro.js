@@ -141,6 +141,13 @@ function setup(){
  const head=node("div","pro-head"),title=node("div");
  title.append(node("span","kicker","PULSO TERMINAL · INVESTIGACIÓN / PAPEL"),node("h2","","Monitor profesional de señales y activos"),
    node("p","","Separá qué observar, qué está confirmado y qué no puede operarse. Siempre con datos públicos demorados; sin simulación de cotizaciones."));
+ const nav=node("div","pro-source-row");
+ const graph=node("button","pro-cta","◉ Ver gráfico de velas");
+ graph.type="button";graph.addEventListener("click",()=>id("workstation")?.scrollIntoView({behavior:"smooth",block:"start"}));
+ const portfolio=node("button","pro-cta","▤ Cartera simulada");
+ portfolio.type="button";portfolio.addEventListener("click",()=>id("paper")?.scrollIntoView({behavior:"smooth",block:"start"}));
+ nav.append(graph,portfolio);
+ title.append(nav);
  head.append(title,node("span","pro-livepill","● DATOS DIFERIDOS · NO LIVE"));root.append(head);
  const main=node("div","pro-body"),bar=node("div","pro-controlbar"),switches=node("div","pro-switches");
  for(const [value,label] of [["destacados","En observación"],["velas","Con gráficos"],["entradas","Entradas de papel"],["favoritos","★ Mi seguimiento"]]){
