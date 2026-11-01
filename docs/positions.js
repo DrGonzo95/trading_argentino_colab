@@ -87,7 +87,7 @@ function render(){
   const tr=el("tr"),td=el("td","sim-empty",filter==="paper"?
     "Sin señal RSI35 confirmada. No hay posiciones propuestas para abrir; corresponde esperar.":
     "No hay activos que cumplan este filtro. Elegí otra categoría o símbolo.");
-  td.colSpan=9;tr.append(td);root.append(tr);return;
+  td.colSpan=12;tr.append(td);root.append(tr);return;
  }
  const maxShown=100;
  for(const [a,p] of plans.slice(0,maxShown)){
@@ -101,7 +101,10 @@ function render(){
     scenario?cash(scenario.stop):"—",
     scenario?cash(scenario.target):"—",
     scenario?count(scenario.units)+" u. (hip.)":"—",
-    scenario?cash(scenario.loss):"—"
+    scenario?cash(scenario.cost):"—",
+    scenario?cash(scenario.loss):"—",
+    scenario?cash(scenario.gain):"—",
+    scenario?count(scenario.rr)+":1":"—"
   ];
   values.forEach((value,i)=>tr.append(el("td",i===1?(inPaper?"sim-mark-ready":"sim-mark-muted"):"",value)));
   const buttonCell=el("td");
