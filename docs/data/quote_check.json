@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-10-31T23:41:40.874796-03:00",
+  "source_name": "Gio Bursatil (independiente de IOL)",
+  "source_url": "https://giobursatil.com.ar/cotizaciones/",
+  "method": "Comparación de cierre por símbolo y fecha de mercado, NO precio ejecutable",
+  "state": "PARTIAL_INDEPENDENT_EOD",
+  "asof": "2026-10-30",
+  "checked": 6,
+  "matched": 6,
+  "discrepancies": 0,
+  "prices": {
+    "BBAR": {
+      "historical_close": 6375.0,
+      "independent_close": 6375.0,
+      "market_date": "2026-10-30",
+      "difference_pct": 0.0,
+      "status": "MATCH",
+      "historical_provider": "IOL historical daily BCBA, source data unadjusted",
+      "independent_provider": "Gio Bursatil"
+    },
+    "BMA": {
+      "historical_close": 9975.0,
+      "independent_close": 9975.0,
+      "market_date": "2026-10-30",
+      "difference_pct": 0.0,
+      "status": "MATCH",
+      "historical_provider": "IOL historical daily BCBA, source data unadjusted",
+      "independent_provider": "Gio Bursatil"
+    },
+    "CEPU": {
+      "historical_close": 1750.0,
+      "independent_close": 1750.0,
+      "market_date": "2026-10-30",
+      "difference_pct": 0.0,
+      "status": "MATCH",
+      "historical_provider": "IOL historical daily BCBA, source data unadjusted",
+      "independent_provider": "Gio Bursatil"
+    },
+    "TGSU2": {
+      "historical_close": 7850.0,
+      "independent_close": 7850.0,
+      "market_date": "2026-10-30",
+      "difference_pct": 0.0,
+      "status": "MATCH",
+      "historical_provider": "IOL historical daily BCBA, source data unadjusted",
+      "independent_provider": "Gio Bursatil"
+    },
+    "TRAN": {
+      "historical_close": 2214.0,
+      "independent_close": 2214.0,
+      "market_date": "2026-10-30",
+      "difference_pct": 0.0,
+      "status": "MATCH",
+      "historical_provider": "IOL historical daily BCBA, source data unadjusted",
+      "independent_provider": "Gio Bursatil"
+    },
+    "VALO": {
+      "historical_close": 500.0,
+      "independent_close": 500.0,
+      "market_date": "2026-10-30",
+      "difference_pct": 0.0,
+      "status": "MATCH",
+      "historical_provider": "IOL historical daily BCBA, source data unadjusted",
+      "independent_provider": "Gio Bursatil"
+    }
+  },
+  "error": null
+}
