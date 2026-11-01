@@ -22,7 +22,8 @@ function plan(a){
  const accepted=candidate.type==="PAPEL_RSI35"&&candidate.validTrade;
  return {...base,mode:accepted?"ENTRADA_SOLO_PAPEL":"ESTUDIO_SIN_SENAL",
   openUnits:accepted?amounts.units:0,plan:accepted?amounts:null,scenario:amounts,
-  reason:analysis.next+" "+candidate.method};
+  reason:analysis.next+" "+candidate.method,
+  tp2:candidate.tp2,referenceMethod:candidate.method};
 }
 function riskBadge(rec){
  return rec?.mode==="ENTRADA_SOLO_PAPEL"?"Abrir en PAPEL":"0 unidades a abrir";
@@ -126,7 +127,10 @@ function renderAsset(a,root){
  section.append(el("p","sim-foot","Próximo paso: "+p.reason));
  const jump=el("button","sim-link","Ver simulaciones de todos los activos");
  jump.type="button";jump.addEventListener("click",()=>$("positionSimulator")?.scrollIntoView({behavior:"smooth",block:"start"}));
- section.append(jump);root.append(section);
+ const see=el("button","sim-link sim-chart-link","Ver posición en el gráfico");
+ see.type="button";see.addEventListener("click",()=>showChart(a.symbol));
+ section.append(see);
+  section.append(jump);root.append(section);
 }
 function filtered(){
  let rows=assets();
@@ -136,6 +140,11 @@ function filtered(){
  if(search){const q=search.trim().toUpperCase();rows=rows.filter(a=>a.symbol.toUpperCase().includes(q));}
  return rows.sort((a,b)=>(b.recommendation?.code==="SIMULAR_ENTRADA")-
                          (a.recommendation?.code==="SIMULAR_ENTRADA") || (b.score||0)-(a.score||0));
+}
+function showChart(symbol){
+ if(!assets().some(a=>a.symbol===symbol))return;
+ document.dispatchEvent(new CustomEvent("byma:selection",{detail:{symbol}}));
+ $("workstation")?.scrollIntoView({behavior:"smooth",block:"start"});
 }
 function showAsset(symbol){
  const a=assets().find(x=>x.symbol===symbol);if(!a)return;
@@ -184,7 +193,9 @@ function render(){
   const buttonCell=el("td");
   const btn=el("button","sim-link","Ver ficha");
   btn.type="button";btn.addEventListener("click",()=>showAsset(a.symbol));
-  buttonCell.append(btn);tr.append(buttonCell);root.append(tr);
+  const graph=el("button","sim-link sim-chart-link","Ver gráfico");
+  graph.type="button";graph.addEventListener("click",()=>showChart(a.symbol));
+  buttonCell.append(btn,graph);tr.append(buttonCell);root.append(tr);
  }
  $("simShowing").textContent="Mostrando "+Math.min(maxShown,rows.length)+" de "+rows.length+
   ". Para todas las especies, usá el buscador o exportá el CSV; los escenarios se calculan por separado, NO se suman como una cartera.";
@@ -216,6 +227,7 @@ async function load(){
  else{charts={};console.warn("PULSO historical feed unavailable");}
  cross=checks[1].status==="fulfilled"?checks[1].value:null;
  render();
+ document.dispatchEvent(new CustomEvent("byma:positions"));
  if(typeof s!=="undefined"&&s.selected&&typeof renderDetail==="function")renderDetail();
 }
 function setup(){
@@ -224,6 +236,7 @@ function setup(){
   const v=Number(capitalInput.value);
   if(!Number.isFinite(v)||v<1000||v>1e12){$("simCount").textContent="Ingresá capital entre $1.000 y $1 billón.";return;}
   capital=v;render();
+  document.dispatchEvent(new CustomEvent("byma:positions"));
   if(s.selected&&typeof renderDetail==="function")renderDetail();
  });
  filterSelect?.addEventListener("change",()=>{filter=filterSelect.value;render()});
