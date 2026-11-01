@@ -6,8 +6,12 @@
   <meta name="theme-color" content="#0b1220">
   <meta name="description" content="Radar BYMA: seguimiento de acciones, CEDEARs, bonos y ON con datos públicos demorados, catalizadores, niveles técnicos y simulador de cartera ficticia.">
   <title>Pulso BYMA · Radar de oportunidades</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
   <link rel="stylesheet" href="./styles.css">
   <script src="./app.js" defer></script>
+  <script src="./charts.js" defer></script>
 </head>
 <body>
   <div class="shell">
@@ -43,6 +47,42 @@
         <article class="metric"><span class="metric-label">Entradas teóricas</span><div class="metric-value positive" id="statSignals">—</div><span class="metric-foot">Solo papel · cierre diario</span></article>
         <article class="metric"><span class="metric-label">Caídas con novedades</span><div class="metric-value warning" id="statCatalysts">—</div><span class="metric-foot">Coincidencia, no causalidad</span></article>
         <article class="metric"><span class="metric-label">Con indicadores válidos</span><div class="metric-value" id="statTech">—</div><span class="metric-foot">Series diarias comprobadas</span></article>
+      </section>
+      <section class="pro-chart-section" id="workstation" aria-label="Gráfico de precios y niveles de posiciones simuladas">
+        <div class="chart-section-heading">
+          <div><span class="kicker">PULSO TERMINAL · MERCADO ARGENTINO</span><h2>Gráfico y planificación de posiciones</h2></div>
+          <div class="chart-header-actions">
+            <span class="chart-tiny-meta" id="chartDatasetCount">Cargando históricos reales…</span>
+            <button id="installApp" type="button" class="ghost install-button" hidden>＋ Instalar app</button>
+          </div>
+        </div>
+        <div class="workstation">
+          <div class="chart-primary">
+            <div class="chart-instrument-header">
+              <div><span class="kicker">COTIZACIÓN HISTÓRICA · 1 DÍA</span><div class="chart-symbol-row"><strong id="chartSymbol">—</strong><span id="chartTradeStatus" class="chart-signal-label signal-off">◌ Sin entrada confirmada</span></div><span id="chartInfo" class="chart-chartinfo">Seleccioná una acción o CEDEAR para inspeccionarla</span></div>
+              <div class="chart-range-buttons" role="group" aria-label="Período del gráfico">
+                <button data-chart-range="25" type="button">1M</button>
+                <button data-chart-range="84" class="active" type="button">4M</button>
+                <button data-chart-range="260" type="button">1A</button>
+              </div>
+            </div>
+            <div class="chart-body" id="chartFrame">
+              <canvas id="candleCanvas" role="img" aria-label="Velas diarias históricas reales con volumen, medias móviles y, cuando corresponde, niveles de operación ficticia"></canvas>
+              <div class="chart-empty" id="chartEmpty">Cargando históricos validados…</div>
+            </div>
+            <div class="chart-foot">
+              <div id="chartHover" class="chart-ohlc-data">—</div>
+              <div class="chart-legend"><span class="legend-ma20">EMA NO: SMA 20</span><span class="legend-ma50">SMA 50</span><span class="legend-vol">Volumen</span></div>
+            </div>
+          </div>
+          <aside class="chart-risk-rail">
+            <span class="kicker">PLAN DE TRADE</span>
+            <h3>Niveles de la operación</h3>
+            <div id="chartRiskDetails"><div class="chart-trade-none">Una operación ficticia aparecerá únicamente cuando el radar la valide.</div></div>
+            <div class="chart-warning">Datos diarios históricos, no streaming. Los niveles de entrada, stop y objetivo nunca garantizan ejecución ni rentabilidad.</div>
+            <button class="chart-view-info" type="button" id="chartShowDetails">Ver fundamentos y noticias del símbolo ↓</button>
+          </aside>
+        </div>
       </section>
       <section class="alert-center" aria-label="Centro de oportunidades recientes">
         <div class="alert-head">
@@ -123,5 +163,6 @@
       <div class="dialog-bottom"><button class="ghost" id="cancelDialog" type="button">Cancelar</button><button class="primary" id="submitPaper" type="submit" disabled>Registrar en mi simulador</button></div>
     </form>
   </dialog>
+  <div id="installHelp" class="install-help" hidden role="status">Para instalar la app desde el navegador, abrí el menú y seleccioná “Instalar aplicación” o “Agregar a pantalla de inicio”.</div>
 </body>
 </html>
