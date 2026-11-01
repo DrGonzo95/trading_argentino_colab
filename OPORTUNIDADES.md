@@ -2,7 +2,7 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 31/10/2026 22:47 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 31/10/2026 22:49 (Argentina); hora real de negociación desconocida.
 
 **Universo:** 1883 especies, incluidos 87 acciones y 954 CEDEARs.
 
