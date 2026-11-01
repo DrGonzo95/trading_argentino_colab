@@ -1,0 +1,51 @@
+name: PULSO BYMA - prueba visual real Chromium
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "docs/index.html"
+      - "docs/charts_v3.js"
+      - "docs/pro.js"
+      - "docs/pro.css"
+      - "docs/styles.css"
+      - "docs/sw.js"
+      - "tests/browser_smoke.mjs"
+      - ".github/workflows/byma_browser_smoke.yml"
+permissions:
+  contents: read
+concurrency:
+  group: pulso-byma-browser-smoke
+  cancel-in-progress: true
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install isolated browser testing dependencies
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Start real app server
+        run: |
+          mkdir -p artifacts
+          nohup python3 -m http.server 8765 --bind 127.0.0.1 --directory docs > /tmp/pulso-http.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8765/index.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/pulso-http.log
+          exit 1
+      - name: Verify real candle SVG renders on desktop and mobile
+        run: node tests/browser_smoke.mjs
+      - name: Upload visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pulso-visual-desktop-mobile
+          path: artifacts/*.png
+          if-no-files-found: warn
+          retention-days: 14
