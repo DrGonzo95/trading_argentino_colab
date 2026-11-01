@@ -72,6 +72,32 @@ for(const [name,viewport] of [["desktop",{width:1440,height:900}],["mobile",{wid
   await page.locator("#simPositionsBody tr button").first().click();
   await page.waitForFunction(()=>document.querySelector("#detailPanel .sim-detail"));
   assert((await page.locator("#detailPanel .sim-detail").innerText()).includes("unidades"),"Position sizing absent from selected asset");
+
+  // Confirm exact source-driven analysis for stock and safe refusal for bond.
+  await page.waitForFunction(()=>document.querySelector("#detailPanel .research-panel"));
+  const research=await page.evaluate(()=>{
+    const p=document.querySelector("#detailPanel .research-panel");
+    return {text:p?.textContent||"",metrics:p?.querySelectorAll(".research-metrics .sim-stat").length||0,
+      plan:p?.querySelector(".research-levels")?.textContent||"",status:p?.querySelector(".research-status")?.textContent||""};
+  });
+  assert(research.metrics>=8,"EMA, RSI, ATR, volume, support/resistance not rendered");
+  assert(/potencial/i.test(research.text),"Missing evidence-based potential rationale");
+  assert(/Stop condicional/.test(research.plan)&&/Take profit 1/.test(research.plan)&&/Take profit 2/.test(research.plan),
+    "Conditional stop/TP1/TP2 levels not shown");
+  assert(/Unidades para abrir por señal/.test(research.plan),
+    "No-signal simulated entry status should be explicit");
+  console.log("RESEARCH_ANALYSIS",name,JSON.stringify({metrics:research.metrics,status:research.status,plan:research.plan.slice(0,170)}));
+  await page.screenshot({path:"artifacts/"+name+"-research-analysis.png",fullPage:true});
+  await page.evaluate(()=>{
+    const bond=typeof s!=="undefined"?s.items.find(x=>x.kind==="bono"):null;
+    if(bond){s.selected=bond.symbol;renderDetail();}
+  });
+  const bondStudy=await page.locator("#detailPanel .research-panel").innerText();
+  assert(bondStudy.includes("TIR")&&bondStudy.includes("SIN niveles de operación"),
+    "Bond must not pretend to have verified coupon, yield or stop/TP levels");
+  // Restore stock for remainder of visual smoke test.
+  await page.evaluate(()=>{if(typeof s!=="undefined"){s.selected="CEPU";renderDetail();}});
+
   console.log("POSITION_SIM",name,JSON.stringify(simulation));
     await page.screenshot({path:`artifacts/${name}-recommendations.png`,fullPage:true});
   console.log("recommendations_on_all_assets",name,JSON.stringify({label:advice.label,table:advice.row}));
