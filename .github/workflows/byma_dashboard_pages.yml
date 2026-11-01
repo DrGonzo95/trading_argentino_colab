@@ -7,6 +7,9 @@ on:
       - 'docs/styles.css'
       - 'docs/app.js'
       - 'docs/charts.js'
+      - 'docs/pro.js'
+      - 'docs/pro.css'
+      - 'radar_byma/strategy_audit.py'
       - 'docs/pwa.js'
       - 'docs/sw.js'
       - 'docs/manifest.webmanifest'
@@ -44,18 +47,22 @@ jobs:
         run: python radar_byma/dashboard_export.py
       - name: Export validated daily candles for professional trading chart
         run: python radar_byma/dashboard_charts.py
+      - name: Audit RSI35 strategy without lookahead or synthetic prices
+        run: python radar_byma/strategy_audit.py
       - name: Render public GitHub opportunity bulletin
         run: python radar_byma/dashboard_markdown.py
       - name: Validate browser code and market data
         run: |
           node --check docs/app.js
           node --check docs/charts.js
+          node --check docs/pro.js
           node --check docs/pwa.js
           node --check docs/sw.js
-          python -m py_compile radar_byma/dashboard_export.py radar_byma/dashboard_charts.py radar_byma/dashboard_markdown.py
+          python -m py_compile radar_byma/dashboard_export.py radar_byma/dashboard_charts.py radar_byma/dashboard_markdown.py radar_byma/strategy_audit.py
           test -s OPORTUNIDADES.md
           python -m json.tool docs/data/market.json >/dev/null
           python -m json.tool docs/data/charts.json >/dev/null
+          python -m json.tool docs/data/strategy_audit.json >/dev/null
           python -m json.tool docs/manifest.webmanifest >/dev/null
           test -s docs/data/market.json
           test -s docs/data/charts.json
@@ -65,6 +72,7 @@ jobs:
           git config user.name "github-actions[bot]"
           cp docs/data/market.json /tmp/byma_market.json
           cp docs/data/charts.json /tmp/byma_charts.json
+          cp docs/data/strategy_audit.json /tmp/byma_strategy_audit.json
           cp OPORTUNIDADES.md /tmp/byma_opportunities.md
           for n in 1 2 3; do
             git fetch origin main
@@ -72,8 +80,9 @@ jobs:
             mkdir -p docs/data
             cp /tmp/byma_market.json docs/data/market.json
             cp /tmp/byma_charts.json docs/data/charts.json
+            cp /tmp/byma_strategy_audit.json docs/data/strategy_audit.json
             cp /tmp/byma_opportunities.md OPORTUNIDADES.md
-            git add docs/data/market.json docs/data/charts.json OPORTUNIDADES.md
+            git add docs/data/market.json docs/data/charts.json docs/data/strategy_audit.json OPORTUNIDADES.md
             if git diff --cached --quiet; then
               echo "No public radar changes"
               exit 0
