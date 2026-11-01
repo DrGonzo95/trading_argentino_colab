@@ -7,6 +7,7 @@ on:
       - 'docs/styles.css'
       - 'docs/app.js'
       - 'radar_byma/dashboard_export.py'
+      - 'radar_byma/dashboard_markdown.py'
       - '.github/workflows/byma_dashboard_pages.yml'
   schedule:
     - cron: '7,22,37,52 13-21 * * 1-5'
@@ -35,17 +36,20 @@ jobs:
         run: python radar_byma/rank_byma.py
       - name: Export complete market dashboard with data quality warnings
         run: python radar_byma/dashboard_export.py
+      - name: Render public GitHub opportunity bulletin
+        run: python radar_byma/dashboard_markdown.py
       - name: Validate browser code and market data
         run: |
           node --check docs/app.js
-          python -m py_compile radar_byma/dashboard_export.py
+          python -m py_compile radar_byma/dashboard_export.py radar_byma/dashboard_markdown.py
+          test -s OPORTUNIDADES.md
           python -m json.tool docs/data/market.json >/dev/null
           test -s docs/data/market.json
       - name: Persist latest public delayed dashboard snapshot
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add docs/data/market.json
+          git add docs/data/market.json OPORTUNIDADES.md
           if ! git diff --cached --quiet; then
             git commit -m "Publish delayed BYMA dashboard data [skip ci]"
             git pull --rebase origin main
