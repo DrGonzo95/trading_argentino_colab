@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id);
 const fmt=new Intl.NumberFormat("es-AR",{maximumFractionDigits:2});
 const cash=x=>typeof x==="number"&&Number.isFinite(x)?"$ "+fmt.format(x):"—";
 const count=x=>typeof x==="number"&&Number.isFinite(x)?fmt.format(x):"—";
-let charts={};let capital=100000;let filter="chart";let search="";
+let charts={};let cross=null;let capital=100000;let filter="chart";let search="";
 function assets(){try{return Array.isArray(s.items)?s.items:[]}catch{return []}}
 function el(tag,css,text){const n=document.createElement(tag);if(css)n.className=css;if(text!==undefined)n.textContent=String(text);return n}
 function plan(a){return window.PULSOPositionMath?.assess(a,charts[a.symbol],capital)||null}
@@ -16,10 +16,70 @@ function riskBadge(rec){
 function amountRow(parent,name,val){
  const item=el("div","sim-stat");item.append(el("span","",name),el("strong","",val));parent.append(item);
 }
+
+function paragraph(parent,message,css="research-note"){if(message)parent.append(el("p",css,message))}
+function renderResearch(a,root){
+ const research=window.PULSOResearch?.analyze(a,charts[a.symbol],{capital,cross});
+ if(!research)return;
+ const panel=el("section","detail-section research-panel");
+ panel.append(el("h3","","Análisis técnico y potencial · "+a.symbol));
+ const status=el("div","research-status",research.trend+" · "+research.state.replaceAll("_"," "));
+ panel.append(status);
+ if(research.date)paragraph(panel,"Cierre estudiado: "+research.date+" · "+research.source,"research-date");
+ if(research.metrics){
+  const m=research.metrics;
+  const grid=el("div","sim-stats research-metrics");
+  for(const [name,value,suffix] of [
+   ["Cierre histórico",cash(m.close),""],["RSI 14",count(m.rsi14),""],
+   ["EMA 20 / EMA 50",cash(m.ema20)+" / "+cash(m.ema50),""],
+   ["EMA 200",cash(m.ema200),""],["ATR 14",cash(m.atr14),""],
+   ["Momentum 20 ruedas",count(m.momentum20Pct),"%"],["Volumen relativo",count(m.volumeRatio),"×"],
+   ["Soporte 20D",cash(m.support20),""],["Resistencia 20D",cash(m.resistance20),""]]){
+    amountRow(grid,name,String(value)+(value==="—"?"":suffix));
+   }
+  panel.append(grid);
+ }
+ const possible=el("div","research-reasons");
+ possible.append(el("h4","","¿Por qué podría tener potencial?"));
+ if(research.potential.length)research.potential.forEach(v=>paragraph(possible,"+ "+v,"research-pro"));
+ else paragraph(possible,"No hay argumentos alcistas suficientes validados; no se supone potencial por una caída.");
+ (research.reasons||[]).forEach(v=>paragraph(possible,"− "+v,"research-con"));
+ panel.append(possible);
+ const plan=research.plan;
+ if(plan){
+  const levels=el("div","research-levels");
+  levels.append(el("h4","",plan.type==="PAPEL_RSI35"?"Plan para simulación RSI35 (NO compra real)":"Escenario condicional (NO hay señal de entrada)"));
+  paragraph(levels,plan.method,"research-date");
+  const grid=el("div","sim-stats");
+  for(const [name,value] of [
+    ["Entrada de referencia",cash(plan.entry)],["Stop condicional",cash(plan.stop)],
+    ["Take profit 1",cash(plan.tp1)],["Take profit 2",plan.tp2==null?"—":cash(plan.tp2)],
+    ["Relación R:R neta al TP1",count(plan.rrNet)+":1"],
+    ["Unidades para abrir por señal",String(plan.unitsToOpen)],
+    ["Unidades en hipótesis",String(plan.units)],
+    ["Pérdida estimada al stop",cash(plan.lossAtStop)],
+    ["Ganancia estimada al TP1",cash(plan.gainAtTP1)]]){
+      amountRow(grid,name,value);
+    }
+  levels.append(grid);
+  paragraph(levels,plan.invalidation,"research-warning");
+  paragraph(levels,plan.notes,"research-date");
+  panel.append(levels);
+ }else paragraph(panel,"SIN niveles de operación: no hay históricos suficientes, o existe un bloqueo de datos/valoración. No se inventan stops ni objetivos.","research-warning");
+ const flags=el("div","research-risks");
+ flags.append(el("h4","","Riesgos y datos pendientes"));
+ research.risks.slice(0,6).forEach(v=>paragraph(flags,"• "+v,"research-warning"));
+ panel.append(flags);
+ paragraph(panel,research.next||"Revisar fuentes, precio y señal antes de considerar una simulación.","research-next");
+ paragraph(panel,research.disclaimer,"research-date");
+ root.append(panel);
+}
+
 function renderAsset(a,root){
  if(!a||!root)return;
  const p=plan(a);
  if(!p)return;
+ renderResearch(a,root);
  const section=el("section","detail-section sim-detail");
  section.append(el("h3","","Simulación cuantificada · "+a.symbol));
  const header=el("div","sim-banner "+(p.mode==="ENTRADA_SOLO_PAPEL"?"sim-ready":"sim-paused"),
@@ -133,13 +193,14 @@ function exportCSV(){
  anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 async function load(){
- try{
-  const r=await fetch("./data/charts.json?positions="+Date.now(),{cache:"no-store"});
-  if(!r.ok)throw Error("No se pudo cargar histórico");
-  const j=await r.json();
-  if(j.chart_data!=="DAILY_HISTORICAL_ONLY_NOT_LIVE"||!j.symbols)throw Error("Histórico inválido");
-  charts=j.symbols;
- }catch(e){console.warn("PULSO scenarios require historical feed",e);charts={};}
+ const checks=await Promise.allSettled([
+  fetch("./data/charts.json?positions="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null),
+  fetch("./data/quote_check.json?positions="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null)
+ ]);
+ const j=checks[0].status==="fulfilled"?checks[0].value:null;
+ if(j?.chart_data==="DAILY_HISTORICAL_ONLY_NOT_LIVE"&&j.symbols)charts=j.symbols;
+ else{charts={};console.warn("PULSO historical feed unavailable");}
+ cross=checks[1].status==="fulfilled"?checks[1].value:null;
  render();
  if(typeof s!=="undefined"&&s.selected&&typeof renderDetail==="function")renderDetail();
 }
