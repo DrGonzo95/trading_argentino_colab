@@ -116,6 +116,29 @@ function renderSignal(){
      "Cierre todavía no corroborado contra un segundo proveedor para la misma fecha."));
    root.append(explain);
  }
+ const study=window.PULSOResearch?.analyze(a,history[a.symbol],{capital:100000,cross:quoteCheck});
+ if(study){
+   const research=node("div","pro-recommendation research-monitor");
+   research.append(node("h3","","Estudio técnico · "+a.symbol),
+     node("p","","Tendencia: "+study.trend+" · "+(study.date||"sin fecha de vela")+" · "+study.state.replaceAll("_"," ")));
+   if(study.metrics){
+     const m=study.metrics;
+     research.append(node("p","","EMA20 "+n(m.ema20)+" · EMA50 "+n(m.ema50)+
+       " · EMA200 "+n(m.ema200)+" · RSI14 "+n(m.rsi14)+
+       " · ATR14 $ "+n(m.atr14)+" · soporte "+n(m.support20)+" · resistencia "+n(m.resistance20)));
+   }
+   research.append(node("strong","pro-rec-step","Razones de potencial (no predicción):"));
+   if(study.potential.length)study.potential.slice(0,3).forEach(z=>research.append(node("p","pro-rec-reason","• "+z)));
+   else research.append(node("p","pro-rec-reason","Sin motivos alcistas suficientes con los datos actuales."));
+   if(study.plan)research.append(node("p","pro-rec-reason",
+     "Escenario "+(study.plan.type==="PAPEL_RSI35"?"de papel validado":"sin señal")+": entrada $ "+n(study.plan.entry)+
+     " · STOP $ "+n(study.plan.stop)+" · TP1 $ "+n(study.plan.tp1)+
+     " · TP2 "+(study.plan.tp2==null?"no definido":"$ "+n(study.plan.tp2))+
+     " · R:R neta "+n(study.plan.rrNet)+":1. Unidades para abrir según radar: "+study.plan.unitsToOpen+"."));
+   else research.append(node("p","pro-rec-reason","Stop y TP: no calculables de forma fiable con los datos validados."));
+   if(study.risks.length)research.append(node("p","pro-method","Riesgos: "+study.risks.slice(0,3).join(" · ")));
+   root.append(research);
+ }
  const finalBar=hasChart(a.symbol)?history[a.symbol].bars.at(-1):null;
  const quoteGap=finalBar&&a.quote_price!=null?100*Math.abs(Number(a.quote_price)-finalBar[4])/finalBar[4]:null;
  const verifiedSecond=quoteCheck?.prices?.[a.symbol];
