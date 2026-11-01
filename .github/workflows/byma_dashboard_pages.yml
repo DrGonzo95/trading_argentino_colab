@@ -11,6 +11,8 @@ on:
       - 'radar_byma/quote_crosscheck.py'
       - 'radar_byma/chart_expand.py'
       - 'radar_byma/forward_report.py'
+      - 'radar_byma/recommendations.py'
+      - 'tests/recommendations_test.py'
       - 'docs/pro.js'
       - 'docs/pro.css'
       - 'radar_byma/strategy_audit.py'
@@ -54,11 +56,13 @@ jobs:
       - name: Expand daily historical chart coverage without filling missing candles
         run: MAX_EXTRA_CHART_REQUESTS=26 python radar_byma/chart_expand.py
       - name: Independent closing-price crosscheck (second public provider)
-        run: python radar_byma/quote_crosscheck.py radar_byma/chart_expand.py radar_byma/forward_report.py
+        run: python radar_byma/quote_crosscheck.py
       - name: Audit RSI35 strategy without lookahead or synthetic prices
         run: python radar_byma/strategy_audit.py
       - name: Export prospective paper tracking without inventing trades
         run: python radar_byma/forward_report.py
+      - name: Explain what to do with every stock, CEDEAR, bond and note
+        run: python radar_byma/recommendations.py
       - name: Render public GitHub opportunity bulletin
         run: python radar_byma/dashboard_markdown.py
       - name: Validate browser code and market data
@@ -69,7 +73,8 @@ jobs:
           node --check docs/pro.js
           node --check docs/pwa.js
           node --check docs/sw.js
-          python -m py_compile radar_byma/dashboard_export.py radar_byma/dashboard_charts.py radar_byma/dashboard_markdown.py radar_byma/strategy_audit.py radar_byma/quote_crosscheck.py
+          python -m py_compile radar_byma/dashboard_export.py radar_byma/dashboard_charts.py radar_byma/dashboard_markdown.py radar_byma/strategy_audit.py radar_byma/quote_crosscheck.py radar_byma/chart_expand.py radar_byma/forward_report.py radar_byma/recommendations.py
+          python tests/recommendations_test.py
           test -s OPORTUNIDADES.md
           python -m json.tool docs/data/market.json >/dev/null
           python -m json.tool docs/data/charts.json >/dev/null
