@@ -215,6 +215,7 @@ async function requestAlerts(){
 function renderDetail(){
   const root=$("detailPanel");root.replaceChildren();
   const a=s.items.find(x=>x.symbol===s.selected);
+  if(a)document.dispatchEvent(new CustomEvent("byma:selection",{detail:{symbol:a.symbol}}));
   if(!a){const empty=el("div","detail-placeholder");append(empty,el("div","symbol-art","⌁"),el("h3","","Elegí un instrumento"),el("p","","Seleccioná una fila para ver el análisis, niveles de referencia y simulador."));root.appendChild(empty);return;}
   const head=el("div","detail-head");const title=el("div");append(title,el("span","kicker",kindName(a.kind).toUpperCase()),el("h2","detail-symbol",a.symbol));head.appendChild(title);
   const watch=el("button","watch-btn"+(s.watch.has(a.symbol)?" active":""),s.watch.has(a.symbol)?"★ Siguiendo":"☆ Seguir");
@@ -333,7 +334,8 @@ async function loadMarket(){
     const d=await resp.json();
     if(!d.meta||!Array.isArray(d.assets)||!d.summary)throw new Error("Formato de datos incorrecto");
     s.items=d.assets;s.meta=d.meta;s.summary=d.summary;s.latestFetch=Date.now();
-    setStats();renderRows();renderDetail();renderAlerts();
+    setStats();renderRows();renderDetail();
+    document.dispatchEvent(new CustomEvent("byma:data"));renderAlerts();
   }catch(e){
     $("connection").textContent="Sin datos disponibles";
     $("connection").parentElement.classList.add("is-error");
@@ -356,6 +358,14 @@ $("paperForm").addEventListener("submit",(event)=>{
   const entry={id,date:$("paperDate").value,ticker:s.paperSymbol,...val};
   delete entry.valid;s.paper.push(entry);persist("byma-paper-v1",s.paper);renderPaper();$("paperDialog").close();
   document.getElementById("paper").scrollIntoView({behavior:"smooth",block:"start"});
+});
+$("chartShowDetails")?.addEventListener("click",()=>{
+  const symbol=$("chartSymbol")?.textContent||"";
+  if(!s.items.some(x=>x.symbol===symbol))return;
+  s.selected=symbol;s.assetType="todos";s.filter="todos";s.query=symbol;
+  $("assetType").value="todos";$("statusFilter").value="todos";$("search").value=symbol;
+  renderRows();renderDetail();
+  $("detailPanel").scrollIntoView({behavior:"smooth",block:"start"});
 });
 $("exportCsv").addEventListener("click",exportCsv);
 $("clearPaper").addEventListener("click",()=>{
