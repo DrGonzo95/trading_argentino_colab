@@ -93,7 +93,12 @@ function renderSignal(){
  if(!a){root.appendChild(node("p","", "Seleccioná una especie para interpretar la señal publicada."));return;}
  root.appendChild(node("h3","",a.symbol+" · "+(a.kind==="accion"?"acción":"CEDEAR")));
  root.appendChild(node("p","",scoreStatus(a)+". Precio público diferido: "+(a.quote_price==null?"sin valor":"$ "+n(a.quote_price))+"."));
+ const finalBar=hasChart(a.symbol)?history[a.symbol].bars.at(-1):null;
+ const quoteGap=finalBar&&a.quote_price!=null?100*Math.abs(Number(a.quote_price)-finalBar[4])/finalBar[4]:null;
  const checks=[
+  ["Concordancia interna",quoteGap===null?"No comparable: falta precio o histórico":
+    "Cierre histórico $ "+n(finalBar[4])+" ("+finalBar[0]+") vs panel $ "+n(a.quote_price)+
+    " · diferencia "+n(quoteGap)+"%. "+(quoteGap>.5?"DESAJUSTE, no operar.":"Coincidencia interna, no cotejo independiente.")],
   ["Histórico diario",hasChart(a.symbol)?"Sí, "+history[a.symbol].bars.length+" velas; última "+history[a.symbol].last_candle:"No disponible / no validado"],
   ["RSI (14)",a.rsi14==null?"Sin cálculo validado":n(a.rsi14)],
   ["Calidad técnica",a.technical_score==null?"Sin puntuación técnica":n(a.technical_score)+"/100"],
