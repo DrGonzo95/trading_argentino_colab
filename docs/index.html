@@ -101,7 +101,7 @@
       <section class="work-area">
         <div class="mainpanel">
           <div class="sectiontop">
-            <div><span class="kicker">SELECCIÓN DE OPORTUNIDADES</span><h2>Radar de instrumentos</h2></div>
+            <div><span class="kicker">SELECCIÓN DE OPORTUNIDADES</span><h2>Radar de instrumentos y recomendaciones</h2></div>
             <span id="matches" class="muted count-label">— resultados</span>
           </div>
           <div class="controls">
@@ -114,23 +114,27 @@
               <option value="on">Obligaciones negociables</option>
               <option value="todos">Todos los instrumentos</option>
             </select>
-            <select id="statusFilter" aria-label="Filtrar oportunidades">
+            <select id="statusFilter" aria-label="Filtrar oportunidades y recomendaciones">
               <option value="relevantes">Interesantes primero</option>
               <option value="paper">Entradas teóricas</option>
               <option value="caidas">Caídas + novedades</option>
               <option value="tecnicos">Con análisis técnico</option>
+              <option value="decision_papel">Qué hacer: simular entrada</option>
+              <option value="decision_investigar">Qué hacer: investigar caídas / noticias</option>
+              <option value="decision_vigilar">Qué hacer: vigilar / observar</option>
+              <option value="decision_esperar">Qué hacer: esperar datos / revisar precios</option>
               <option value="watch">Mi lista guardada</option>
               <option value="todos">Ver todos</option>
             </select>
           </div>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Instrumento</th><th>Último precio*</th><th>Var. del panel</th><th>Prioridad</th><th>Estado</th><th></th></tr></thead>
-              <tbody id="assetsBody"><tr><td colspan="6" class="empty">Cargando cotizaciones del radar…</td></tr></tbody>
+              <thead><tr><th>Instrumento</th><th>Último precio*</th><th>Var. del panel</th><th>Prioridad</th><th>Estado</th><th>Qué hacer</th><th></th></tr></thead>
+              <tbody id="assetsBody"><tr><td colspan="7" class="empty">Cargando cotizaciones del radar…</td></tr></tbody>
             </table>
           </div>
           <div class="table-footer"><span id="paginationInfo">—</span><button id="loadMore" class="ghost" hidden type="button">Mostrar más ↓</button></div>
-          <div class="footnote">* Último precio informado por el proveedor, con hora real de negociación desconocida. No es una punta compradora/vendedora ni una cotización ejecutable. Las prioridades no son probabilidades de ganancia.</div>
+          <div class="footnote">Las recomendaciones son reglas de investigación por instrumento, no pronósticos ni asesoramiento financiero individual. Ninguna habilita órdenes reales. * Último precio informado por el proveedor, con hora real de negociación desconocida. No es una punta compradora/vendedora ni una cotización ejecutable. Las prioridades no son probabilidades de ganancia.</div>
         </div>
         <aside class="detailpanel" id="detailPanel" aria-label="Ficha del instrumento">
           <div class="detail-placeholder"><div class="symbol-art">⌁</div><h3>Elegí un instrumento</h3><p>Seleccioná una fila para ver su situación técnica, noticias, entrada de referencia, stop, objetivo y simulador.</p></div>
