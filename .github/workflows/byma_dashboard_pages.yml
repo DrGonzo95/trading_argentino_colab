@@ -6,6 +6,12 @@ on:
       - 'docs/index.html'
       - 'docs/styles.css'
       - 'docs/app.js'
+      - 'docs/charts.js'
+      - 'docs/pwa.js'
+      - 'docs/sw.js'
+      - 'docs/manifest.webmanifest'
+      - 'docs/icon.svg'
+      - 'radar_byma/dashboard_charts.py'
       - 'radar_byma/dashboard_export.py'
       - 'radar_byma/dashboard_markdown.py'
       - '.github/workflows/byma_dashboard_pages.yml'
@@ -36,28 +42,38 @@ jobs:
         run: python radar_byma/rank_byma.py
       - name: Export complete market dashboard with data quality warnings
         run: python radar_byma/dashboard_export.py
+      - name: Export validated daily candles for professional trading chart
+        run: python radar_byma/dashboard_charts.py
       - name: Render public GitHub opportunity bulletin
         run: python radar_byma/dashboard_markdown.py
       - name: Validate browser code and market data
         run: |
           node --check docs/app.js
-          python -m py_compile radar_byma/dashboard_export.py radar_byma/dashboard_markdown.py
+          node --check docs/charts.js
+          node --check docs/pwa.js
+          node --check docs/sw.js
+          python -m py_compile radar_byma/dashboard_export.py radar_byma/dashboard_charts.py radar_byma/dashboard_markdown.py
           test -s OPORTUNIDADES.md
           python -m json.tool docs/data/market.json >/dev/null
+          python -m json.tool docs/data/charts.json >/dev/null
+          python -m json.tool docs/manifest.webmanifest >/dev/null
           test -s docs/data/market.json
+          test -s docs/data/charts.json
       - name: Persist delayed radar JSON and public opportunities, conflict safely
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           cp docs/data/market.json /tmp/byma_market.json
+          cp docs/data/charts.json /tmp/byma_charts.json
           cp OPORTUNIDADES.md /tmp/byma_opportunities.md
           for n in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
             mkdir -p docs/data
             cp /tmp/byma_market.json docs/data/market.json
+            cp /tmp/byma_charts.json docs/data/charts.json
             cp /tmp/byma_opportunities.md OPORTUNIDADES.md
-            git add docs/data/market.json OPORTUNIDADES.md
+            git add docs/data/market.json docs/data/charts.json OPORTUNIDADES.md
             if git diff --cached --quiet; then
               echo "No public radar changes"
               exit 0
