@@ -56,8 +56,10 @@ jobs:
             git pull --rebase origin main
             git push origin HEAD:main
           fi
-      - name: Check repository GitHub Pages has been enabled by owner
+      - name: Enable GitHub Pages automatically if repository permission allows
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
