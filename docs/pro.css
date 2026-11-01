@@ -132,3 +132,19 @@ border-radius:8px;padding:9px 11px;font-size:12px;font-weight:700;cursor:pointer
 .research-monitor{border-color:#427789}
 .research-monitor p{overflow-wrap:anywhere}
 @media(max-width:600px){.research-panel{padding:10px}.research-panel .sim-stat strong{font-size:12px}.research-panel .sim-stat span{font-size:9px}}
+
+/* Chart setup visualisation – reserved future space is a schematic risk/reward box, not a forecast. */
+.chart-position-controls{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:148px}
+#chartPositionMode{font:600 12px system-ui;color:#e2f4ff;background:#173249;border:1px solid #567d98;
+ border-radius:7px;padding:7px 8px;max-width:190px;width:100%}
+.chart-overlay-switch{display:flex;gap:6px;align-items:center;font-size:10px;color:#d0e2ed;cursor:pointer}
+.chart-overlay-switch input{width:14px;height:14px;accent-color:#4dd2a2}
+.chart-position-controls select:focus-visible,.chart-overlay-switch input:focus-visible{outline:2px solid #82d8e6;outline-offset:2px}
+.chart-position-banner{padding:9px 10px;border-radius:8px;margin-bottom:11px;line-height:1.45;
+ font-size:11px;font-weight:750;letter-spacing:.03em}
+.chart-position-banner.is-paper{background:#183c36;border:1px solid #428973;color:#a5f7d4}
+.chart-position-banner.is-study{background:#393023;border:1px solid #8b6f47;color:#ffdb9a}
+.chart-reward-zone,.chart-risk-zone{pointer-events:none}
+.sim-chart-link{margin-left:6px!important}
+@media(max-width:650px){.chart-position-controls{min-width:120px;flex:1}.chart-position-controls select{max-width:100%;font-size:11px}
+.sim-chart-link{margin-left:4px!important}}
