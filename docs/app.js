@@ -346,7 +346,7 @@ function renderPaper(){
     cells.forEach(v=>tr.appendChild(el("td","",v)));
     const td=el("td");const remove=el("button","ghost","✕");remove.title="Eliminar registro";remove.addEventListener("click",()=>{
       if(!confirm("¿Eliminar esta operación ficticia del navegador?"))return;
-      s.paper=s.paper.filter(z=>z.id!==p.id);persist("byma-paper-v1",s.paper);renderPaper();
+      s.paper=s.paper.filter(z=>z.id!==p.id);persist("byma-paper-v1",s.paper);renderPaper();document.dispatchEvent(new CustomEvent("byma:paper"));
     });td.appendChild(remove);tr.appendChild(td);body.appendChild(tr);
   });
 }
@@ -388,7 +388,7 @@ $("paperForm").addEventListener("submit",(event)=>{
   event.preventDefault();const val=paperValid();if(!val.valid||!s.paperSymbol)return;
   const id=String(Date.now())+"_"+Math.random().toString(36).slice(2,7);
   const entry={id,date:$("paperDate").value,ticker:s.paperSymbol,...val};
-  delete entry.valid;s.paper.push(entry);persist("byma-paper-v1",s.paper);renderPaper();$("paperDialog").close();
+  delete entry.valid;s.paper.push(entry);persist("byma-paper-v1",s.paper);renderPaper();document.dispatchEvent(new CustomEvent("byma:paper"));$("paperDialog").close();
   document.getElementById("paper").scrollIntoView({behavior:"smooth",block:"start"});
 });
 $("chartShowDetails")?.addEventListener("click",()=>{
