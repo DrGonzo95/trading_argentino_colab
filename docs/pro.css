@@ -70,3 +70,48 @@
 .table-wrap .rec-pill{font-size:10px;min-width:115px;max-width:190px}
 .table-wrap td:nth-child(6){min-width:135px}
 @media(max-width:680px){.table-wrap .rec-pill{max-width:142px;min-width:90px}.pro-recommendation{padding:9px}.rec-pill,.pro-action-tag{font-size:10px}}
+
+/* Position simulator v1: each asset is independent; not a combined portfolio */
+.sim-shell{background:linear-gradient(140deg,#102439,#101c2b);border:1px solid #375672;
+border-radius:14px;margin:18px 0 22px;overflow:hidden}
+.sim-head{padding:19px;display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.sim-head>div:first-child{max-width:600px}
+.sim-head h2{margin:6px 0 8px;font-size:22px;color:#e8f5ff}
+.sim-head p,.sim-disclaimer{color:#aec1d3;font-size:12px;line-height:1.55;margin:0}
+.sim-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.sim-controls label{display:flex;flex-direction:column;gap:5px;color:#c1d6e6;font-size:11px;font-weight:600}
+.sim-controls input,.sim-controls select{background:#192e44;color:#ecf5ff;border:1px solid #52748c;
+border-radius:8px;padding:9px 11px;max-width:170px;font-size:13px;min-width:108px}
+.sim-controls input:focus-visible,.sim-controls select:focus-visible,.sim-link:focus-visible,.sim-export:focus-visible{outline:2px solid #74c1d6;outline-offset:2px}
+.sim-export,.sim-link{background:#1b3f51;color:#a9e3ec;border:1px solid #4c8595;
+border-radius:8px;padding:9px 11px;font-size:12px;font-weight:700;cursor:pointer}
+.sim-export:hover,.sim-link:hover{background:#255269}
+.sim-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0 19px 15px}
+.sim-summary>div{padding:12px;border:1px solid #344f69;border-radius:9px;background:#162b41;display:grid;gap:6px}
+.sim-summary span{font-size:11px;color:#9db6ca}
+.sim-summary strong{font-size:17px;font-variant-numeric:tabular-nums;color:#eaf6ff}
+.sim-count{font-size:12px;font-weight:600;color:#b5d3e1;margin:0 19px 12px}
+.sim-table-wrap{overflow-x:auto;max-width:100%;border-top:1px solid #2a4a61;border-bottom:1px solid #2a4a61}
+.sim-table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;min-width:900px}
+.sim-table th{padding:12px 9px;color:#adbed0;background:#14293c;text-transform:uppercase;font-size:10px;text-align:left;white-space:nowrap}
+.sim-table td{font-size:12px;color:#e0ebf4;padding:10px 9px;border-top:1px solid #263f53;white-space:nowrap}
+.sim-table tr:hover td{background:#183045}
+.sim-table .sim-mark-ready{color:#9decca;font-weight:800}
+.sim-table .sim-mark-muted{color:#f4c3a9;font-weight:700}
+.sim-empty{padding:24px!important;color:#cbd5e2!important;white-space:normal!important}
+.sim-disclaimer{padding:12px 19px 17px}
+.sim-detail .sim-banner{border-radius:8px;padding:11px;font-weight:800;font-size:13px;margin:9px 0}
+.sim-ready{border:1px solid #4d9588;color:#b5ffde;background:#173c35}
+.sim-paused{border:1px solid #896751;color:#fad0a8;background:#362d2b}
+.sim-intro,.sim-foot{color:#a9bdce;font-size:11px;line-height:1.5;margin:8px 0}
+.sim-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sim-stat{background:#172c40;border:1px solid #345069;padding:10px;border-radius:8px;min-width:0}
+.sim-stat span{display:block;font-size:10px;color:#a7bfd4;margin-bottom:5px}
+.sim-stat strong{font-size:14px;color:#e6effa;overflow-wrap:anywhere}
+.sim-detail .sim-link{margin:12px 0 0;font-size:11px}
+@media(max-width:660px){.sim-head{padding:13px}.sim-head h2{font-size:19px}.sim-controls{width:100%;gap:8px}
+.sim-controls label{flex:1 1 135px}.sim-controls input,.sim-controls select{max-width:100%;width:100%}
+.sim-summary{padding:0 11px 12px;gap:5px}.sim-summary>div{padding:8px}
+.sim-summary strong{font-size:13px}.sim-summary span{font-size:9px}
+.sim-count{margin:0 12px 10px}.sim-disclaimer{padding:11px 13px}
+.sim-stat strong{font-size:13px}}
