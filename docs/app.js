@@ -279,6 +279,7 @@ function renderDetail(){
     infoRow(setup,"Unidades estimadas · $100.000",a.example_qty_100k===null?"—":num(a.example_qty_100k));
     note(setup,"Niveles calculados desde el CIERRE de la última rueda validada, no desde el precio actual. Entrada a confirmar en próxima apertura, con riesgo máximo ilustrativo 0,5% y exposición 20%. Solo papel.",true);
   }else note(setup,"Sin señal técnica con entrada, stop y objetivo validados. No hay precio operativo calculado para esta especie. Podés realizar una simulación manual si definís vos los tres niveles.",true);
+  window.PULSOPositions?.renderAsset(a,root);
   const fundamental=section(root,"Fundamentos");
   if(a.fundamental){
     infoRow(fundamental,"Ejercicio fiscal",a.fundamental.fy||"—");
