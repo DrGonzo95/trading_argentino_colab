@@ -65,6 +65,8 @@ function showUnavailable(message){
   updateTop();
 }
 function setSelected(symbol){
+  const pick=document.getElementById("chartSymbolPicker");
+  if(pick&&pick.value!==symbol&&state.data?.symbols?.[symbol])pick.value=symbol;
   state.selected=symbol||null;
   state.hover=-1;
   if(typeof s!=="undefined"&&Array.isArray(s.items)){
@@ -86,7 +88,7 @@ function fitData(){
         s.items.find(a=>a.status==="CAIDA_CON_NOVEDAD_INVESTIGAR" && state.data.symbols[a.symbol]) ||
         s.items.find(a=>a.technical_score!==null && state.data.symbols[a.symbol]);
     }
-    const symbol=choice?.symbol||Object.keys(state.data.symbols)[0]||null;
+    const symbol=choice?.symbol||(state.data.symbols.BBAR?"BBAR":Object.keys(state.data.symbols)[0])||null;
     setSelected(symbol);
   }else{
     setSelected(state.selected);
@@ -230,9 +232,25 @@ async function loadChartFeed(){
     const json=await r.json();
     if(json.chart_data!=="DAILY_HISTORICAL_ONLY_NOT_LIVE"||!json.symbols)throw new Error("Archivo de velas incorrecto");
     state.data=json;state.ready=true;
+    let picker=document.getElementById("chartSymbolPicker");
+    if(!picker){
+      picker=document.createElement("select");
+      picker.id="chartSymbolPicker";
+      picker.setAttribute("aria-label","Elegir instrumento con velas históricas");
+      picker.style.cssText="max-width:170px;background:#162537;color:#e8f1fa;border:1px solid #42607a;border-radius:7px;padding:8px;margin-right:8px";
+      const range=document.querySelector(".chart-range-buttons");
+      if(range)range.parentElement.insertBefore(picker,range);
+      picker.addEventListener("change",()=>setSelected(picker.value));
+    }
+    picker.replaceChildren();
+    for(const symbol of Object.keys(json.symbols).sort()){
+      const option=document.createElement("option");
+      option.value=symbol;option.textContent=symbol;picker.appendChild(option);
+    }
+    if(state.selected&&!json.symbols[state.selected])state.selected=null;
     fitData();
     const status=$("chartDatasetCount");
-    if(status)status.textContent=Object.keys(json.symbols).length+" series diarias reales";
+    if(status)status.textContent=Object.keys(json.symbols).length+" especies con velas verificadas (cobertura parcial)";
   }catch(e){
     state.ready=false;showUnavailable(e.message||"Históricos aún no disponibles.");
   }
