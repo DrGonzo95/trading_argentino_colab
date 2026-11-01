@@ -10,6 +10,7 @@ on:
       - 'docs/charts_v3.js'
       - 'radar_byma/quote_crosscheck.py'
       - 'radar_byma/chart_expand.py'
+      - 'radar_byma/forward_report.py'
       - 'docs/pro.js'
       - 'docs/pro.css'
       - 'radar_byma/strategy_audit.py'
@@ -53,9 +54,11 @@ jobs:
       - name: Expand daily historical chart coverage without filling missing candles
         run: MAX_EXTRA_CHART_REQUESTS=26 python radar_byma/chart_expand.py
       - name: Independent closing-price crosscheck (second public provider)
-        run: python radar_byma/quote_crosscheck.py radar_byma/chart_expand.py
+        run: python radar_byma/quote_crosscheck.py radar_byma/chart_expand.py radar_byma/forward_report.py
       - name: Audit RSI35 strategy without lookahead or synthetic prices
         run: python radar_byma/strategy_audit.py
+      - name: Export prospective paper tracking without inventing trades
+        run: python radar_byma/forward_report.py
       - name: Render public GitHub opportunity bulletin
         run: python radar_byma/dashboard_markdown.py
       - name: Validate browser code and market data
@@ -71,6 +74,7 @@ jobs:
           python -m json.tool docs/data/market.json >/dev/null
           python -m json.tool docs/data/charts.json >/dev/null
           python -m json.tool docs/data/quote_check.json >/dev/null
+          python -m json.tool docs/data/forward_status.json >/dev/null
           python -m json.tool docs/data/strategy_audit.json >/dev/null
           python -m json.tool docs/manifest.webmanifest >/dev/null
           test -s docs/data/market.json
@@ -82,6 +86,7 @@ jobs:
           cp docs/data/market.json /tmp/byma_market.json
           cp docs/data/charts.json /tmp/byma_charts.json
           cp docs/data/quote_check.json /tmp/byma_quote_check.json
+          cp docs/data/forward_status.json /tmp/byma_forward_status.json
           cp docs/data/strategy_audit.json /tmp/byma_strategy_audit.json
           cp OPORTUNIDADES.md /tmp/byma_opportunities.md
           for n in 1 2 3; do
@@ -91,9 +96,10 @@ jobs:
             cp /tmp/byma_market.json docs/data/market.json
             cp /tmp/byma_charts.json docs/data/charts.json
             cp /tmp/byma_quote_check.json docs/data/quote_check.json
+            cp /tmp/byma_forward_status.json docs/data/forward_status.json
             cp /tmp/byma_strategy_audit.json docs/data/strategy_audit.json
             cp /tmp/byma_opportunities.md OPORTUNIDADES.md
-            git add docs/data/market.json docs/data/charts.json docs/data/quote_check.json docs/data/strategy_audit.json OPORTUNIDADES.md
+            git add docs/data/market.json docs/data/charts.json docs/data/quote_check.json docs/data/strategy_audit.json docs/data/forward_status.json OPORTUNIDADES.md
             if git diff --cached --quiet; then
               echo "No public radar changes"
               exit 0
