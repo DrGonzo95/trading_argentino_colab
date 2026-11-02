@@ -80,9 +80,89 @@
       "status": "NOT_VERIFIED",
       "checked_at": "2026-10-31T20:48:55.836312-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CGPA2": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "COME": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CRES": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CTIO": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "CVH": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "DGCU2": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "DOME": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "ECOG": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "EDN": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "FERR": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "FIPL": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "GAMI": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "GARO": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "GBAN": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "GCDI": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "GCLA": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-02T19:19:21.971086-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
     }
   },
-  "last_run": "2026-10-31T20:48:55.836312-03:00",
+  "last_run": "2026-11-02T19:19:21.971086-03:00",
   "source": "stockanalysis.com/quote/bcba (third-party summary; ARS millions)",
   "all_listed": 68
 }
