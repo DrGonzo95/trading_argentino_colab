@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-02T19:22:56.590858-03:00",
+  "revisado_en": "2026-11-03T17:09:53.910184-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,17 +49,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 174,
-  "hechos_cnv_coincidentes": 45,
+  "total_hechos_cnv": 185,
+  "hechos_cnv_coincidentes": 39,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 46,
+  "noticias_con_nombre_coincidente": 59,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 6,
-      "titulares": 0,
+      "documentos_cnv": 4,
+      "titulares": 14,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -69,29 +69,21 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "CEPU",
-      "documentos_cnv": 4,
+      "ticker": "CTIO",
+      "documentos_cnv": 7,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion"
+        "produccion",
+        "resultados_balance"
       ],
-      "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "CTIO",
-      "documentos_cnv": 5,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
       "prioridad_lectura": 100,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
       "ticker": "PAMP",
       "documentos_cnv": 8,
-      "titulares": 11,
+      "titulares": 15,
       "social_no_verificado": 0,
       "temas": [
         "financiamiento",
@@ -102,41 +94,52 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
+      "ticker": "CEPU",
+      "documentos_cnv": 3,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
+      ],
+      "prioridad_lectura": 96,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
       "ticker": "TXAR",
       "documentos_cnv": 3,
-      "titulares": 2,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
         "produccion",
         "resultados_balance"
       ],
-      "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "YPFD",
-      "documentos_cnv": 4,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "MOLI",
-      "documentos_cnv": 3,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion"
-      ],
       "prioridad_lectura": 90,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "BHIP",
+      "ticker": "METR",
+      "documentos_cnv": 0,
+      "titulares": 12,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 72,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "MOLI",
+      "documentos_cnv": 2,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
+      ],
+      "prioridad_lectura": 66,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BBAR",
       "documentos_cnv": 2,
       "titulares": 0,
       "social_no_verificado": 0,
@@ -168,56 +171,52 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "METR",
-      "documentos_cnv": 0,
-      "titulares": 10,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 60,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "RICH",
-      "documentos_cnv": 1,
-      "titulares": 3,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion"
-      ],
-      "prioridad_lectura": 48,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "TECO2",
+      "ticker": "BOLT",
       "documentos_cnv": 1,
       "titulares": 2,
       "social_no_verificado": 0,
       "temas": [
-        "produccion"
+        "adquisicion"
       ],
       "prioridad_lectura": 42,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "LEDE",
-      "documentos_cnv": 0,
-      "titulares": 6,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion"
-      ],
-      "prioridad_lectura": 36,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "TGSU2",
+      "ticker": "CELU",
       "documentos_cnv": 1,
       "titulares": 1,
       "social_no_verificado": 0,
       "temas": [],
       "prioridad_lectura": 36,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "CAPX",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "CRES",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "dividendos"
+      ],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "TECO2",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     }
   ],
