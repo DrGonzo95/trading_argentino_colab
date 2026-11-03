@@ -160,9 +160,84 @@
       "status": "NOT_VERIFIED",
       "checked_at": "2026-11-02T19:19:21.971086-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "GGAL": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "LOMA": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "METR": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "PAMP": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Expected ARS local listing, got USD"
+    },
+    "SUPV": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "TECO2": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "TECOD": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "HTTPError: 404 Client Error: Not Found for url: https://stockanalysis.com/quote/bcba/TECOD/financials/"
+    },
+    "TGN4D": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "HTTPError: 404 Client Error: Not Found for url: https://stockanalysis.com/quote/bcba/TGN4D/financials/"
+    },
+    "TGNO4": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "TGSU2": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "TGSUD": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "HTTPError: 404 Client Error: Not Found for url: https://stockanalysis.com/quote/bcba/TGSUD/financials/"
+    },
+    "TRAN": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "TXAR": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "VALO": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "YPFD": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-03T00:55:25.150562-03:00",
+      "reason": "ValueError: Expected ARS local listing, got USD"
     }
   },
-  "last_run": "2026-11-02T19:19:21.971086-03:00",
+  "last_run": "2026-11-03T00:55:25.150562-03:00",
   "source": "stockanalysis.com/quote/bcba (third-party summary; ARS millions)",
-  "all_listed": 68
+  "all_listed": 23
 }
