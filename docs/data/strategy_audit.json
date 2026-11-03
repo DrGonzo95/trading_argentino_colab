@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T00:27:18.284851-03:00",
+  "generated_at": "2026-11-03T17:04:45.035559-03:00",
   "method": "RSI14 crosses above 35, closing price above EMA200. Signal at close. Next session OPEN, ATR14 stop 1.2x / target 3.5x, max hold 14 sessions.",
   "basis": "Unadjusted public daily candles from locally cached IOL BCBA; not independently matched to official settlement, adjustments, bid/ask or corporate actions.",
   "version": "frozen-rsi35-v1",
@@ -11,9 +11,11 @@
     "capital_exposure_not_modeled": true,
     "spread_not_observed": true
   },
-  "history_sources": 12,
-  "valid_symbols": 8,
+  "history_sources": 14,
+  "valid_symbols": 10,
   "symbols": {
+    "ADBE": 500,
+    "AGRO": 500,
     "BBAR": 500,
     "BMA": 500,
     "CEPU": 500,
