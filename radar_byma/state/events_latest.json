@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-03T17:09:53.910184-03:00",
+  "revisado_en": "2026-11-03T21:41:15.132437-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,21 +49,44 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 185,
-  "hechos_cnv_coincidentes": 39,
+  "total_hechos_cnv": 219,
+  "hechos_cnv_coincidentes": 46,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 59,
+  "noticias_con_nombre_coincidente": 57,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 4,
-      "titulares": 14,
+      "documentos_cnv": 6,
+      "titulares": 13,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
         "recompra"
+      ],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BYMA",
+      "documentos_cnv": 6,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "recompra"
+      ],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "CEPU",
+      "documentos_cnv": 4,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
       ],
       "prioridad_lectura": 100,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
@@ -86,22 +109,10 @@
       "titulares": 15,
       "social_no_verificado": 0,
       "temas": [
-        "financiamiento",
         "produccion",
         "resultados_balance"
       ],
       "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "CEPU",
-      "documentos_cnv": 3,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion"
-      ],
-      "prioridad_lectura": 96,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -119,24 +130,13 @@
     {
       "ticker": "METR",
       "documentos_cnv": 0,
-      "titulares": 12,
+      "titulares": 11,
       "social_no_verificado": 0,
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 72,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "MOLI",
-      "documentos_cnv": 2,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion"
-      ],
       "prioridad_lectura": 66,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "BBAR",
@@ -144,18 +144,6 @@
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 60,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "BYMA",
-      "documentos_cnv": 2,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion",
-        "recompra"
-      ],
       "prioridad_lectura": 60,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
@@ -171,14 +159,25 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "BOLT",
-      "documentos_cnv": 1,
-      "titulares": 2,
+      "ticker": "MOLI",
+      "documentos_cnv": 2,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion"
       ],
-      "prioridad_lectura": 42,
+      "prioridad_lectura": 60,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BOLT",
+      "documentos_cnv": 1,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
+      ],
+      "prioridad_lectura": 36,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -211,13 +210,13 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "TECO2",
-      "documentos_cnv": 1,
-      "titulares": 0,
+      "ticker": "LEDE",
+      "documentos_cnv": 0,
+      "titulares": 5,
       "social_no_verificado": 0,
       "temas": [],
       "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+      "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
   "restricciones": [
