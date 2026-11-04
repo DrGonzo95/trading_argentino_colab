@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T23:10:25.026420-03:00",
+  "generated_at": "2026-11-04T17:25:15.873776-03:00",
   "method": "RSI14 crosses above 35, closing price above EMA200. Signal at close. Next session OPEN, ATR14 stop 1.2x / target 3.5x, max hold 14 sessions.",
   "basis": "Unadjusted public daily candles from locally cached IOL BCBA; not independently matched to official settlement, adjustments, bid/ask or corporate actions.",
   "version": "frozen-rsi35-v1",
@@ -11,14 +11,16 @@
     "capital_exposure_not_modeled": true,
     "spread_not_observed": true
   },
-  "history_sources": 14,
-  "valid_symbols": 10,
+  "history_sources": 16,
+  "valid_symbols": 12,
   "symbols": {
     "ADBE": 500,
     "AGRO": 500,
     "BBAR": 500,
+    "BHIP": 500,
     "BMA": 500,
     "CEPU": 500,
+    "CRM": 500,
     "NIO": 500,
     "SAMI": 500,
     "TGSU2": 500,
@@ -31,7 +33,7 @@
     "METR": "salto diario >35%, revisar ajuste corporativo",
     "SUPV": "salto diario >35%, revisar ajuste corporativo"
   },
-  "split_date": "2026-01-09",
+  "split_date": "2026-01-12",
   "train": {
     "trades": 2,
     "win_rate_pct": 0.0,
@@ -42,13 +44,13 @@
     "hypothetical_sequential_return_pct": -13.76
   },
   "test": {
-    "trades": 4,
-    "win_rate_pct": 25.0,
-    "mean_net_pct": -6.24,
-    "median_net_pct": -8.396,
-    "profit_factor": 0.052,
-    "max_drawdown_pct": -23.06,
-    "hypothetical_sequential_return_pct": -23.06
+    "trades": 7,
+    "win_rate_pct": 14.29,
+    "mean_net_pct": -7.574,
+    "median_net_pct": -9.033,
+    "profit_factor": 0.025,
+    "max_drawdown_pct": -42.69,
+    "hypothetical_sequential_return_pct": -42.69
   },
   "sample_ok": false,
   "status": "EXPLORATORY_NOT_PROVEN",
@@ -63,6 +65,26 @@
   ],
   "test_trades_recent": [
     {
+      "symbol": "BHIP",
+      "signal_date": "2026-01-21",
+      "entry_date": "2026-01-22",
+      "exit_date": "2026-02-04",
+      "entry": 493.493,
+      "exit": 456.5492,
+      "return_pct": -8.8007,
+      "exit_reason": "stop"
+    },
+    {
+      "symbol": "BHIP",
+      "signal_date": "2026-02-06",
+      "entry_date": "2026-02-09",
+      "exit_date": "2026-02-18",
+      "entry": 480.48,
+      "exit": 443.3772,
+      "return_pct": -9.03318,
+      "exit_reason": "stop"
+    },
+    {
       "symbol": "BBAR",
       "signal_date": "2026-02-19",
       "entry_date": "2026-02-20",
@@ -70,6 +92,16 @@
       "entry": 8208.2,
       "exit": 7531.8795,
       "return_pct": -9.54338,
+      "exit_reason": "stop"
+    },
+    {
+      "symbol": "BHIP",
+      "signal_date": "2026-02-19",
+      "entry_date": "2026-02-20",
+      "exit_date": "2026-02-23",
+      "entry": 440.44,
+      "exit": 401.0968,
+      "return_pct": -10.22667,
       "exit_reason": "stop"
     },
     {

@@ -2,11 +2,11 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 03/11/2026 23:10 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 04/11/2026 17:25 (Argentina); hora real de negociación desconocida.
 
-**Universo:** 1888 especies, incluidos 87 acciones y 956 CEDEARs.
+**Universo:** 1894 especies, incluidos 87 acciones y 958 CEDEARs.
 
-**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 1. **Indicadores técnicos validados:** 13.
+**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 3. **Indicadores técnicos validados:** 4.
 
 ## Entradas ficticias con niveles (no ejecutadas)
 
@@ -18,7 +18,9 @@
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **MOLI** | $2.015,00 | -5.15% | 43 | [OTRA INFORMACIÓN DEL ADMINSITRADO - CIERRE ADQUISICIÓN DE ACTIVO INDUSTRIAL.](https://aif2.cnv.gov.ar/Presentations/publicview/68ABC3B4-98A2-4C1C-B69D-BC7D99DAF557) | No hay entrada confirmada |
+| **YPFD** | $6.945,00 | -7.33% | 33 | [INFORMACIÓN FINANCIERA - YPF - NOTA DE RESULTADOS 3° TRIMESTRE 2026](https://aif2.cnv.gov.ar/Presentations/publicview/2BA1FB27-8DCE-4266-A3F8-8CFE59F6C7E0) | No hay entrada confirmada |
+| **PAMP** | $4.370,00 | -5.00% | 29 | [Pampa Energía anunció el inicio de construcción de su planta de fertilizantes y acelera la prod](https://news.google.com/rss/articles/CBMiswFBVV95cUxNOGFzd3FLeWV5cmg1eXY1eURiNWJSWVRLNHFnUmtCRktTb1FZTTNITVFPMUdJaEtVcGVFaDYzcUx3YkJvdkxNMjhFNFVmdl83ZkJTZ2dVbE1GbUQ3cUlIQzRJR1dVbjF0SDJLbGV6UVFNRXdDTGxyVlZiUDJmY24taHE4d0VaUlJUa1hUSTBSV3pDVDZ0Y3FMZUFadjMxVGRiSkR4dTdKQTJBeGlKMGJfcVRPZw?oc=5) | No hay entrada confirmada |
+| **GARO** | $445,00 | -7.29% | 16 | [Garovaglio y Zorraquin SA Estimates – BCBA:GARO.CI - TradingView](https://news.google.com/rss/articles/CBMieEFVX3lxTE01MXp1Y2lpLXVxOVhHQ1Q3cFJycVJaMWhpV0tVQUpWN2t2ZWEzcVR4TzJrYUxQQXNOY1h0ME1PTzRzSk1tMVRRNENmNVRuTlhaaHVHWkhqT2d1UmJLRV9Xcm1SR1E5aFhLZWIzOG96Q04xYlYyQW0taQ?oc=5) | No hay entrada confirmada |
 
 La coincidencia entre una caída y una noticia no demuestra relación causal ni implica que habrá rebote.
 
@@ -26,9 +28,8 @@ La coincidencia entre una caída y una noticia no demuestra relación causal ni 
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **BOLT** | $60,60 | -0.66% | 49.5 | [Hannover 96 destituye a Boldt, Wagner sigue como entrenador - KarloBag.eu](https://news.google.com/rss/articles/CBMiugFBVV95cUxPSHpZUlo4anhmWGpTT1BIX2g0Zm5ySWw4RjR3WnZDM18xcUJYdFRTamRKaFBBVmZRVFYwZnlsS1ZtVHR4MEphQ1N3aW9yUlhkOWpBdEdtZWVnNDhuT3JZUlpxRDljSnNMSmh3Yl9DWHB6bHFEUkQ2RTZhX25hR0NqYXVBMm9ITkJ5d2Yxa1VNNzNwQ2l2aDh5eDVFbEFUU2xGRmRZb2ljNGk2Z1dPQmpHRkw5Zno5SWtJT1E?oc=5) | No hay entrada confirmada |
-| **METR** | $2.343,00 | -0.72% | 38.2 | [El Sindicato del Gas logró que Metrogas reparta ganancias entre trabajadores - El Cactus   Noti](https://news.google.com/rss/articles/CBMirgFBVV95cUxQa2JzTUJrc3Y3NDVJUS1NbWVpMUpKdC1vV2RBZzRRa3FGZU1iZ1o1VzNvQ1lVeFhWNEFEWk1OS1dLTGRfNlJiUXBFbENJU3FVQlZwclJjVVZQNjVWaWhzSS1Vc2RLRXhQLWFrY1NUS29nZGU2dUZhUG12WUZTVXNXdm43Q1k1QWs4U1hVYWR4OEpGZDhaRnJVTnRNVWtJLU93bHEtSTZyNEEyUFFPVlE?oc=5) | No hay entrada confirmada |
-| **ADBE** | $9.320,00 | -1.06% | 22.8 | Revisión técnica diaria | No hay entrada confirmada |
+| **ADBE** | $9.520,00 | +2.09% | 22.8 | Revisión técnica diaria | No hay entrada confirmada |
+| **CRM** | $21.270,00 | +3.35% | 22.8 | Revisión técnica diaria | No hay entrada confirmada |
 
 ## Cómo interpretar el listado
 
