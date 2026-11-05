@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-04T22:30:29.975041-03:00",
+  "revisado_en": "2026-11-05T17:43:11.533200-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,17 +49,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 344,
-  "hechos_cnv_coincidentes": 53,
+  "total_hechos_cnv": 349,
+  "hechos_cnv_coincidentes": 43,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 30,
+  "noticias_con_nombre_coincidente": 57,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 10,
-      "titulares": 11,
+      "documentos_cnv": 8,
+      "titulares": 10,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -83,7 +83,7 @@
     {
       "ticker": "CEPU",
       "documentos_cnv": 4,
-      "titulares": 1,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion"
@@ -93,8 +93,8 @@
     },
     {
       "ticker": "CTIO",
-      "documentos_cnv": 7,
-      "titulares": 1,
+      "documentos_cnv": 5,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
         "produccion",
@@ -106,22 +106,24 @@
     {
       "ticker": "PAMP",
       "documentos_cnv": 8,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "TXAR",
-      "documentos_cnv": 3,
-      "titulares": 1,
+      "titulares": 14,
       "social_no_verificado": 0,
       "temas": [
         "produccion",
         "resultados_balance"
       ],
-      "prioridad_lectura": 96,
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "MOLI",
+      "documentos_cnv": 2,
+      "titulares": 2,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
+      ],
+      "prioridad_lectura": 72,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -143,14 +145,14 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "MOLI",
-      "documentos_cnv": 2,
-      "titulares": 0,
+      "ticker": "RICH",
+      "documentos_cnv": 1,
+      "titulares": 4,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion"
+        "resultados_balance"
       ],
-      "prioridad_lectura": 60,
+      "prioridad_lectura": 54,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -163,34 +165,15 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "BOLT",
-      "documentos_cnv": 1,
-      "titulares": 2,
+      "ticker": "METR",
+      "documentos_cnv": 0,
+      "titulares": 6,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion",
         "resultados_balance"
       ],
-      "prioridad_lectura": 42,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "CELU",
-      "documentos_cnv": 1,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [],
       "prioridad_lectura": 36,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "TECO2",
-      "documentos_cnv": 1,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 36,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "CAPX",
@@ -202,15 +185,34 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "CRES",
+      "ticker": "LOMA",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
-        "dividendos"
+        "financiamiento",
+        "recompra"
       ],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "LEDE",
+      "documentos_cnv": 0,
+      "titulares": 4,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 24,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "MIRG",
+      "documentos_cnv": 0,
+      "titulares": 3,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 18,
+      "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
   "restricciones": [
