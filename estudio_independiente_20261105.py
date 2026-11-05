@@ -56,8 +56,10 @@ def validate(t):
     if t.date.duplicated().any():raise ValueError('Fecha duplicada')
     if t[keys[1:]].isna().any().any() or (t[keys[1:]]<=0).any().any():
         raise ValueError('OHLCV ausente, cero o negativo')
-    if ((t.high<t[['open','low','close']].max(axis=1))|(t.low>t[['open','high','close']].min(axis=1))).any():
-        raise ValueError('OHLC inconsistente')
+    invalid=((t.high<t[['open','low','close']].max(axis=1))|(t.low>t[['open','high','close']].min(axis=1)))
+    if invalid.any():
+        rows=t.loc[invalid,['date','open','high','low','close','volume']].head(8).to_dict('records')
+        raise ValueError('OHLC inconsistente: '+str(int(invalid.sum()))+' filas. Ejemplos: '+str(rows))
     if len(t)<220:raise ValueError(f'Solo {len(t)} ruedas OHLCV completas; mínimo 220')
     warnings=[]
     if 'adjusted' in t and (t.adjusted>0).all():
