@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-04T17:27:52.876632-03:00",
+  "revisado_en": "2026-11-04T22:30:29.975041-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,17 +49,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 334,
-  "hechos_cnv_coincidentes": 48,
+  "total_hechos_cnv": 344,
+  "hechos_cnv_coincidentes": 53,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 31,
+  "noticias_con_nombre_coincidente": 30,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 8,
-      "titulares": 13,
+      "documentos_cnv": 10,
+      "titulares": 11,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -70,7 +70,7 @@
     },
     {
       "ticker": "BYMA",
-      "documentos_cnv": 6,
+      "documentos_cnv": 8,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -165,12 +165,13 @@
     {
       "ticker": "BOLT",
       "documentos_cnv": 1,
-      "titulares": 1,
+      "titulares": 2,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion"
+        "adquisicion",
+        "resultados_balance"
       ],
-      "prioridad_lectura": 36,
+      "prioridad_lectura": 42,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
