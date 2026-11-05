@@ -301,7 +301,7 @@ function renderDetail(){
   if(a.warnings&&a.warnings.length){
     const flags=section(root,"Lo que falta verificar");a.warnings.forEach(v=>note(flags,v,true));
   }
-  const sim=el("button","detail-btn","＋ Registrar operación ficticia");
+  const sim=el("button","detail-btn","＋ Registrar posición ficticia manual");
   sim.addEventListener("click",()=>openPaper(a));root.appendChild(sim);
   root.appendChild(el("div","footnote","* Los importes del panel no sustituyen la caja de puntas del broker. No se ejecutan operaciones reales."));
 }
@@ -310,29 +310,44 @@ function onFilterChanged(){
   s.show=55;renderRows();
 }
 function paperValid(){
-  const cap=Number($("capital").value),entry=Number($("paperEntry").value),stop=Number($("paperStop").value),target=Number($("paperTarget").value),qty=Number($("paperQty").value);
-  const valid=[cap,entry,stop,target,qty].every(x=>Number.isFinite(x)&&x>0)&&Number.isInteger(qty)&&stop<entry&&target>entry&&$("paperDate").value;
-  if(!valid){$("paperCalc").textContent="Ingresá capital, cantidad entera, entrada, stop y objetivo válidos.";return {valid:false};}
-  const buy=entry*(1+.007655),saleFactor=1-.007655;
-  const riskUnit=buy-stop*saleFactor,profitUnit=target*saleFactor-buy;
-  const risk=qty*riskUnit,spend=qty*buy,profit=qty*profitUnit;
-  const rr=riskUnit>0?profitUnit/riskUnit:0;
-  const acceptable=spend<=cap*.2+0.0001&&risk<=cap*.005+0.0001&&rr>=2;
-  $("paperCalc").textContent="Importe estimado "+money(spend)+" · pérdida al stop "+money(risk)+" ("+num(100*risk/cap)+"% de cartera) · ganancia al objetivo "+money(profit)+" · R:R neta "+num(rr)+":1. "+(acceptable?"Cumple riesgo 0,5%, concentración 20% y R:R 2:1.":"No cumple alguno de los límites: ajustá cantidad o precios.");
-  return {valid:!!acceptable,capital:cap,entry,stop,target,qty,risk,spend,profit,rr};
+  const api=window.PULSOPaperJournal;
+  const today=new Date().toLocaleDateString("sv-SE",{timeZone:TZ});
+  const values={
+    symbol:$("paperSymbolInput").value,kind:$("paperKind").value,
+    capital:Number($("capital").value),entry:Number($("paperEntry").value),
+    stop:Number($("paperStop").value),target:Number($("paperTarget").value),
+    qty:Number($("paperQty").value),date:$("paperDate").value,
+    source:$("paperSource").value,quoteAt:$("paperQuoteAt").value,
+    confirm:$("paperConfirm").checked
+  };
+  const result=api?.validate(values,today)||{valid:false,reason:"Cálculo de riesgos no disponible."};
+  const riskText=Number.isFinite(result.loss)?
+    " · Pérdida estimada "+money(result.loss)+" ("+num(100*result.loss/values.capital)+"% de cartera)"+
+    " · Beneficio al objetivo "+money(result.gain)+" · R:R neta "+num(result.rr)+":1":"";
+  $("paperCalc").textContent=result.valid?
+    "SOLO PAPEL · "+result.qty+" unidades · Desembolso con costos "+money(result.spend)+riskText+
+    ". Cumple riesgo ≤0,5%, exposición ≤20% y R:R neta ≥2:1. NO es una orden ni cotización ejecutable.":
+    (result.reason||"Datos insuficientes.")+riskText+
+    " Sin cumplir estas condiciones no se registra una posición ficticia.";
+  return result;
 }
-function openPaper(item){
-  s.paperSymbol=item.symbol;
-  $("dialogTitle").textContent="Simulación de "+item.symbol;
-  const cap=Number($("capital").value)||100000;
-  $("capital").value=String(cap);
-  $("paperEntry").value=item.entry_ref??item.quote_price??"";
-  $("paperStop").value=item.stop_ref??"";
-  $("paperTarget").value=item.target_ref??"";
+function openPaper(item=null){
+  $("dialogTitle").textContent=item?.symbol?
+    "Registro manual ficticio · "+item.symbol:"Nueva posición ficticia manual";
+  $("paperSymbolInput").value=item?.symbol||"";
+  $("paperKind").value=["accion","cedear"].includes(item?.kind)?item.kind:"accion";
+  // Never populate a supposedly executed entry from a stale provider price.
+  $("paperEntry").value="";
+  $("paperStop").value="";
+  $("paperTarget").value="";
+  $("paperQty").value="1";
   $("paperDate").value=new Date().toLocaleDateString("sv-SE",{timeZone:TZ});
-  $("paperQty").value=item.example_qty_100k??"";
+  $("paperSource").value="SIMULACION_MANUAL";
+  $("paperQuoteAt").value="";
+  $("paperConfirm").checked=false;
   updatePaperCalc();
   $("paperDialog").showModal();
+  $("paperSymbolInput").focus();
 }
 function updatePaperCalc(){$("submitPaper").disabled=!paperValid().valid;}
 function renderPaper(){
@@ -341,7 +356,7 @@ function renderPaper(){
   s.paper.slice().reverse().forEach(p=>{
     const tr=el("tr");const cells=[
       p.date,p.ticker,String(p.qty),money(p.entry),
-      money(p.stop)+" / "+money(p.target),"Abierta (ficticia)"
+      money(p.stop)+" / "+money(p.target),p.manual?"Manual · sin ejecución real":"Registro ficticio anterior"
     ];
     cells.forEach(v=>tr.appendChild(el("td","",v)));
     const td=el("td");const remove=el("button","ghost","✕");remove.title="Eliminar registro";remove.addEventListener("click",()=>{
@@ -362,7 +377,7 @@ function renderPaper(){
 }
 function exportCsv(){
   if(!s.paper.length){alert("Todavía no hay operaciones ficticias registradas.");return;}
-  const cols=["date","ticker","qty","entry","stop","target","capital","risk","spend","profit","rr"];
+  const cols=["date","ticker","kind","qty","entry","stop","target","capital","risk","spend","profit","rr","source","quoteAt","status","manual","createdAt"];
   const esc=(x)=>'"'+String(x===null||x===undefined?"":x).replace(/"/g,'""')+'"';
   const csv="\ufeff"+cols.join(";")+"\r\n"+s.paper.map(p=>cols.map(k=>esc(p[k])).join(";")).join("\r\n");
   const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
@@ -393,11 +408,11 @@ $("enableNotifications").addEventListener("click",requestAlerts);
 $("loadMore").addEventListener("click",()=>{s.show+=55;renderRows();});
 $("closeDialog").addEventListener("click",()=>$("paperDialog").close());
 $("cancelDialog").addEventListener("click",()=>$("paperDialog").close());
-["capital","paperEntry","paperStop","paperTarget","paperQty","paperDate"].forEach(id=>$(id).addEventListener("input",updatePaperCalc));
+["paperSymbolInput","paperKind","capital","paperEntry","paperStop","paperTarget","paperQty","paperDate","paperSource","paperQuoteAt","paperConfirm"].forEach(id=>$(id).addEventListener("input",updatePaperCalc));
 $("paperForm").addEventListener("submit",(event)=>{
-  event.preventDefault();const val=paperValid();if(!val.valid||!s.paperSymbol)return;
+  event.preventDefault();const val=paperValid();if(!val.valid)return;
   const id=String(Date.now())+"_"+Math.random().toString(36).slice(2,7);
-  const entry={id,date:$("paperDate").value,ticker:s.paperSymbol,...val};
+  const entry={...val,id,ticker:val.symbol,risk:val.loss,profit:val.gain,createdAt:new Date().toISOString()};
   delete entry.valid;s.paper.push(entry);persist("byma-paper-v1",s.paper);renderPaper();document.dispatchEvent(new CustomEvent("byma:paper"));$("paperDialog").close();
   document.getElementById("paper").scrollIntoView({behavior:"smooth",block:"start"});
 });
@@ -409,6 +424,7 @@ $("chartShowDetails")?.addEventListener("click",()=>{
   renderRows();renderDetail();
   $("detailPanel").scrollIntoView({behavior:"smooth",block:"start"});
 });
+$("newPaper").addEventListener("click",()=>openPaper());
 $("exportCsv").addEventListener("click",exportCsv);
 $("clearPaper").addEventListener("click",()=>{
   if(!s.paper.length)return;

@@ -11,7 +11,8 @@
   <link rel="apple-touch-icon" href="./icon.svg">
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./pro.css?v=7">
-  <script src="./app.js?v=7" defer></script>
+  <script src="./paper_journal_math.js?v=1" defer></script>
+  <script src="./app.js?v=8" defer></script>
   <script src="./charts_v3.js?v=4" defer></script>
   <script src="./position_math.js?v=1" defer></script>
   <script src="./research_engine.js?v=1" defer></script>
@@ -177,7 +178,7 @@
       <section class="ledger-section" id="paper">
         <div class="sectiontop">
           <div><span class="kicker">OPERACIONES REGISTRADAS POR VOS</span><h2>Mi cartera de papel</h2></div>
-          <div class="ledger-actions"><button id="exportCsv" class="ghost" type="button">Exportar CSV ↓</button><button id="clearPaper" class="ghost subtle" type="button">Vaciar</button></div>
+          <div class="ledger-actions"><button id="newPaper" class="ghost" type="button">＋ Crear posición ficticia manual</button><button id="exportCsv" class="ghost" type="button">Exportar CSV ↓</button><button id="clearPaper" class="ghost subtle" type="button">Vaciar</button></div>
         </div>
         <div class="privacy-note">☷ Las simulaciones se guardan <strong>solo en este navegador</strong>. No están conectadas a un broker ni sincronizadas con otros dispositivos. No se crean posiciones por recibir una alerta.</div>
         <div class="table-wrap">
@@ -192,15 +193,27 @@
   <dialog id="paperDialog">
     <form id="paperForm" method="dialog">
       <div class="dialog-head"><div><span class="kicker">PAPER TRADING</span><h2 id="dialogTitle">Registrar operación ficticia</h2></div><button type="button" id="closeDialog" class="ghost" aria-label="Cerrar">✕</button></div>
-      <p class="muted small">Los campos son editables para registrar lo que realmente simulaste. La cotización del panel no implica que tu orden se hubiera ejecutado.</p>
+      <p class="muted small">Registro manual independiente del radar. Anotá VOS un precio y fecha ficticios: no se verifican contra la rueda ni se supone que una orden fue ejecutada. Nunca envía operaciones a brokers. No es una señal de entrada.</p>
       <div class="form-grid">
+        <label>Especie local (ticker)<input id="paperSymbolInput" type="text" maxlength="12" pattern="[A-Za-z0-9]{1,12}" placeholder="PAMP, YPFD..." autocapitalize="characters" required></label>
+        <label>Tipo de especie<select id="paperKind"><option value="accion">Acción argentina</option><option value="cedear">CEDEAR argentino</option></select></label>
         <label>Capital ficticio total (ARS)<input id="capital" type="number" min="1000" step="1000" value="100000" required></label>
         <label>Precio de entrada anotado<input id="paperEntry" type="number" min=".001" step="any" required></label>
         <label>Stop teórico<input id="paperStop" type="number" min=".001" step="any" required></label>
         <label>Objetivo teórico<input id="paperTarget" type="number" min=".001" step="any" required></label>
         <label>Cantidad de unidades<input id="paperQty" type="number" min="1" step="1" required></label>
-        <label>Fecha de tu simulación<input id="paperDate" type="date" required></label>
+        <label>Fecha de registro ficticio<input id="paperDate" type="date" required></label>
+        <label>Origen declarado por vos<select id="paperSource">
+          <option value="SIMULACION_MANUAL">Supuesto personal (sin cotización comprobada)</option>
+          <option value="IOL_PUBLICO">IOL público (sin comprobación automática)</option>
+          <option value="RAVA_PUBLICO">Rava público (sin comprobación automática)</option>
+          <option value="BYMADATA_PUBLICO">BYMADATA público (sin comprobación automática)</option>
+          <option value="OTRO_PUBLICO">Otra fuente pública (sin comprobación automática)</option>
+        </select></label>
+        <label>Hora de referencia que anotaste (opcional)<input id="paperQuoteAt" type="datetime-local"></label>
       </div>
+      <p class="muted small">ARS BCBA T+1 es el supuesto del ensayo, NO una validación del plazo operado. Stop y TP son objetivos teóricos; no se garantizan. Comisión y derechos 0,55% + IVA 21%, deslizamiento 0,10% por lado (supuestos).</p>
+      <label style="display:flex;gap:8px;align-items:start;margin:12px 0"><input id="paperConfirm" type="checkbox" required style="margin-top:4px">Confirmo que YO inventé/registré este precio para una simulación, sin orden real, sin fill verificado y sin recomendación automática de compra.</label>
       <div id="paperCalc" class="calculation muted">Completá los precios para calcular riesgo y resultado teórico.</div>
       <div class="dialog-bottom"><button class="ghost" id="cancelDialog" type="button">Cancelar</button><button class="primary" id="submitPaper" type="submit" disabled>Registrar en mi simulador</button></div>
     </form>
