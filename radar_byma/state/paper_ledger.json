@@ -1,21 +1,20 @@
 {
   "version": 1,
   "started_after": "2026-10-30",
-  "last_processed": "2026-11-03",
+  "last_processed": "2026-11-04",
   "paper": {
     "50000": {
       "cash": 50000.0,
       "positions": {},
-      "pending": {
-        "YPFD": {
-          "ticker": "YPFD",
-          "day": "2026-11-03",
-          "atr": 331.39976542518264,
-          "rsi14": 37.27614915552223
-        }
-      },
+      "pending": {},
       "orders": [],
-      "rejections": [],
+      "rejections": [
+        {
+          "ticker": "YPFD",
+          "date": "2026-11-04",
+          "reason": "Stop / costos / tamaño mínimo o R:R insuficiente"
+        }
+      ],
       "signals": [
         {
           "ticker": "YPFD",
@@ -29,16 +28,15 @@
     "100000": {
       "cash": 100000.0,
       "positions": {},
-      "pending": {
-        "YPFD": {
-          "ticker": "YPFD",
-          "day": "2026-11-03",
-          "atr": 331.39976542518264,
-          "rsi14": 37.27614915552223
-        }
-      },
+      "pending": {},
       "orders": [],
-      "rejections": [],
+      "rejections": [
+        {
+          "ticker": "YPFD",
+          "date": "2026-11-04",
+          "reason": "Stop / costos / tamaño mínimo o R:R insuficiente"
+        }
+      ],
       "signals": [
         {
           "ticker": "YPFD",
