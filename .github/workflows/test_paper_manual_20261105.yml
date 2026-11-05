@@ -1,0 +1,20 @@
+name: Test de posiciones ficticias manuales (rama aislada)
+on:
+  push:
+    branches:
+      - paper-manual-confirmado-20261105
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar sintaxis del navegador
+        run: |
+          node --check docs/app.js
+          node --check docs/paper_journal_math.js
+      - name: Probar dimensionamiento y controles
+        run: node tests/test_paper_journal.js
