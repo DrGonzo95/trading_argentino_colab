@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T23:17:13.169314-03:00",
+  "generated_at": "2026-11-05T12:02:01.592082-03:00",
   "method": "RSI14 crosses above 35, closing price above EMA200. Signal at close. Next session OPEN, ATR14 stop 1.2x / target 3.5x, max hold 14 sessions.",
   "basis": "Unadjusted public daily candles from locally cached IOL BCBA; not independently matched to official settlement, adjustments, bid/ask or corporate actions.",
   "version": "frozen-rsi35-v1",
@@ -11,8 +11,8 @@
     "capital_exposure_not_modeled": true,
     "spread_not_observed": true
   },
-  "history_sources": 16,
-  "valid_symbols": 12,
+  "history_sources": 18,
+  "valid_symbols": 13,
   "symbols": {
     "ADBE": 500,
     "AGRO": 500,
@@ -25,11 +25,13 @@
     "SAMI": 500,
     "TGSU2": 500,
     "TRAN": 500,
-    "VALO": 500
+    "VALO": 500,
+    "VIST": 500
   },
   "rejected": {
     "ASTS": "menos de 400 ruedas o datos incompletos",
     "BOLT": "salto diario >35%, revisar ajuste corporativo",
+    "LAC": "salto diario >35%, revisar ajuste corporativo",
     "METR": "salto diario >35%, revisar ajuste corporativo",
     "SUPV": "salto diario >35%, revisar ajuste corporativo"
   },
@@ -44,13 +46,13 @@
     "hypothetical_sequential_return_pct": -13.76
   },
   "test": {
-    "trades": 7,
-    "win_rate_pct": 14.29,
-    "mean_net_pct": -7.574,
-    "median_net_pct": -9.033,
-    "profit_factor": 0.025,
-    "max_drawdown_pct": -42.69,
-    "hypothetical_sequential_return_pct": -42.69
+    "trades": 9,
+    "win_rate_pct": 22.22,
+    "mean_net_pct": -6.425,
+    "median_net_pct": -8.801,
+    "profit_factor": 0.052,
+    "max_drawdown_pct": -45.52,
+    "hypothetical_sequential_return_pct": -45.52
   },
   "sample_ok": false,
   "status": "EXPLORATORY_NOT_PROVEN",
@@ -122,6 +124,26 @@
       "entry": 2146.144,
       "exit": 2207.0,
       "return_pct": 1.37443,
+      "exit_reason": "tiempo"
+    },
+    {
+      "symbol": "VIST",
+      "signal_date": "2026-06-30",
+      "entry_date": "2026-07-01",
+      "exit_date": "2026-07-02",
+      "entry": 33513.48,
+      "exit": 31747.6259,
+      "return_pct": -6.6151,
+      "exit_reason": "stop"
+    },
+    {
+      "symbol": "VIST",
+      "signal_date": "2026-07-07",
+      "entry_date": "2026-07-08",
+      "exit_date": "2026-07-28",
+      "entry": 33133.1,
+      "exit": 34220.0,
+      "return_pct": 1.81292,
       "exit_reason": "tiempo"
     },
     {
