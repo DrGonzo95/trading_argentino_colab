@@ -13,7 +13,7 @@ assert.ok(ok.rr>=2 && ok.loss<=500 && ok.spend<=20000);
 assert.ok(ok.unitCost>basic.entry);
 assert.ok(ok.gain>0 && ok.loss>0);
 const fails=[
-  [{...basic,confirm:false},"confirmar"],
+  [{...basic,confirm:false},"Confirmá"],
   [{...basic,kind:"bono"},"acciones"],
   [{...basic,symbol:"AAPL.US"},"símbolo"],
   [{...basic,stop:2080},"stop"],
