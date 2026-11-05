@@ -34,7 +34,7 @@ def fetch(symbol):
             return t
     raise ValueError('Sin tabla histórica IOL utilizable')
 
-def validate(t):
+def validate(t,symbol):
     rename={}
     for col in t.columns:
         c=norm(col)
@@ -73,6 +73,16 @@ def validate(t):
             for k in ['open','high','low']:t[k]=t[k]*factor
             t['close']=t.adjusted
             warnings.append('OHLC ajustados; verificar eventos y volumen')
+    if symbol == 'YPFD':
+        # Fuente oficial IR YPF: split 1:10 efectivo 04/08/2026; T+1 03/08 ya cotizó ajustado.
+        # IOL muestra 31/07 83000 y 03/08 8105: normalizar las fechas anteriores.
+        before_split=t.date < pd.Timestamp('2026-08-03')
+        for k in ['open','high','low','close']:
+            t.loc[before_split,k]=t.loc[before_split,k]/10.
+        t.loc[before_split,'volume']=t.loc[before_split,'volume']*10.
+        warnings.append('Split 1:10 ajustado en OHLC y VN previos a 03/08/2026, fuente oficial inversores.ypf.com')
+    if symbol == 'IRSA':
+        warnings.append('Dividendo efectivo 249,410459 ARS/acción desde 03/11; ex-dividend y ajuste de OHLC no corroborados')
     if (t.close.pct_change().tail(220).abs()>.4).any():
         warnings.append('SALTO>40% dentro de 220 ruedas: bloquear señal hasta revisar split')
     if (t.date.diff().dt.days>10).any():
@@ -137,7 +147,7 @@ def main():
     for symbol in TICKERS:
         print('Intentando descargar:',symbol,flush=True)
         try:
-            t,warnings=validate(fetch(symbol))
+            t,warnings=validate(fetch(symbol),symbol)
             d=analyze(t)
             d.to_csv(OUT/f'{symbol}_OHLCV_indicadores.csv',index=False)
             row=d.iloc[-1]
