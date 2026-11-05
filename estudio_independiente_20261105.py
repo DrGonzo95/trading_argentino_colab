@@ -56,12 +56,17 @@ def validate(t):
     if t.date.duplicated().any():raise ValueError('Fecha duplicada')
     if t[keys[1:]].isna().any().any() or (t[keys[1:]]<=0).any().any():
         raise ValueError('OHLCV ausente, cero o negativo')
+    warnings=[]
     invalid=((t.high<t[['open','low','close']].max(axis=1))|(t.low>t[['open','high','close']].min(axis=1)))
     if invalid.any():
-        rows=t.loc[invalid,['date','open','high','low','close','volume']].head(8).to_dict('records')
-        raise ValueError('OHLC inconsistente: '+str(int(invalid.sum()))+' filas. Ejemplos: '+str(rows))
-    if len(t)<220:raise ValueError(f'Solo {len(t)} ruedas OHLCV completas; mínimo 220')
-    warnings=[]
+        threshold=t.date.iloc[-220] if len(t)>=220 else t.date.iloc[0]
+        recent=int((t.loc[invalid,'date']>=threshold).sum())
+        dates=t.loc[invalid,'date'].dt.strftime('%Y-%m-%d').tolist()
+        warnings.append(f'{int(invalid.sum())} OHLC incoherentes excluidas sin interpolación: {dates}')
+        if recent:
+            warnings.append(f'BLOQUEAR señal: {recent} OHLC anómalas en últimas 220 sesiones originales')
+        t=t.loc[~invalid].reset_index(drop=True)
+    if len(t)<220:raise ValueError(f'Solo {len(t)} ruedas OHLCV coherentes; mínimo 220')
     if 'adjusted' in t and (t.adjusted>0).all():
         factor=t.adjusted/t.close
         if (abs(factor-1)>.001).any():
