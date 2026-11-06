@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-05T17:43:11.533200-03:00",
+  "revisado_en": "2026-11-05T22:37:53.644030-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,17 +49,26 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 349,
-  "hechos_cnv_coincidentes": 43,
+  "total_hechos_cnv": 374,
+  "hechos_cnv_coincidentes": 50,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 57,
+  "noticias_con_nombre_coincidente": 56,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
+      "ticker": "BBAR",
+      "documentos_cnv": 4,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
       "ticker": "BMA",
-      "documentos_cnv": 8,
-      "titulares": 10,
+      "documentos_cnv": 10,
+      "titulares": 7,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -104,6 +113,19 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
+      "ticker": "LOMA",
+      "documentos_cnv": 3,
+      "titulares": 2,
+      "social_no_verificado": 0,
+      "temas": [
+        "financiamiento",
+        "recompra",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
       "ticker": "PAMP",
       "documentos_cnv": 8,
       "titulares": 14,
@@ -127,7 +149,7 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "BBAR",
+      "ticker": "BHIP",
       "documentos_cnv": 2,
       "titulares": 0,
       "social_no_verificado": 0,
@@ -136,12 +158,12 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "BHIP",
-      "documentos_cnv": 2,
-      "titulares": 0,
+      "ticker": "ALUA",
+      "documentos_cnv": 1,
+      "titulares": 4,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 60,
+      "prioridad_lectura": 54,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -156,26 +178,6 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "ALUA",
-      "documentos_cnv": 1,
-      "titulares": 3,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 48,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "METR",
-      "documentos_cnv": 0,
-      "titulares": 6,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 36,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
       "ticker": "CAPX",
       "documentos_cnv": 1,
       "titulares": 0,
@@ -185,16 +187,26 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "LOMA",
+      "ticker": "CVH",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
-        "financiamiento",
-        "recompra"
+        "resultados_balance"
       ],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "METR",
+      "documentos_cnv": 0,
+      "titulares": 5,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 30,
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "LEDE",
@@ -203,15 +215,6 @@
       "social_no_verificado": 0,
       "temas": [],
       "prioridad_lectura": 24,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "MIRG",
-      "documentos_cnv": 0,
-      "titulares": 3,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 18,
       "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
