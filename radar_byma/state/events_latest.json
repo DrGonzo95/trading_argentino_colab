@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-05T22:37:53.644030-03:00",
+  "revisado_en": "2026-11-06T16:59:12.510294-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,10 +49,10 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 374,
-  "hechos_cnv_coincidentes": 50,
+  "total_hechos_cnv": 383,
+  "hechos_cnv_coincidentes": 53,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 56,
+  "noticias_con_nombre_coincidente": 40,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
@@ -68,7 +68,7 @@
     {
       "ticker": "BMA",
       "documentos_cnv": 10,
-      "titulares": 7,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -103,7 +103,7 @@
     {
       "ticker": "CTIO",
       "documentos_cnv": 5,
-      "titulares": 0,
+      "titulares": 1,
       "social_no_verificado": 0,
       "temas": [
         "produccion",
@@ -115,7 +115,7 @@
     {
       "ticker": "LOMA",
       "documentos_cnv": 3,
-      "titulares": 2,
+      "titulares": 3,
       "social_no_verificado": 0,
       "temas": [
         "financiamiento",
@@ -140,12 +140,12 @@
     {
       "ticker": "MOLI",
       "documentos_cnv": 2,
-      "titulares": 2,
+      "titulares": 1,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion"
       ],
-      "prioridad_lectura": 72,
+      "prioridad_lectura": 66,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -155,15 +155,6 @@
       "social_no_verificado": 0,
       "temas": [],
       "prioridad_lectura": 60,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "ALUA",
-      "documentos_cnv": 1,
-      "titulares": 4,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 54,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -178,6 +169,35 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
+      "ticker": "CVH",
+      "documentos_cnv": 1,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 36,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "AGRO",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "ALUA",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
       "ticker": "CAPX",
       "documentos_cnv": 1,
       "titulares": 0,
@@ -187,35 +207,13 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "CVH",
+      "ticker": "EDN",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
+      "temas": [],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "METR",
-      "documentos_cnv": 0,
-      "titulares": 5,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 30,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "LEDE",
-      "documentos_cnv": 0,
-      "titulares": 4,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 24,
-      "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
   "restricciones": [
