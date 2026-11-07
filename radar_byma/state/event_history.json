@@ -3176,6 +3176,51 @@
       "first_seen": "2026-11-06T16:59:28.653852-03:00",
       "asof_usable": "2026-11-06T16:59:28.653852-03:00",
       "no_es_recomendacion": true
+    },
+    "1bc6f89406c54d9ed3a893bb8caaaed2a099b8fc22b2fcf8382e0b5bd46f0d59": {
+      "ticker": "BMA",
+      "published": "2026-11-06T18:44:00-03:00",
+      "title": "INFORMACIÓN SOCIETARIA - ADQUISICION DE ACCIONES PROPIAS EN LOS TERMINOS DEL ARTICULO 64 DE LA LEY DE MERCADO DE CAPITALES Y DE LAS NORMAS DE CNV",
+      "url": "https://aif2.cnv.gov.ar/Presentations/publicview/74403C04-A736-4F48-9BFF-944EAF3AAB0D",
+      "source": "CNV_OFICIAL",
+      "topic": "[\"recompra\", \"adquisicion\"]",
+      "confidence": "documental",
+      "sentiment_score_lexical": 0,
+      "sentiment": "indeterminado",
+      "palabras_coincidentes": [],
+      "first_seen": "2026-11-06T21:09:48.017826-03:00",
+      "asof_usable": "2026-11-06T21:09:48.017826-03:00",
+      "no_es_recomendacion": true
+    },
+    "3261a33e359c16c9b0f9b8e747612cc08bf235d7b613d5f55c55d56d9418efa2": {
+      "ticker": "BYMA",
+      "published": "2026-11-06T18:11:00-03:00",
+      "title": "OTRA INFORMACIÓN DEL ADMINSITRADO - HECHO RELEVANTE - BYMA INFORMA ADQUISICION DE ACCIONES PROPIAS",
+      "url": "https://aif2.cnv.gov.ar/Presentations/publicview/061169F7-0A83-4345-A130-9CC30BB622D6",
+      "source": "CNV_OFICIAL",
+      "topic": "[\"recompra\", \"adquisicion\"]",
+      "confidence": "documental",
+      "sentiment_score_lexical": 0,
+      "sentiment": "indeterminado",
+      "palabras_coincidentes": [],
+      "first_seen": "2026-11-06T21:09:48.017826-03:00",
+      "asof_usable": "2026-11-06T21:09:48.017826-03:00",
+      "no_es_recomendacion": true
+    },
+    "b29af0e1cc304c7a1465999d2074897f8a2d0f00d07943c895057737ef7730eb": {
+      "ticker": "CEPU",
+      "published": "2026-11-06T17:30:00-03:00",
+      "title": "OTRA INFORMACIÓN DEL ADMINSITRADO - CPSA - HR - INFORMA CANCELACIÓN DE ACCIONES(06 11 26)",
+      "url": "https://aif2.cnv.gov.ar/Presentations/publicview/4A982672-54D3-4D95-AF7A-FA91AD889F04",
+      "source": "CNV_OFICIAL",
+      "topic": "[]",
+      "confidence": "documental",
+      "sentiment_score_lexical": 0,
+      "sentiment": "indeterminado",
+      "palabras_coincidentes": [],
+      "first_seen": "2026-11-06T21:09:48.017826-03:00",
+      "asof_usable": "2026-11-06T21:09:48.017826-03:00",
+      "no_es_recomendacion": true
     }
   }
 }

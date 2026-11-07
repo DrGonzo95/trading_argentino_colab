@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-06T16:59:12.510294-03:00",
+  "revisado_en": "2026-11-06T21:09:33.467125-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,10 +49,10 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 383,
-  "hechos_cnv_coincidentes": 53,
+  "total_hechos_cnv": 289,
+  "hechos_cnv_coincidentes": 51,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 40,
+  "noticias_con_nombre_coincidente": 38,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
@@ -67,7 +67,7 @@
     },
     {
       "ticker": "BMA",
-      "documentos_cnv": 10,
+      "documentos_cnv": 12,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -79,7 +79,7 @@
     },
     {
       "ticker": "BYMA",
-      "documentos_cnv": 8,
+      "documentos_cnv": 10,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -115,7 +115,7 @@
     {
       "ticker": "LOMA",
       "documentos_cnv": 3,
-      "titulares": 3,
+      "titulares": 4,
       "social_no_verificado": 0,
       "temas": [
         "financiamiento",
@@ -127,7 +127,7 @@
     },
     {
       "ticker": "PAMP",
-      "documentos_cnv": 8,
+      "documentos_cnv": 4,
       "titulares": 14,
       "social_no_verificado": 0,
       "temas": [
@@ -135,17 +135,6 @@
         "resultados_balance"
       ],
       "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "MOLI",
-      "documentos_cnv": 2,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion"
-      ],
-      "prioridad_lectura": 66,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -160,12 +149,12 @@
     {
       "ticker": "RICH",
       "documentos_cnv": 1,
-      "titulares": 4,
+      "titulares": 3,
       "social_no_verificado": 0,
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 54,
+      "prioridad_lectura": 48,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -208,6 +197,15 @@
     },
     {
       "ticker": "EDN",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "TECO2",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
