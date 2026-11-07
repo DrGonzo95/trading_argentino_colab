@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-11-06T00:22:55.791917-03:00",
+  "fecha": "2026-11-06T23:44:11.424993-03:00",
   "acciones_en_panel": 87,
   "emisores_con_cifras_extraidas": 0,
   "filas_positivas": 0,
@@ -12,27 +12,11 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "BMA": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
     "PAMP": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "CEPU": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "TGSU2": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "BBAR": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "TXAR": {
+    "TRAN": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -40,43 +24,11 @@
       "estado": "TABLA_NO_ESTRUCTURADA_O_CAMBIO_DE_FORMATO",
       "fuente": "https://www.byma.com.ar/relacion-con-inversores/informacion-financiera"
     },
-    "TRAN": {
+    "TXAR": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "LOMA": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "SUPV": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "ECOG": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "TECO2": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "VALO": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "TGNO4": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "METR": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "IRSA": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "CRES": {
+    "BMA": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -84,19 +36,31 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
+    "IRSA": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "SUPV": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "TGSU2": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "TGNO4": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "CEPU": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
     "ALUA": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "COME": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "CVH": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "A3": {
+    "ECOG": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -104,35 +68,39 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "AUSO": {
+    "METR": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "AGRO": {
+    "CVH": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "MIRG": {
+    "BBAR": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "IEB": {
+    "VALO": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "HARG": {
+    "COME": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "RICH": {
+    "LOMA": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "CELU": {
+    "A3": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "CECO2": {
+    "CRES": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "TECO2": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -140,11 +108,15 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "BPAT": {
+    "GCLA": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "INVJ": {
+    "CELU": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "AGRO": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -152,39 +124,7 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "CGPA2": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "CADO": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "SAMI": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "DGCU2": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "BOLT": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "CAPX": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "SEMI": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "MOLI": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "HAVA": {
+    "HARG": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -192,23 +132,63 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
+    "MOLI": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
     "MOLA": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "FERR": {
+    "BPAT": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "GBAN": {
+    "AUSO": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "LONG": {
+    "HAVA": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "CGPA2": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "MIRG": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "CAPX": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "INTR": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "PATA": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "RICH": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "SEMI": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "BOLT": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
     "CARC": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "SAMI": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -220,11 +200,23 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "GCDI": {
+    "IEB": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "GCLA": {
+    "LONG": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "INVJ": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "GAMI": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "CADO": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -232,7 +224,15 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "ROSE": {
+    "GBAN": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "GCDI": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "DGCU2": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -244,7 +244,11 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "INTR": {
+    "CECO2": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "FERR": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -252,23 +256,15 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "PATA": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "POLL": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
     "PAMPD": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "GAMI": {
+    "GGALD": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "GGALD": {
+    "ROSE": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -284,19 +280,7 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "BBARD": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "TGSUD": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
     "BYMAD": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "SUPVD": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -304,15 +288,19 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "METRD": {
+    "SUPVD": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "CRESD": {
+    "POLL": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "COMED": {
+    "TGSUD": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "BBARD": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -320,11 +308,7 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "TGN4D": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "ALUAD": {
+    "IRSAD": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -332,15 +316,7 @@
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
-    "ECOGD": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
     "EDND": {
-      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
-      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
-    },
-    "IRSAD": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
@@ -349,6 +325,30 @@
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     },
     "VALOD": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "ALUAD": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "METRD": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "ECOGD": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "TGN4D": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "CRESD": {
+      "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
+      "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
+    },
+    "COMED": {
       "estado": "SIN_BALANCE_NUMERICO_ESTANDARIZADO",
       "fuente_requerida": "CNV EEFF por emisor con fecha cierre, publicación, norma, moneda, escala y consolidación"
     }
