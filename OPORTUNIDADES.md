@@ -2,9 +2,9 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 06/11/2026 16:56 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 06/11/2026 21:04 (Argentina); hora real de negociación desconocida.
 
-**Universo:** 1891 especies, incluidos 87 acciones y 958 CEDEARs.
+**Universo:** 1886 especies, incluidos 87 acciones y 956 CEDEARs.
 
 **Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 1. **Indicadores técnicos validados:** 8.
 
@@ -18,7 +18,7 @@
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **CELU** | $149,00 | -5.69% | 28 | [INFORMACIÓN JUDICIAL - NOS DIRIGIMOS A USTEDES CON RELACIÓN AL HECHO RELEVANTE DE FECHA 2 DE JU](https://aif2.cnv.gov.ar/Presentations/publicview/E63B3E39-720B-446E-A5A2-3741AF14F4F7) | No hay entrada confirmada |
+| **CELU** | $146,00 | -7.59% | 28 | [INFORMACIÓN JUDICIAL - NOS DIRIGIMOS A USTEDES CON RELACIÓN AL HECHO RELEVANTE DE FECHA 2 DE JU](https://aif2.cnv.gov.ar/Presentations/publicview/E63B3E39-720B-446E-A5A2-3741AF14F4F7) | No hay entrada confirmada |
 
 La coincidencia entre una caída y una noticia no demuestra relación causal ni implica que habrá rebote.
 
@@ -26,10 +26,10 @@ La coincidencia entre una caída y una noticia no demuestra relación causal ni 
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **ADBE** | $9.155,00 | -1.55% | 22.8 | Revisión técnica diaria | No hay entrada confirmada |
-| **CRM** | $19.970,00 | -3.15% | 22.8 | Revisión técnica diaria | No hay entrada confirmada |
-| **GLOB** | $4.402,50 | -3.61% | 21.0 | Revisión técnica diaria | No hay entrada confirmada |
-| **VIST** | $32.220,00 | +0.56% | 21.0 | Revisión técnica diaria | No hay entrada confirmada |
+| **ADBE** | $9.080,00 | -2.36% | 22.8 | Revisión técnica diaria | No hay entrada confirmada |
+| **CRM** | $19.880,00 | -3.58% | 22.8 | Revisión técnica diaria | No hay entrada confirmada |
+| **GLOB** | $4.310,00 | -5.63% | 21.0 | Revisión técnica diaria | No hay entrada confirmada |
+| **VIST** | $32.040,00 | +0.00% | 21.0 | Revisión técnica diaria | No hay entrada confirmada |
 
 ## Cómo interpretar el listado
 
