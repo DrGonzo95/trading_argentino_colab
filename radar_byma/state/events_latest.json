@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-06T21:09:33.467125-03:00",
+  "revisado_en": "2026-11-09T20:02:11.020867-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,25 +49,16 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 289,
-  "hechos_cnv_coincidentes": 51,
+  "total_hechos_cnv": 230,
+  "hechos_cnv_coincidentes": 36,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 38,
+  "noticias_con_nombre_coincidente": 45,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
-      "ticker": "BBAR",
-      "documentos_cnv": 4,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
       "ticker": "BMA",
-      "documentos_cnv": 12,
+      "documentos_cnv": 8,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -79,7 +70,7 @@
     },
     {
       "ticker": "BYMA",
-      "documentos_cnv": 10,
+      "documentos_cnv": 6,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -90,20 +81,9 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "CEPU",
-      "documentos_cnv": 4,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion"
-      ],
-      "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
       "ticker": "CTIO",
       "documentos_cnv": 5,
-      "titulares": 1,
+      "titulares": 2,
       "social_no_verificado": 0,
       "temas": [
         "produccion",
@@ -115,10 +95,11 @@
     {
       "ticker": "LOMA",
       "documentos_cnv": 3,
-      "titulares": 4,
+      "titulares": 8,
       "social_no_verificado": 0,
       "temas": [
         "financiamiento",
+        "produccion",
         "recompra",
         "resultados_balance"
       ],
@@ -126,15 +107,44 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
+      "ticker": "CEPU",
+      "documentos_cnv": 3,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
+      ],
+      "prioridad_lectura": 90,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
       "ticker": "PAMP",
-      "documentos_cnv": 4,
-      "titulares": 14,
+      "documentos_cnv": 0,
+      "titulares": 13,
       "social_no_verificado": 0,
       "temas": [
         "produccion",
         "resultados_balance"
       ],
-      "prioridad_lectura": 100,
+      "prioridad_lectura": 78,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "EDN",
+      "documentos_cnv": 2,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 66,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BBAR",
+      "documentos_cnv": 2,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 60,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -147,25 +157,26 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "RICH",
-      "documentos_cnv": 1,
-      "titulares": 3,
+      "ticker": "LEDE",
+      "documentos_cnv": 0,
+      "titulares": 8,
       "social_no_verificado": 0,
       "temas": [
+        "produccion",
         "resultados_balance"
       ],
       "prioridad_lectura": 48,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "CVH",
+      "ticker": "RICH",
       "documentos_cnv": 1,
-      "titulares": 1,
+      "titulares": 2,
       "social_no_verificado": 0,
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 36,
+      "prioridad_lectura": 42,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -187,20 +198,13 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "CAPX",
+      "ticker": "CVH",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "EDN",
-      "documentos_cnv": 1,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
+      "temas": [
+        "resultados_balance"
+      ],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
