@@ -2,11 +2,11 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 06/11/2026 22:49 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 09/11/2026 19:58 (Argentina); hora real de negociación desconocida.
 
-**Universo:** 1886 especies, incluidos 87 acciones y 956 CEDEARs.
+**Universo:** 1869 especies, incluidos 87 acciones y 950 CEDEARs.
 
-**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 1. **Indicadores técnicos validados:** 8.
+**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 1. **Indicadores técnicos validados:** 3.
 
 ## Entradas ficticias con niveles (no ejecutadas)
 
@@ -26,10 +26,7 @@ La coincidencia entre una caída y una noticia no demuestra relación causal ni 
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **ADBE** | $9.080,00 | -2.36% | 22.8 | Revisión técnica diaria | No hay entrada confirmada |
-| **CRM** | $19.880,00 | -3.58% | 22.8 | Revisión técnica diaria | No hay entrada confirmada |
 | **GLOB** | $4.310,00 | -5.63% | 21.0 | Revisión técnica diaria | No hay entrada confirmada |
-| **VIST** | $32.040,00 | +0.00% | 21.0 | Revisión técnica diaria | No hay entrada confirmada |
 
 ## Cómo interpretar el listado
 
