@@ -172,6 +172,50 @@ def plan(x,cost,eligible):
         "ejecutado":False,"probabilidad":"NO_CALIBRADA",
         "advertencia":"SPREAD NO VERIFICADO - SIMULACION NO EJECUTABLE"}
 
+def backtest_chronological(x,cost):
+    """One frozen rule, chronological holdout; descriptive audit, not a calibrated forecast.
+    Enter only on a later bar after a signal; if both stop and target touched, stop first.
+    No optimizing after observing results. Uses daily bars and illustrative fees.
+    """
+    if len(x)<400:
+        return {"estado":"INSUFICIENTE_PARA_PRUEBA_OOS","ruedas":len(x),"probabilidad":"NO_CALIBRADA"}
+    start=max(220,int(len(x)*.65))
+    i=start;wins=0;losses=0;net=0.;samples=[]
+    while i<len(x)-1:
+        prior=x.iloc[:i+1]
+        amount=float((prior.close*prior.volume).tail(20).mean())
+        status,proposal=plan(prior,cost,amount>=5_000_000)
+        if proposal is None:
+            i+=1;continue
+        entry=float(proposal["entrada_limite_condicional"])
+        stop=float(proposal["stop_teorico"]);tp=float(proposal["tp1"])
+        open_next=float(x.iloc[i+1].open)
+        # A gap above the limit means no fill; a gap through stop invalidates the trade.
+        if not (stop<open_next<=entry):
+            i+=1;continue
+        paid=entry*(1+cost)
+        close_i=min(len(x)-1,i+5)
+        exit_px=float(x.iloc[close_i].close);reason="TIME"
+        for j in range(i+1,close_i+1):
+            candle=x.iloc[j]
+            if float(candle.low)<=stop:
+                exit_px=stop;reason="STOP";close_i=j;break
+            if float(candle.high)>=tp:
+                exit_px=tp;reason="TP1";close_i=j;break
+        pnl=exit_px*(1-cost)-paid
+        wins+=int(pnl>0);losses+=int(pnl<=0);net+=pnl/paid
+        if len(samples)<10:
+            samples.append({"signal_day":str(x.iloc[i].date.date()),"exit_day":str(x.iloc[close_i].date.date()),
+                            "outcome":reason,"return_pct_net":round(100*pnl/paid,2)})
+        i=close_i+1 # Non-overlapping paper positions per ticker.
+    n=wins+losses
+    return {"estado":"OOS_CRONOLOGICO_EXPLORATORIO_NO_CALIBRADO","inicio_prueba":str(x.iloc[start].date.date()),
+            "fin_prueba":str(x.iloc[-1].date.date()),"ruedas_total":len(x),
+            "operaciones_historicas":n,"ganadoras":wins,"perdedoras":losses,
+            "retorno_acumulado_simple_pct":round(100*net,2),
+            "ejemplos":samples,"probabilidad":"NO_CALIBRADA",
+            "limites":"Universo seleccionado retrospectivamente, sin libro de puntas ni slippage real; historial no demuestra ventaja operativa."}
+
 def inspect(sym,exchange,market):
     out={"ticker":sym,"exchange":exchange,"mercado":market,
          "moneda":"USD" if market=="US" else "ARS","estado":"DATOS_NO_VALIDOS","probabilidad":"NO_CALIBRADA",
@@ -183,6 +227,7 @@ def inspect(sym,exchange,market):
         clean=check_bars(raw,market)
         x=indicators(clean)
         last=x.iloc[-1]
+        if market=="US":out["backtest_oos"]=backtest_chronological(x,FEE_US+SLIP_US)
         out.update(ruedas_verificadas=len(x),primera=str(x.date.iloc[0].date()),ultima=str(x.date.iloc[-1].date()),
                    ultimo_cierre=round(float(last.close),4),maximo_ultima_rueda=round(float(last.high),4),
                    minimo_ultima_rueda=round(float(last.low),4),
@@ -218,12 +263,31 @@ def run():
         for sym,exchange in items:
             checked.append(inspect(sym,exchange,market))
             time.sleep(.25)
-    # Strictly suggestions, never market fills. Up to two candidate trades per week, not required.
+    # At most TWO NEW paper suggestions in the current ISO week across all runs.
+    # This is a watchlist notice ledger, NOT an executed trading ledger.
+    year,week,_=NOW.isocalendar()
+    week_id=str(year)+"-W"+str(week).zfill(2)
+    try:
+        previous=json.loads(OUTPUT.read_text(encoding="utf-8"))
+        old_alerts=previous.get("avisos_papel_semana",[]) if previous.get("semana_iso")==week_id else []
+    except (OSError,ValueError):
+        old_alerts=[]
+    alerts=list(old_alerts)
     proposals=[r for r in checked if r["operacion_ficticia"]]
     proposals.sort(key=lambda r:(r.get("rvol20",0),r["operacion_ficticia"]["rr_neta_tp1"]),reverse=True)
-    for r in proposals[2:]:
-        r["estado"]="FUERA_DE_CUPO_SEMANAL_DE_INVESTIGACION";r["operacion_ficticia"]=None
-    report={"fecha_revision":NOW.isoformat(),"fuentes":"Públicas sin claves: Yahoo chart, Stooq CSV, IOL historia",
+    for r in proposals:
+        duplicate=any(a.get("ticker")==r["ticker"] for a in alerts)
+        if duplicate:
+            r["estado"]="YA_NOTIFICADO_ESTA_SEMANA_SIN_NUEVO_SETUP"
+            r["operacion_ficticia"]=None
+        elif len(alerts)>=2:
+            r["estado"]="CUPO_SEMANAL_DE_PROPUESTAS_AGOTADO"
+            r["operacion_ficticia"]=None
+        else:
+            alerts.append({"ticker":r["ticker"],"sesion":r.get("ultima"),
+                           "fecha_deteccion":NOW.isoformat(),"estado":"PROPUESTA_NUNCA_EJECUTADA"})
+
+    report={"fecha_revision":NOW.isoformat(),"semana_iso":week_id,"avisos_papel_semana":alerts,"fuentes":"Públicas sin claves: Yahoo chart, Stooq CSV, IOL historia",
             "universo":"Muestra dirigida/rotativa, no cobertura total",
             "objetivo":"0-2 trades de papel por semana, solamente si pasan todos los filtros",
             "controles":{"min_barras_setup":220,"barras_para_backtest":400,
