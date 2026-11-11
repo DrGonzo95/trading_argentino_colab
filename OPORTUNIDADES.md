@@ -2,11 +2,11 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 10/11/2026 17:26 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 10/11/2026 21:53 (Argentina); hora real de negociación desconocida.
 
 **Universo:** 1869 especies, incluidos 87 acciones y 950 CEDEARs.
 
-**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 1. **Indicadores técnicos validados:** 2.
+**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 0. **Indicadores técnicos validados:** 2.
 
 ## Entradas ficticias con niveles (no ejecutadas)
 
@@ -18,7 +18,7 @@
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **CELU** | $146,00 | -7.59% | 28 | [INFORMACIÓN JUDICIAL - NOS DIRIGIMOS A USTEDES CON RELACIÓN AL HECHO RELEVANTE DE FECHA 2 DE JU](https://aif2.cnv.gov.ar/Presentations/publicview/E63B3E39-720B-446E-A5A2-3741AF14F4F7) | No hay entrada confirmada |
+| — | — | — | — | Sin señales que cumplan la clasificación | — |
 
 La coincidencia entre una caída y una noticia no demuestra relación causal ni implica que habrá rebote.
 
