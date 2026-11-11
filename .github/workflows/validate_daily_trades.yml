@@ -1,0 +1,49 @@
+name: Radar profesional - validar acciones EEUU y BYMA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - radar_byma/validate_daily_trades.py
+      - .github/workflows/validate_daily_trades.yml
+  schedule:
+    - cron: '15 13,15,17,19,21,23 * * 1-5'
+permissions:
+  contents: write
+concurrency:
+  group: validate-daily-trades
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install public-data analysis dependencies
+        run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4
+      - name: Validate OHLCV, trend, momentum, ATR, RVOL, net risk/reward
+        run: python radar_byma/validate_daily_trades.py
+      - name: Persist auditable data and watchlist (no real trades)
+        run: |
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions[bot]'
+          git add docs/data/trade_validation.json TRADES_EN_VIGILANCIA.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update checked daily trades (paper only) [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Publish validation audit artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trade-validation-audit
+          path: |
+            docs/data/trade_validation.json
+            TRADES_EN_VIGILANCIA.md
+          retention-days: 30
+          if-no-files-found: warn
