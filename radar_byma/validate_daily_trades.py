@@ -126,7 +126,8 @@ def indicators(d):
     diff=x.close.diff()
     u=diff.clip(lower=0).ewm(alpha=1/14,adjust=False,min_periods=14).mean()
     v=(-diff).clip(lower=0).ewm(alpha=1/14,adjust=False,min_periods=14).mean()
-    x["rsi14"]=100-100/(1+u/v.replace(0,float("nan")))
+    rs=u/v.replace(0,float("nan"))
+    x["rsi14"]=(100-100/(1+rs)).mask((v==0)&(u>0),100).mask((u==0)&(v>0),0).mask((u==0)&(v==0),50)
     e12=x.close.ewm(span=12,adjust=False,min_periods=12).mean()
     e26=x.close.ewm(span=26,adjust=False,min_periods=26).mean()
     x["macd"]=e12-e26
