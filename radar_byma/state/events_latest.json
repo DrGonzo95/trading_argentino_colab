@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-10T22:17:57.454296-03:00",
+  "revisado_en": "2026-11-11T17:14:55.571048-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,41 +49,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 202,
-  "hechos_cnv_coincidentes": 25,
+  "total_hechos_cnv": 280,
+  "hechos_cnv_coincidentes": 19,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 44,
+  "noticias_con_nombre_coincidente": 25,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
-      "ticker": "BMA",
-      "documentos_cnv": 4,
-      "titulares": 2,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion",
-        "recompra"
-      ],
-      "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "BYMA",
-      "documentos_cnv": 4,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion",
-        "recompra"
-      ],
-      "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
       "ticker": "CTIO",
       "documentos_cnv": 5,
-      "titulares": 2,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
         "produccion",
@@ -94,70 +70,69 @@
     },
     {
       "ticker": "EDN",
-      "documentos_cnv": 2,
-      "titulares": 7,
+      "documentos_cnv": 3,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 100,
+      "prioridad_lectura": 90,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "LOMA",
-      "documentos_cnv": 2,
-      "titulares": 6,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 96,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "BBAR",
-      "documentos_cnv": 2,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 66,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "LEDE",
-      "documentos_cnv": 0,
-      "titulares": 11,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 66,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "CEPU",
-      "documentos_cnv": 2,
+      "ticker": "TGNO4",
+      "documentos_cnv": 3,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion"
+        "resultados_balance"
       ],
-      "prioridad_lectura": 60,
+      "prioridad_lectura": 90,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BMA",
+      "documentos_cnv": 2,
+      "titulares": 2,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "recompra"
+      ],
+      "prioridad_lectura": 72,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BYMA",
+      "documentos_cnv": 2,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "recompra",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 66,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
       "ticker": "AGRO",
       "documentos_cnv": 1,
-      "titulares": 1,
+      "titulares": 0,
       "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 36,
+      "temas": [],
+      "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "CVH",
+      "ticker": "CEPU",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "LONG",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
@@ -168,15 +143,24 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "RICH",
-      "documentos_cnv": 1,
-      "titulares": 0,
+      "ticker": "METR",
+      "documentos_cnv": 0,
+      "titulares": 5,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "PAMP",
+      "documentos_cnv": 0,
+      "titulares": 5,
       "social_no_verificado": 0,
       "temas": [
-        "resultados_balance"
+        "produccion"
       ],
       "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "TECO2",
@@ -188,14 +172,12 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "IRSA",
+      "ticker": "TRAN",
       "documentos_cnv": 0,
-      "titulares": 3,
+      "titulares": 5,
       "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 18,
+      "temas": [],
+      "prioridad_lectura": 30,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
@@ -208,12 +190,23 @@
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "FERR",
+      "ticker": "RICH",
       "documentos_cnv": 0,
       "titulares": 2,
       "social_no_verificado": 0,
-      "temas": [],
+      "temas": [
+        "resultados_balance"
+      ],
       "prioridad_lectura": 12,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "BBAR",
+      "documentos_cnv": 0,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 6,
       "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
