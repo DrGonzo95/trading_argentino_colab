@@ -20,9 +20,9 @@ CACHE=Path("radar_byma/cache/ohlcv")
 CACHE.mkdir(parents=True,exist_ok=True)
 PANELS=Path("resultados/discovery/snapshot.json")
 BASE=Path("resultados")
-PER_BATCH=int(os.getenv("BATCH_SIZE","46"))
-MAX_CACHE=210
-MAX_AGE_DAYS=14
+PER_BATCH=int(os.getenv("BATCH_SIZE","60"))
+MAX_CACHE=1400
+MAX_AGE_DAYS=30
 GROUPS=("accion","cedear")
 BROKER_WARNING="Se desconoce spread y profundidad histórica. No implica orden ejecutable."
 SESS=requests.Session()
