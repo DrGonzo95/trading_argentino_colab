@@ -1,0 +1,58 @@
+name: Radar CEDEAR - estudiar acciones originales USD
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'radar_byma/underlying_cedears.py'
+      - 'radar_byma/test_underlying_cedears.py'
+      - '.github/workflows/cedear_underlying.yml'
+  schedule:
+    # Horario UTC; aproximadamente cada hora durante rueda local y USA.
+    - cron: '35 13-23 * * 1-5'
+permissions:
+  contents: write
+concurrency:
+  group: cedear-underlying-public-research
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install public-data-only dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+      - name: Test symbol mapping and technical computations offline
+        run: python -m unittest discover -s radar_byma -p 'test_underlying_cedears.py' -v
+      - name: Refresh full delayed BYMA panel for CEDEAR membership
+        continue-on-error: true
+        run: python radar_byma/discover_byma.py
+      - name: Rotate and research actual underlying US shares with public daily OHLCV
+        env:
+          ORIGIN_BATCH_SIZE: '24'
+        run: python radar_byma/underlying_cedears.py
+      - name: Persist historical original data and auditable research
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add -A radar_byma/cache/origin docs/data/underlying_radar.json CEDEARS_SUBYACENTES_EN_VIGILANCIA.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh public original-stock CEDEAR research [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Upload immutable audit artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cedear-underlying-research
+          path: |
+            docs/data/underlying_radar.json
+            CEDEARS_SUBYACENTES_EN_VIGILANCIA.md
+          retention-days: 30
+          if-no-files-found: warn
