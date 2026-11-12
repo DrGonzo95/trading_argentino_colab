@@ -1,24 +1,22 @@
 {
   "version": 1,
   "started_after": "2026-10-30",
-  "last_processed": "2026-11-06",
+  "last_processed": "2026-11-11",
   "paper": {
     "50000": {
       "cash": 50000.0,
       "positions": {},
-      "pending": {
-        "QQQ": {
-          "ticker": "QQQ",
-          "day": "2026-11-06",
-          "atr": 1492.3442460435076,
-          "rsi14": 36.710979234139664
-        }
-      },
+      "pending": {},
       "orders": [],
       "rejections": [
         {
           "ticker": "YPFD",
           "date": "2026-11-04",
+          "reason": "Stop / costos / tamaño mínimo o R:R insuficiente"
+        },
+        {
+          "ticker": "QQQ",
+          "date": "2026-11-11",
           "reason": "Stop / costos / tamaño mínimo o R:R insuficiente"
         }
       ],
@@ -41,19 +39,17 @@
     "100000": {
       "cash": 100000.0,
       "positions": {},
-      "pending": {
-        "QQQ": {
-          "ticker": "QQQ",
-          "day": "2026-11-06",
-          "atr": 1492.3442460435076,
-          "rsi14": 36.710979234139664
-        }
-      },
+      "pending": {},
       "orders": [],
       "rejections": [
         {
           "ticker": "YPFD",
           "date": "2026-11-04",
+          "reason": "Stop / costos / tamaño mínimo o R:R insuficiente"
+        },
+        {
+          "ticker": "QQQ",
+          "date": "2026-11-11",
           "reason": "Stop / costos / tamaño mínimo o R:R insuficiente"
         }
       ],
