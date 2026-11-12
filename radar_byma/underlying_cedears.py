@@ -95,16 +95,70 @@ def parse_reference(html):
                              "mapping_source":MAP_URL, "mapping_verified":True}
     return mapping
 
+
+CAJA_URL = "https://cajadevalores.com.ar/Servicios/Cedears"
+
+def parse_caja_reference(html):
+    """Official Caja de Valores list: exact BYMA and origin symbols plus ISIN."""
+    soup=BeautifulSoup(html,"html.parser")
+    mapping={}
+    for table in soup.select("table"):
+        rows=table.find_all("tr")
+        if not rows:
+            continue
+        header_idx=None
+        for idx,tr in enumerate(rows[:5]):
+            heads=[norm(x.get_text(" ",strip=True)) for x in tr.find_all(["th","td"])]
+            try:
+                a=next(i for i,h in enumerate(heads) if "simbolo byma" in h)
+                b=next(i for i,h in enumerate(heads) if "ticker en mercado" in h)
+                ex=next(i for i,h in enumerate(heads) if "mercado de origen" in h)
+            except StopIteration:
+                continue
+            header_idx=idx
+            ratio_i=next((i for i,h in enumerate(heads) if "ratio" in h),None)
+            isin_i=next((i for i,h in enumerate(heads) if "isin accion" in h or "isin etf" in h),None)
+            break
+        if header_idx is None:
+            continue
+        for tr in rows[header_idx+1:]:
+            vals=[x.get_text(" ",strip=True) for x in tr.find_all(["td","th"])]
+            if len(vals)<=max(a,b,ex):
+                continue
+            byma=safe_symbol(vals[a])
+            ticker=safe_symbol(vals[b])
+            exchange=vals[ex].upper().strip()
+            if not byma or not ticker or not any(x in exchange for x in US_EXCHANGES):
+                continue
+            if "OTC" in exchange or "GDR" in exchange:
+                continue
+            mapping[byma]={"ticker":ticker,"exchange_reference":exchange,
+                "ratio_reference":vals[ratio_i] if ratio_i is not None and ratio_i<len(vals) else None,
+                "isin_underlying":vals[isin_i] if isin_i is not None and isin_i<len(vals) else None,
+                "mapping_source":CAJA_URL,"mapping_verified":True}
+    return mapping
+
 def reference(session):
+    mapping={}
+    notes=[]
     try:
-        r = session.get(MAP_URL, timeout=22)
+        r=session.get(CAJA_URL,timeout=22)
         r.raise_for_status()
-        rows = parse_reference(r.text)
-        if len(rows) < 30:
-            return {}, "REFERENCIA_SIN_TABLA_SUFFICIENTE"
-        return rows, "REFERENCIA_PUBLICA_CARGADA"
-    except (requests.RequestException, ValueError) as exc:
-        return {}, "REFERENCIA_NO_ACCESIBLE: " + str(exc)[:120]
+        mapping.update(parse_caja_reference(r.text))
+        notes.append(f"CAJA_OFICIAL_{len(mapping)}")
+    except (requests.RequestException,ValueError) as exc:
+        notes.append("CAJA_NO_ACCESIBLE: "+str(exc)[:90])
+    try:
+        r=session.get(MAP_URL,timeout=22)
+        r.raise_for_status()
+        more=parse_reference(r.text)
+        # For overlapping securities, prefer Caja de Valores (official).
+        for ticker,details in more.items():
+            mapping.setdefault(ticker,details)
+        notes.append(f"CRITERIA_{len(more)}")
+    except (requests.RequestException,ValueError) as exc:
+        notes.append("CRITERIA_NO_ACCESIBLE: "+str(exc)[:90])
+    return mapping,"; ".join(notes)
 
 def discover():
     if not SNAPSHOT.exists():
@@ -151,6 +205,12 @@ def get_hist(session, ticker):
         except (IndexError, KeyError, TypeError, ValueError, OverflowError):
             continue
     bars = [out[k] for k in sorted(out)]
+    # Daily Yahoo bar for today's session is unfinished until after US close.
+    # Do not classify its partial volume as a completed-day RVOL or breakout.
+    ny_now=datetime.now(NY_TZ)
+    if bars and bars[-1]["date"]==ny_now.date().isoformat():
+        if ny_now.hour<16 or (ny_now.hour==16 and ny_now.minute<25):
+            bars=bars[:-1]
     if len(bars)<220:
         raise ValueError(f"OHLCV_INSUFICIENTE_{len(bars)}")
     events = entry.get("events") or {}
@@ -310,7 +370,7 @@ def run():
     report={"generated_at":now.isoformat(),"mode":"PUBLIC_ONLY_PAPER_RESEARCH_NO_ORDERS",
             "universe":{"listed_cedears":len(listed),"mapped_cedears":recognized,
                         "panel_status":panel_state,"mapping_status":mapping_state,
-                        "mapping_reference":MAP_URL},
+                        "mapping_reference":[CAJA_URL,MAP_URL]},
             "coverage":{"selected":len(selected),"downloaded_histories":len(findings),
                         "valid_220_ohlcv":sum(x.get("bars_ohlcv",0)>=220 for x in findings),
                         "fresh_preliminary":sum(x.get("quality_state")=="HISTORICO_VALIDO_PRELIMINAR" for x in findings),
