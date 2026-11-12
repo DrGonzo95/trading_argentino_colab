@@ -1,12 +1,13 @@
 {
-  "generated_at": "2026-11-12T17:15:55.079732-03:00",
+  "generated_at": "2026-11-12T17:17:53.001868-03:00",
   "mode": "PUBLIC_ONLY_PAPER_RESEARCH_NO_ORDERS",
   "universe": {
     "listed_cedears": 955,
     "mapped_cedears": 66,
     "panel_status": "PANEL_IOL_CONSULTADO",
-    "mapping_status": "CAJA_OFICIAL_0; CRITERIA_0",
+    "mapping_status": "CAJA_XLSX_NO_DISPONIBLE: 406 Client Error: Not Acceptable for url: https://cajadevalores.com.ar/pdf/CEDEARS.xlsx; CAJA_HTML_0; CRITERIA_0",
     "mapping_reference": [
+      "https://cajadevalores.com.ar/pdf/CEDEARS.xlsx",
       "https://cajadevalores.com.ar/Servicios/Cedears",
       "https://criteria.com.ar/ratios-de-conversion-elementor/"
     ]

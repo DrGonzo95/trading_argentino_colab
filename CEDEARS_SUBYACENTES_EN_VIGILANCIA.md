@@ -1,6 +1,6 @@
 # Radar CEDEARs — análisis de acciones originales
 
-Generado: **2026-11-12T17:15:55.079732-03:00**. Solo investigación; **no operaciones**.
+Generado: **2026-11-12T17:17:53.001868-03:00**. Solo investigación; **no operaciones**.
 CEDEARs en panel: **955**. Mapeados: **66**. OHLCV descargados: **24**. Fallidos: **0**.
 Series con ≥220 velas: **24**. Vigilancia original con cotejo independiente: **0**.
 
