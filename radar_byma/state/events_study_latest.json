@@ -1,7 +1,7 @@
 {
-  "analizado": "2026-11-11T22:56:25.891182-03:00",
-  "events_stored": 291,
-  "newly_observed": 7,
+  "analizado": "2026-11-12T17:55:47.254656-03:00",
+  "events_stored": 315,
+  "newly_observed": 24,
   "ticker_prices_available": 21,
   "lexicon_quality": "LOW, audit headlines manually; NOT a trained or validated sentiment model",
   "study": {
