@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-11T17:14:55.571048-03:00",
+  "revisado_en": "2026-11-11T22:56:11.286412-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,13 +49,38 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 280,
-  "hechos_cnv_coincidentes": 19,
+  "total_hechos_cnv": 301,
+  "hechos_cnv_coincidentes": 25,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 25,
+  "noticias_con_nombre_coincidente": 27,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
+    {
+      "ticker": "BMA",
+      "documentos_cnv": 6,
+      "titulares": 3,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "recompra"
+      ],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "BYMA",
+      "documentos_cnv": 4,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "recompra",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 100,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
     {
       "ticker": "CTIO",
       "documentos_cnv": 5,
@@ -89,46 +114,25 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "BMA",
-      "documentos_cnv": 2,
-      "titulares": 2,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion",
-        "recompra"
-      ],
-      "prioridad_lectura": 72,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "BYMA",
-      "documentos_cnv": 2,
+      "ticker": "AGRO",
+      "documentos_cnv": 1,
       "titulares": 1,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion",
-        "recompra",
         "resultados_balance"
       ],
-      "prioridad_lectura": 66,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "AGRO",
-      "documentos_cnv": 1,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 30,
+      "prioridad_lectura": 36,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
       "ticker": "CEPU",
       "documentos_cnv": 1,
-      "titulares": 0,
+      "titulares": 1,
       "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 30,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 36,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -174,10 +178,10 @@
     {
       "ticker": "TRAN",
       "documentos_cnv": 0,
-      "titulares": 5,
+      "titulares": 4,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 30,
+      "prioridad_lectura": 24,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
