@@ -100,6 +100,7 @@ def parse_reference(html):
 
 CAJA_URL = "https://cajadevalores.com.ar/Servicios/Cedears"
 CAJA_XLSX = "https://cajadevalores.com.ar/pdf/CEDEARS.xlsx"
+ATLAS_URL = "https://www.atlas-stocks.com/es/cedears"
 
 def parse_caja_reference(html):
     """Official Caja de Valores list: exact BYMA and origin symbols plus ISIN."""
@@ -209,6 +210,48 @@ def parse_caja_xlsx(data):
                 break
     return mapping
 
+def parse_atlas_reference(html):
+    """Secondary mapping for *research only*, not official ratios/trading.
+
+    Only accept an explicit pair of local CEDEAR and underlying ticker with
+    US listing. The mapping is never enough to authorize a paper entry.
+    """
+    soup=BeautifulSoup(html,"html.parser")
+    mapping={}
+    for table in soup.select("table"):
+        rows=table.find_all("tr")
+        if not rows:
+            continue
+        head=[" ".join(norm(x.get_text(" ",strip=True)).split())
+              for x in rows[0].find_all(["th","td"])]
+        try:
+            byma_i=next(i for i,h in enumerate(head) if h=="cedear")
+            company_i=next(i for i,h in enumerate(head) if "empresa o fondo" in h)
+        except StopIteration:
+            continue
+        for tr in rows[1:]:
+            cells=tr.find_all(["th","td"])
+            if len(cells)<=max(byma_i,company_i):
+                continue
+            byma=safe_symbol(cells[byma_i].get_text(" ",strip=True))
+            company=cells[company_i].get_text(" ",strip=True)
+            mt=re.search(r"(?<![A-Z0-9])([A-Z][A-Z0-9./-]{0,13})\s*[·•]\s*(NASDAQ|NYSE|NEW YORK)(?:\s+(GS|GM|ARCA|AMERICAN))?\b",
+                         company,flags=re.IGNORECASE)
+            if not byma or not mt:
+                continue
+            ticker=safe_symbol(mt.group(1))
+            if not ticker:
+                continue
+            # Explicit known exception for BYMA symbol != US ticker.
+            if byma in SEEDS and SEEDS[byma]!=ticker:
+                ticker=SEEDS[byma]
+            mapping[byma]={"ticker":ticker,
+                "exchange_reference":(mt.group(2)+" "+(mt.group(3) or "")).upper().strip(),
+                "ratio_reference":None,"isin_underlying":None,
+                "mapping_source":ATLAS_URL+" (TERCERO_SOLO_INVESTIGACION)",
+                "mapping_verified":False}
+    return mapping
+
 def reference(session):
     mapping={}
     notes=[]
@@ -238,6 +281,15 @@ def reference(session):
         notes.append(f"CRITERIA_{len(cmap)}")
     except (requests.RequestException,ValueError) as exc:
         notes.append("CRITERIA_NO_ACCESIBLE: "+str(exc)[:90])
+    try:
+        r=session.get(ATLAS_URL,timeout=22)
+        r.raise_for_status()
+        amap=parse_atlas_reference(r.text)
+        for ticker,details in amap.items():
+            mapping.setdefault(ticker,details)
+        notes.append(f"ATLAS_TERCIARIO_SOLO_ESTUDIO_{len(amap)}")
+    except (requests.RequestException,ValueError) as exc:
+        notes.append("ATLAS_NO_ACCESIBLE: "+str(exc)[:90])
     return mapping,"; ".join(notes)
 
 def discover():
@@ -450,7 +502,7 @@ def run():
     report={"generated_at":now.isoformat(),"mode":"PUBLIC_ONLY_PAPER_RESEARCH_NO_ORDERS",
             "universe":{"listed_cedears":len(listed),"mapped_cedears":recognized,
                         "panel_status":panel_state,"mapping_status":mapping_state,
-                        "mapping_reference":[CAJA_XLSX,CAJA_URL,MAP_URL]},
+                        "mapping_reference":[CAJA_XLSX,CAJA_URL,MAP_URL,ATLAS_URL]},
             "coverage":{"selected":len(selected),"downloaded_histories":len(findings),
                         "valid_220_ohlcv":sum(x.get("bars_ohlcv",0)>=220 for x in findings),
                         "fresh_preliminary":sum(x.get("quality_state")=="HISTORICO_VALIDO_PRELIMINAR" for x in findings),
