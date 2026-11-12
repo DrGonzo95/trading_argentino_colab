@@ -15,6 +15,8 @@ import os
 import re
 import time
 import unicodedata
+import zipfile
+from xml.etree import ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -97,6 +99,7 @@ def parse_reference(html):
 
 
 CAJA_URL = "https://cajadevalores.com.ar/Servicios/Cedears"
+CAJA_XLSX = "https://cajadevalores.com.ar/pdf/CEDEARS.xlsx"
 
 def parse_caja_reference(html):
     """Official Caja de Valores list: exact BYMA and origin symbols plus ISIN."""
@@ -138,24 +141,101 @@ def parse_caja_reference(html):
                 "mapping_source":CAJA_URL,"mapping_verified":True}
     return mapping
 
+def parse_caja_xlsx(data):
+    """Read the official XLSX as zipped XML, no third-party workbook dependency.
+
+    Scans all worksheet tabs and only trusts clearly labelled original-ticker
+    and BYMA-symbol columns. Cells with unknown coordinates are skipped.
+    """
+    if len(data)>8_000_000 or data[:2]!=b"PK":
+        raise ValueError("NO_ES_XLSX_O_TAMANO_EXCESIVO")
+    shared=[]
+    namespace="{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+    with zipfile.ZipFile(io.BytesIO(data)) as xlsx:
+        names=xlsx.namelist()
+        if "xl/sharedStrings.xml" in names:
+            root=ET.fromstring(xlsx.read("xl/sharedStrings.xml"))
+            for si in root.findall(namespace+"si"):
+                shared.append("".join((el.text or "") for el in si.iter(namespace+"t")))
+        mapping={}
+        for filename in names:
+            if not re.fullmatch(r"xl/worksheets/sheet\d+\.xml",filename):
+                continue
+            sheet=ET.fromstring(xlsx.read(filename))
+            rows=[]
+            for row in sheet.iter(namespace+"row"):
+                cells={}
+                for cell in row.findall(namespace+"c"):
+                    letter=re.match(r"^[A-Z]+",cell.get("r",""))
+                    if not letter:
+                        continue
+                    col=0
+                    for ch in letter.group(0):
+                        col=col*26+(ord(ch)-64)
+                    col-=1
+                    v=cell.find(namespace+"v")
+                    if cell.get("t")=="s" and v is not None:
+                        try: value=shared[int(v.text)]
+                        except (ValueError,IndexError,TypeError):continue
+                    elif cell.get("t")=="inlineStr":
+                        value="".join((x.text or "") for x in cell.iter(namespace+"t"))
+                    else:
+                        value=v.text if v is not None else ""
+                    cells[col]=str(value).strip()
+                if cells:
+                    rows.append(cells)
+            for idx,header in enumerate(rows[:35]):
+                heads={i:" ".join(norm(v).split()) for i,v in header.items()}
+                try:
+                    byma_i=next(i for i,v in heads.items() if "simbolo byma" in v)
+                    origin_i=next(i for i,v in heads.items() if "ticker en mercado" in v)
+                    exchange_i=next(i for i,v in heads.items() if "mercado de origen" in v)
+                except StopIteration:
+                    continue
+                ratio_i=next((i for i,v in heads.items() if "ratio" in v),None)
+                isin_i=next((i for i,v in heads.items() if "isin accion" in v or "isin etf" in v),None)
+                for cells in rows[idx+1:]:
+                    byma=safe_symbol(cells.get(byma_i,""))
+                    ticker=safe_symbol(cells.get(origin_i,""))
+                    exchange=cells.get(exchange_i,"").upper()
+                    if not byma or not ticker or not any(t in exchange for t in US_EXCHANGES):
+                        continue
+                    if "OTC" in exchange or "GDR" in exchange:
+                        continue
+                    mapping[byma]={"ticker":ticker,"exchange_reference":exchange,
+                        "ratio_reference":cells.get(ratio_i) if ratio_i is not None else None,
+                        "isin_underlying":cells.get(isin_i) if isin_i is not None else None,
+                        "mapping_source":CAJA_XLSX,"mapping_verified":True}
+                break
+    return mapping
+
 def reference(session):
     mapping={}
     notes=[]
     try:
+        r=session.get(CAJA_XLSX,timeout=23)
+        r.raise_for_status()
+        xmap=parse_caja_xlsx(r.content)
+        mapping.update(xmap)
+        notes.append(f"CAJA_XLSX_OFICIAL_{len(xmap)}")
+    except (requests.RequestException,ValueError,zipfile.BadZipFile,ET.ParseError) as exc:
+        notes.append("CAJA_XLSX_NO_DISPONIBLE: "+str(exc)[:90])
+    try:
         r=session.get(CAJA_URL,timeout=22)
         r.raise_for_status()
-        mapping.update(parse_caja_reference(r.text))
-        notes.append(f"CAJA_OFICIAL_{len(mapping)}")
+        hmap=parse_caja_reference(r.text)
+        for ticker,details in hmap.items():
+            mapping.setdefault(ticker,details)
+        notes.append(f"CAJA_HTML_{len(hmap)}")
     except (requests.RequestException,ValueError) as exc:
-        notes.append("CAJA_NO_ACCESIBLE: "+str(exc)[:90])
+        notes.append("CAJA_HTML_NO_ACCESIBLE: "+str(exc)[:90])
     try:
         r=session.get(MAP_URL,timeout=22)
         r.raise_for_status()
-        more=parse_reference(r.text)
-        # For overlapping securities, prefer Caja de Valores (official).
-        for ticker,details in more.items():
+        cmap=parse_reference(r.text)
+        for ticker,details in cmap.items():
             mapping.setdefault(ticker,details)
-        notes.append(f"CRITERIA_{len(more)}")
+        notes.append(f"CRITERIA_{len(cmap)}")
     except (requests.RequestException,ValueError) as exc:
         notes.append("CRITERIA_NO_ACCESIBLE: "+str(exc)[:90])
     return mapping,"; ".join(notes)
@@ -370,7 +450,7 @@ def run():
     report={"generated_at":now.isoformat(),"mode":"PUBLIC_ONLY_PAPER_RESEARCH_NO_ORDERS",
             "universe":{"listed_cedears":len(listed),"mapped_cedears":recognized,
                         "panel_status":panel_state,"mapping_status":mapping_state,
-                        "mapping_reference":[CAJA_URL,MAP_URL]},
+                        "mapping_reference":[CAJA_XLSX,CAJA_URL,MAP_URL]},
             "coverage":{"selected":len(selected),"downloaded_histories":len(findings),
                         "valid_220_ohlcv":sum(x.get("bars_ohlcv",0)>=220 for x in findings),
                         "fresh_preliminary":sum(x.get("quality_state")=="HISTORICO_VALIDO_PRELIMINAR" for x in findings),
