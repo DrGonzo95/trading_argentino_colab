@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-11-11T23:51:34.692014-03:00",
+  "generated_at": "2026-11-12T17:46:28.842173-03:00",
   "source_name": "Gio Bursatil (independiente de IOL)",
   "source_url": "https://giobursatil.com.ar/cotizaciones/",
   "method": "Comparación de cierre por símbolo y fecha de mercado, NO precio ejecutable",
   "state": "NO_SAME_DATE_OVERLAP",
-  "asof": "2026-11-11",
+  "asof": "2026-11-12",
   "checked": 0,
   "matched": 0,
   "discrepancies": 0,
