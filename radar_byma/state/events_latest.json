@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-12T22:55:47.000737-03:00",
+  "revisado_en": "2026-11-13T17:31:13.271235-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,8 +49,8 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 297,
-  "hechos_cnv_coincidentes": 26,
+  "total_hechos_cnv": 326,
+  "hechos_cnv_coincidentes": 29,
   "consultas_noticias": 32,
   "noticias_con_nombre_coincidente": 53,
   "estado_redes": "DISPONIBLE",
@@ -59,7 +59,7 @@
     {
       "ticker": "BMA",
       "documentos_cnv": 6,
-      "titulares": 0,
+      "titulares": 3,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -95,10 +95,10 @@
     {
       "ticker": "EDN",
       "documentos_cnv": 2,
-      "titulares": 6,
+      "titulares": 5,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 96,
+      "prioridad_lectura": 90,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -113,44 +113,55 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "FERR",
-      "documentos_cnv": 2,
-      "titulares": 2,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 72,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
       "ticker": "LEDE",
-      "documentos_cnv": 0,
-      "titulares": 10,
+      "documentos_cnv": 1,
+      "titulares": 9,
       "social_no_verificado": 0,
       "temas": [
         "produccion",
         "resultados_balance"
       ],
-      "prioridad_lectura": 60,
-      "estado": "INVESTIGAR_NOTICIAS"
+      "prioridad_lectura": 84,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "TECO2",
+      "ticker": "FERR",
+      "documentos_cnv": 2,
+      "titulares": 3,
+      "social_no_verificado": 0,
+      "temas": [
+        "produccion"
+      ],
+      "prioridad_lectura": 78,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "COME",
       "documentos_cnv": 1,
-      "titulares": 1,
+      "titulares": 2,
       "social_no_verificado": 0,
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 36,
+      "prioridad_lectura": 42,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "METR",
+      "documentos_cnv": 0,
+      "titulares": 7,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 42,
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "ALUA",
       "documentos_cnv": 1,
-      "titulares": 0,
+      "titulares": 1,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 30,
+      "prioridad_lectura": 36,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -176,43 +187,31 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "METR",
-      "documentos_cnv": 0,
-      "titulares": 5,
+      "ticker": "TECO2",
+      "documentos_cnv": 1,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [],
       "prioridad_lectura": 30,
-      "estado": "INVESTIGAR_NOTICIAS"
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "CRES",
-      "documentos_cnv": 0,
-      "titulares": 4,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 24,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "LOMA",
-      "documentos_cnv": 0,
-      "titulares": 4,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 24,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "TRAN",
-      "documentos_cnv": 0,
-      "titulares": 4,
+      "ticker": "TGSU2",
+      "documentos_cnv": 1,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "CEPU",
+      "documentos_cnv": 0,
+      "titulares": 4,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
       "prioridad_lectura": 24,
       "estado": "INVESTIGAR_NOTICIAS"
     }
