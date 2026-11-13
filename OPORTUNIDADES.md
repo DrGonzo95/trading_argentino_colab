@@ -2,7 +2,7 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 12/11/2026 22:32 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 12/11/2026 23:33 (Argentina); hora real de negociación desconocida.
 
 **Universo:** 1877 especies, incluidos 87 acciones y 955 CEDEARs.
 
@@ -18,7 +18,7 @@
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **BMA** | $9.260,00 | -3.18% | 46 | [INFORMACIÓN SOCIETARIA - ADQUISICIÓN DE ACCIONES PROPIAS EN LOS TÉRMINOS DEL ART. 64 DE LA LEY ](https://aif2.cnv.gov.ar/Presentations/publicview/7B7F011E-0F64-4EE1-A458-BCD2D9AB3C53) | No hay entrada confirmada |
+| **BMA** | $9.260,00 | -3.18% | 46 | [INFORMACIÓN SOCIETARIA - ADQUISICIÓN DE ACCIONES PROPIAS EN LOS TÉRMINOS DEL ARTÍCULO 64 DE LA ](https://aif2.cnv.gov.ar/Presentations/publicview/A6C73767-55D6-4A16-96E8-CBA18C5EA216) | No hay entrada confirmada |
 | **CTIO** | $1.725,00 | -4.95% | 46 | [TIPO HR: OTROS - PROGRAMA: CONSULTATIO ACA VALORES MAIZ FCI - SERIE :CONSULTATIO ACA VALORES MA](https://aif2.cnv.gov.ar/Presentations/publicview/40A2B7F9-A848-4A22-926A-A400AB378F86) | No hay entrada confirmada |
 | **BBAR** | $5.755,00 | -3.03% | 36 | [El valor razonable de InvestingPro predijo la caída del 36% de BBVA Argentina Por Investing.com](https://news.google.com/rss/articles/CBMi0gFBVV95cUxOODJRU2VGZE1XSmtRcHYzREVzZkVSc3FPMUhaZEhDOVlUQldzVjZfVElFd2l1R1lGLThINjNfVzFvS3ZkdWs1MmxpT0Etc1dtSVh3YzNCYnhrdVdxMjdxX29pODM5aGlWTWNMZ1BsY1lSSDVnQ2V5Tm1iZHB4U3NNemFXN0tGWksxVWUwNUQyQlJBOHZsLU53ZjJSc1JPWnBzRzBBOE5ZNGp5YXJZdVZsRFQtemR5bnFhTmd6MUs4ZXM1enM5MTZMell6SURsUG5ETUE?oc=5) | No hay entrada confirmada |
 | **IRSA** | $2.025,00 | -3.80% | 29 | [What IRSA Inversiones Y Representaciones (IRS) Said on Its Q1 Earnings Call - TradingView](https://news.google.com/rss/articles/CBMizgFBVV95cUxPc1NWdTRzQVZDaTFGNUdFNXR5NDNiUGRjWXJIbHE4ellJZnR4M2wtMklNTHY4RE9rMmV2X2luV1VIbGRUMERob195YlVLTDZ0RVJ3bmExN0d1djRaU3JVZzdZR2EzZ1pnOEhjZFF1N0VKNkc2T0hjR3Z3QzNqZnJDd2c0dkVmbW1WMU1nSTZuSFJGUm9RZFctQTJzX3NoS21GcmZPWE1aTlNGR21uc1ZSSXRJbHY2aUVBYnJTZ2lmc2kxMmRwSWJyTzgwdTlfZw?oc=5) | No hay entrada confirmada |
