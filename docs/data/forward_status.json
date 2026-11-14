@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-11-13T17:27:58.756196-03:00",
+  "generated_at": "2026-11-13T22:00:57.317076-03:00",
   "kind": "FORWARD_LEDGER_ONLY",
   "strategy_state": "EXPERIMENTAL_NOT_PROVEN",
   "from_exclusive": "2026-10-30",
-  "last_processed_session": "2026-11-11",
+  "last_processed_session": "2026-11-12",
   "portfolio_tracking": {
     "50000": {
       "closed_or_recorded_orders": 0,
       "open_positions": 0,
-      "pending_entries": 0,
+      "pending_entries": 1,
       "rejections": 2,
-      "signals_seen": 2,
+      "signals_seen": 3,
       "portfolio_equity_ars": 50000.0,
       "capital_ars": 50000.0
     },
     "100000": {
       "closed_or_recorded_orders": 0,
       "open_positions": 0,
-      "pending_entries": 0,
+      "pending_entries": 1,
       "rejections": 2,
-      "signals_seen": 2,
+      "signals_seen": 3,
       "portfolio_equity_ars": 100000.0,
       "capital_ars": 100000.0
     }
