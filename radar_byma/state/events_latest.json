@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-13T17:31:13.271235-03:00",
+  "revisado_en": "2026-11-13T22:29:37.653884-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,17 +49,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 326,
-  "hechos_cnv_coincidentes": 29,
+  "total_hechos_cnv": 341,
+  "hechos_cnv_coincidentes": 34,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 53,
+  "noticias_con_nombre_coincidente": 55,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 6,
-      "titulares": 3,
+      "documentos_cnv": 8,
+      "titulares": 4,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -70,7 +70,7 @@
     },
     {
       "ticker": "BYMA",
-      "documentos_cnv": 4,
+      "documentos_cnv": 6,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -95,9 +95,21 @@
     {
       "ticker": "EDN",
       "documentos_cnv": 2,
-      "titulares": 5,
+      "titulares": 6,
       "social_no_verificado": 0,
       "temas": [],
+      "prioridad_lectura": 96,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "LEDE",
+      "documentos_cnv": 1,
+      "titulares": 10,
+      "social_no_verificado": 0,
+      "temas": [
+        "produccion",
+        "resultados_balance"
+      ],
       "prioridad_lectura": 90,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
@@ -110,18 +122,6 @@
         "resultados_balance"
       ],
       "prioridad_lectura": 90,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "LEDE",
-      "documentos_cnv": 1,
-      "titulares": 9,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 84,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -147,13 +147,15 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "METR",
-      "documentos_cnv": 0,
-      "titulares": 7,
+      "ticker": "MOLI",
+      "documentos_cnv": 1,
+      "titulares": 2,
       "social_no_verificado": 0,
-      "temas": [],
+      "temas": [
+        "adquisicion"
+      ],
       "prioridad_lectura": 42,
-      "estado": "INVESTIGAR_NOTICIAS"
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
       "ticker": "ALUA",
@@ -167,13 +169,22 @@
     {
       "ticker": "CVH",
       "documentos_cnv": 1,
-      "titulares": 0,
+      "titulares": 1,
       "social_no_verificado": 0,
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 30,
+      "prioridad_lectura": 36,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "METR",
+      "documentos_cnv": 0,
+      "titulares": 6,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 36,
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "LONG",
@@ -203,17 +214,6 @@
       "temas": [],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "CEPU",
-      "documentos_cnv": 0,
-      "titulares": 4,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 24,
-      "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
   "restricciones": [
