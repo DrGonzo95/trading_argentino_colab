@@ -1,11 +1,17 @@
 {
-  "revisado_en": "2026-11-13T22:29:37.653884-03:00",
+  "revisado_en": "2026-11-16T19:56:14.150934-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
   "completo_balance_cuantitativo": false,
   "anotaciones": [],
-  "errores": {},
+  "errores": {
+    "rss_BPAT": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22BANCO+PATAGONIA",
+    "rss_FERR": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22FERRUM%22+%28ac",
+    "rss_LOMA": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22LOMA+NEGRA%22+%",
+    "rss_PAMP": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22PAMPA+ENERGIA%2",
+    "rss_RIGO": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22RIGOLLEAU%22+%2"
+  },
   "acciones_sin_mapeo": [
     "A3",
     "ALUAD",
@@ -49,17 +55,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 341,
-  "hechos_cnv_coincidentes": 34,
+  "total_hechos_cnv": 361,
+  "hechos_cnv_coincidentes": 41,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 55,
+  "noticias_con_nombre_coincidente": 47,
   "estado_redes": "DISPONIBLE",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 8,
-      "titulares": 4,
+      "documentos_cnv": 10,
+      "titulares": 1,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -70,7 +76,7 @@
     },
     {
       "ticker": "BYMA",
-      "documentos_cnv": 6,
+      "documentos_cnv": 10,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -82,7 +88,7 @@
     },
     {
       "ticker": "CTIO",
-      "documentos_cnv": 5,
+      "documentos_cnv": 4,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -90,27 +96,6 @@
         "resultados_balance"
       ],
       "prioridad_lectura": 100,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "EDN",
-      "documentos_cnv": 2,
-      "titulares": 6,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 96,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "LEDE",
-      "documentos_cnv": 1,
-      "titulares": 10,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 90,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -125,14 +110,54 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "FERR",
-      "documentos_cnv": 2,
-      "titulares": 3,
+      "ticker": "LEDE",
+      "documentos_cnv": 1,
+      "titulares": 9,
       "social_no_verificado": 0,
       "temas": [
-        "produccion"
+        "produccion",
+        "resultados_balance"
       ],
-      "prioridad_lectura": 78,
+      "prioridad_lectura": 84,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "METR",
+      "documentos_cnv": 1,
+      "titulares": 9,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 84,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "EDN",
+      "documentos_cnv": 1,
+      "titulares": 6,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 66,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "MOLI",
+      "documentos_cnv": 1,
+      "titulares": 6,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 66,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "FERR",
+      "documentos_cnv": 2,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 60,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -147,24 +172,15 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "MOLI",
-      "documentos_cnv": 1,
-      "titulares": 2,
+      "ticker": "CEPU",
+      "documentos_cnv": 0,
+      "titulares": 6,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion"
+        "resultados_balance"
       ],
-      "prioridad_lectura": 42,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "ALUA",
-      "documentos_cnv": 1,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [],
       "prioridad_lectura": 36,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "CVH",
@@ -178,13 +194,22 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "METR",
-      "documentos_cnv": 0,
-      "titulares": 6,
+      "ticker": "ALUA",
+      "documentos_cnv": 1,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 36,
-      "estado": "INVESTIGAR_NOTICIAS"
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "GGAL",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
       "ticker": "LONG",
@@ -194,24 +219,6 @@
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "TECO2",
-      "documentos_cnv": 1,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "TGSU2",
-      "documentos_cnv": 1,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     }
