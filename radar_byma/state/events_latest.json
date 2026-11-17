@@ -1,17 +1,11 @@
 {
-  "revisado_en": "2026-11-16T19:56:14.150934-03:00",
+  "revisado_en": "2026-11-17T18:49:55.578471-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
   "completo_balance_cuantitativo": false,
   "anotaciones": [],
-  "errores": {
-    "rss_BPAT": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22BANCO+PATAGONIA",
-    "rss_FERR": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22FERRUM%22+%28ac",
-    "rss_LOMA": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22LOMA+NEGRA%22+%",
-    "rss_PAMP": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22PAMPA+ENERGIA%2",
-    "rss_RIGO": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22RIGOLLEAU%22+%2"
-  },
+  "errores": {},
   "acciones_sin_mapeo": [
     "A3",
     "ALUAD",
@@ -55,17 +49,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 361,
-  "hechos_cnv_coincidentes": 41,
+  "total_hechos_cnv": 233,
+  "hechos_cnv_coincidentes": 36,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 47,
-  "estado_redes": "DISPONIBLE",
+  "noticias_con_nombre_coincidente": 39,
+  "estado_redes": "NO_DISPONIBLE:HTTPError:404 Client Error: Not Found for url: https://www.reddit.com/r/merval/new/.rss?limit=50",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 10,
-      "titulares": 1,
+      "documentos_cnv": 8,
+      "titulares": 5,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -99,56 +93,14 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "TGNO4",
+      "ticker": "SUPV",
       "documentos_cnv": 3,
-      "titulares": 0,
+      "titulares": 4,
       "social_no_verificado": 0,
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 90,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "LEDE",
-      "documentos_cnv": 1,
-      "titulares": 9,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 84,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "METR",
-      "documentos_cnv": 1,
-      "titulares": 9,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 84,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "EDN",
-      "documentos_cnv": 1,
-      "titulares": 6,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 66,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "MOLI",
-      "documentos_cnv": 1,
-      "titulares": 6,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 66,
+      "prioridad_lectura": 100,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -161,6 +113,19 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
+      "ticker": "TECO2",
+      "documentos_cnv": 1,
+      "titulares": 5,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "financiamiento",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 60,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
       "ticker": "COME",
       "documentos_cnv": 1,
       "titulares": 2,
@@ -169,6 +134,15 @@
         "resultados_balance"
       ],
       "prioridad_lectura": 42,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "ALUA",
+      "documentos_cnv": 1,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 36,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -194,15 +168,6 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "ALUA",
-      "documentos_cnv": 1,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
       "ticker": "GGAL",
       "documentos_cnv": 1,
       "titulares": 0,
@@ -212,13 +177,40 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "LONG",
+      "ticker": "LEDE",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "METR",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "MOLI",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
-        "resultados_balance"
+        "adquisicion"
       ],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "TGSU2",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     }
