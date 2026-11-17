@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T01:26:28.170839-03:00",
+  "generated_at": "2026-11-17T18:44:36.545740-03:00",
   "method": "RSI14 crosses above 35, closing price above EMA200. Signal at close. Next session OPEN, ATR14 stop 1.2x / target 3.5x, max hold 14 sessions.",
   "basis": "Unadjusted public daily candles from locally cached IOL BCBA; not independently matched to official settlement, adjustments, bid/ask or corporate actions.",
   "version": "frozen-rsi35-v1",
@@ -11,11 +11,12 @@
     "capital_exposure_not_modeled": true,
     "spread_not_observed": true
   },
-  "history_sources": 22,
-  "valid_symbols": 17,
+  "history_sources": 24,
+  "valid_symbols": 19,
   "symbols": {
     "ADBE": 500,
     "AGRO": 500,
+    "BABA": 500,
     "BBAR": 500,
     "BHIP": 500,
     "BMA": 500,
@@ -29,6 +30,7 @@
     "SAMI": 500,
     "TGSU2": 500,
     "TRAN": 500,
+    "VALE": 500,
     "VALO": 500,
     "VIST": 500
   },
@@ -39,7 +41,7 @@
     "METR": "salto diario >35%, revisar ajuste corporativo",
     "SUPV": "salto diario >35%, revisar ajuste corporativo"
   },
-  "split_date": "2026-01-14",
+  "split_date": "2026-01-16",
   "train": {
     "trades": 2,
     "win_rate_pct": 0.0,
@@ -50,13 +52,13 @@
     "hypothetical_sequential_return_pct": -13.76
   },
   "test": {
-    "trades": 9,
-    "win_rate_pct": 22.22,
-    "mean_net_pct": -6.425,
-    "median_net_pct": -8.801,
-    "profit_factor": 0.052,
-    "max_drawdown_pct": -45.52,
-    "hypothetical_sequential_return_pct": -45.52
+    "trades": 10,
+    "win_rate_pct": 20.0,
+    "mean_net_pct": -6.408,
+    "median_net_pct": -8.243,
+    "profit_factor": 0.047,
+    "max_drawdown_pct": -48.93,
+    "hypothetical_sequential_return_pct": -48.93
   },
   "sample_ok": false,
   "status": "EXPLORATORY_NOT_PROVEN",
@@ -118,6 +120,16 @@
       "entry": 13413.4,
       "exit": 12367.806,
       "return_pct": -9.10526,
+      "exit_reason": "stop"
+    },
+    {
+      "symbol": "BABA",
+      "signal_date": "2026-02-20",
+      "entry_date": "2026-02-23",
+      "exit_date": "2026-02-27",
+      "entry": 25004.98,
+      "exit": 23777.4469,
+      "return_pct": -6.26028,
       "exit_reason": "stop"
     },
     {
