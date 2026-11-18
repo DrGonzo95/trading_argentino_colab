@@ -1,6 +1,6 @@
 {
-  "revisado_en": "2026-11-18T00:45:11.975096-03:00",
-  "total_acciones_panel": 87,
+  "revisado_en": "2026-11-18T18:29:00.968785-03:00",
+  "total_acciones_panel": 88,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
   "completo_balance_cuantitativo": false,
@@ -30,6 +30,7 @@
     "GRIM",
     "HAVA",
     "IEB",
+    "INAG",
     "INTR",
     "IRSAD",
     "LOMAD",
@@ -49,17 +50,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 209,
-  "hechos_cnv_coincidentes": 28,
+  "total_hechos_cnv": 225,
+  "hechos_cnv_coincidentes": 29,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 51,
+  "noticias_con_nombre_coincidente": 56,
   "estado_redes": "NO_DISPONIBLE:HTTPError:404 Client Error: Not Found for url: https://www.reddit.com/r/merval/new/.rss?limit=50",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
       "documentos_cnv": 6,
-      "titulares": 5,
+      "titulares": 3,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -104,24 +105,24 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
+      "ticker": "LEDE",
+      "documentos_cnv": 1,
+      "titulares": 8,
+      "social_no_verificado": 0,
+      "temas": [
+        "produccion",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 78,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
       "ticker": "METR",
       "documentos_cnv": 1,
       "titulares": 8,
       "social_no_verificado": 0,
       "temas": [],
       "prioridad_lectura": 78,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "LEDE",
-      "documentos_cnv": 1,
-      "titulares": 6,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 66,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -136,29 +137,29 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
+      "ticker": "PAMP",
+      "documentos_cnv": 0,
+      "titulares": 9,
+      "social_no_verificado": 0,
+      "temas": [
+        "financiamiento",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 54,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
       "ticker": "LOMA",
       "documentos_cnv": 1,
-      "titulares": 1,
+      "titulares": 2,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
         "recompra",
         "resultados_balance"
       ],
-      "prioridad_lectura": 36,
+      "prioridad_lectura": 42,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "PAMP",
-      "documentos_cnv": 0,
-      "titulares": 6,
-      "social_no_verificado": 0,
-      "temas": [
-        "financiamiento",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 36,
-      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "TECO2",
@@ -185,6 +186,15 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
+      "ticker": "DGCU2",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
       "ticker": "GGAL",
       "documentos_cnv": 1,
       "titulares": 0,
@@ -203,23 +213,14 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "MIRG",
+      "ticker": "ALUA",
       "documentos_cnv": 0,
       "titulares": 3,
       "social_no_verificado": 0,
       "temas": [
-        "resultados_balance"
+        "produccion"
       ],
       "prioridad_lectura": 18,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "BPAT",
-      "documentos_cnv": 0,
-      "titulares": 2,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 12,
       "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
