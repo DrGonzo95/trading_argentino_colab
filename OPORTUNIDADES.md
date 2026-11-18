@@ -2,11 +2,11 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 18/11/2026 00:38 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 18/11/2026 18:22 (Argentina); hora real de negociación desconocida.
 
-**Universo:** 1884 especies, incluidos 87 acciones y 959 CEDEARs.
+**Universo:** 1891 especies, incluidos 88 acciones y 967 CEDEARs.
 
-**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 4. **Indicadores técnicos validados:** 2.
+**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 2. **Indicadores técnicos validados:** 2.
 
 ## Entradas ficticias con niveles (no ejecutadas)
 
@@ -18,10 +18,8 @@
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **COME** | $29,40 | -3.13% | 31 | [Sociedad Comercial del Plata S A : Hecho Relevante SCP - EEFF 30-09-2026 - MarketScreener Españ](https://news.google.com/rss/articles/CBMiwgFBVV95cUxPa2g2VmNycEF6NGJsWTZkSW5ETVZlUjE0STEtdGlEejlqQUM0b3pWalBmcVJPUk84SDlteTAxNlZyTndSbWx5UC04NXlGTGlMc08zeFVwNjVhUTA4UjhYLXdEMlQ3S3dObHBjbUtzXzNwUExuRVI1dmZqSmMta3VMbHh5cUNXTUNjNGN3eTYwRlE5dXpZZF9INEpWYkJqakdHbFRYaE1LcWludkV2aGlaY25jalNSeXJaam14M3hmUTBEdw?oc=5) | No hay entrada confirmada |
-| **METR** | $2.055,00 | -7.68% | 29 | [Metrogas: la explosión en Remedios de Escalada golpea a Javier Milei, Horacio Marín y José Luis](https://news.google.com/rss/articles/CBMi6AFBVV95cUxOeXc3TVRYTm1XeHZDbzV0eUVtMjAtcDFKeFpqdW5nYjZfZnNrMmRpd3NNZ2xYUDRZbTlKVjZDWjVJRFFhUWFSNTQ2X1ZIT0kzN0pRWEpTVVRNT0hHeTNwaGJpbkliYmNmcGoxRzhXQzlEZHNLN2g4T0pPSWpSdzN0RENkSHlMUklKUTdnbGE3ZDFHSnFVX2o1TmcwbFVSSU84QTlJY0dfbXRtRlQ1ZVJRZTlqeHRjTFVzU0dITEtxaWdfcXNzdGRKZTQ1Yi1TUXdDNURhUnhpYW1EN1JnV0g4eEtSQmxIWFZ2?oc=5) | No hay entrada confirmada |
-| **CTIO** | $1.620,00 | -3.85% | 28 | [TIPO HR: OTROS - PROGRAMA: CONSULTATIO ACA VALORES MAIZ FCI - SERIE :CONSULTATIO ACA VALORES MA](https://aif2.cnv.gov.ar/Presentations/publicview/40A2B7F9-A848-4A22-926A-A400AB378F86) | No hay entrada confirmada |
-| **INVJ** | $334,00 | -3.74% | 26 | [Inversora Juramento, Grupo ST y Loma Negra lideran nuevas emisiones en el mercado de capitales ](https://news.google.com/rss/articles/CBMisgFBVV95cUxNQnpsR1VWWnBEVTRLNXdjekdnd0EzaWoyZTRRZkVkN1lFZWluVWI2UkhrN2xSQ3JfNHhvU3hxNlpWSGcwS1ZOSF9IbkZBaU5ZUVBCSjBHbURHWmdoRXhsNVYtZUZuLTBJcC1SYVNKV3d3Y0NsNUVxeDI3VllzRWgzaWp1OTVwQmlMbE9BWkZuQnVVZG9BWHR4elBqRkQ5VjJ0Y0lNazQ0eHlXU0stVDZGZzFB?oc=5) | No hay entrada confirmada |
+| **CRES** | $1.456,00 | -4.71% | 29 | [Informe de resultados de Cresud: el beneficio del Q1 2027 golpeado por la inflación - Investing](https://news.google.com/rss/articles/CBMi0wFBVV95cUxQSXd5SWhDR3hzcVEta1NHLXVxU1N0WmZCNmJCNHdXWnE1MFNMTUFneDY4UEVfU0t3d3EtOHJ1bTdnSFV3UDRuREhGTzJ6UmlUZEhSM18zTEN5bEJnRS1BcnNTUlJwU0FaMjctdTFYelNabmN4cTZReVdpNWdVSzhKR3R6Y1hTMkk0S0QwSHpIOGIxREljZnpQSk0wOFJreDNrOEFyRkNUYkNTRVpwNWdzZ29UQk5uN0VwQXpTMVVQLTcwQ1J6M3JSY0ctaWtHTHNHREVn?oc=5) | No hay entrada confirmada |
+| **INVJ** | $321,00 | -3.89% | 22 | [Inversora Juramento, Grupo ST y Loma Negra lideran nuevas emisiones en el mercado de capitales ](https://news.google.com/rss/articles/CBMisgFBVV95cUxNQnpsR1VWWnBEVTRLNXdjekdnd0EzaWoyZTRRZkVkN1lFZWluVWI2UkhrN2xSQ3JfNHhvU3hxNlpWSGcwS1ZOSF9IbkZBaU5ZUVBCSjBHbURHWmdoRXhsNVYtZUZuLTBJcC1SYVNKV3d3Y0NsNUVxeDI3VllzRWgzaWp1OTVwQmlMbE9BWkZuQnVVZG9BWHR4elBqRkQ5VjJ0Y0lNazQ0eHlXU0stVDZGZzFB?oc=5) | No hay entrada confirmada |
 
 La coincidencia entre una caída y una noticia no demuestra relación causal ni implica que habrá rebote.
 
