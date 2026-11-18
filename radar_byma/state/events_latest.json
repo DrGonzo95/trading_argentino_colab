@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-17T18:49:55.578471-03:00",
+  "revisado_en": "2026-11-18T00:45:11.975096-03:00",
   "total_acciones_panel": 87,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -49,16 +49,16 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 233,
-  "hechos_cnv_coincidentes": 36,
+  "total_hechos_cnv": 209,
+  "hechos_cnv_coincidentes": 28,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 39,
+  "noticias_con_nombre_coincidente": 51,
   "estado_redes": "NO_DISPONIBLE:HTTPError:404 Client Error: Not Found for url: https://www.reddit.com/r/merval/new/.rss?limit=50",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 8,
+      "documentos_cnv": 6,
       "titulares": 5,
       "social_no_verificado": 0,
       "temas": [
@@ -70,7 +70,7 @@
     },
     {
       "ticker": "BYMA",
-      "documentos_cnv": 10,
+      "documentos_cnv": 8,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -104,67 +104,84 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "FERR",
-      "documentos_cnv": 2,
-      "titulares": 0,
+      "ticker": "METR",
+      "documentos_cnv": 1,
+      "titulares": 8,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 60,
+      "prioridad_lectura": 78,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "TECO2",
+      "ticker": "LEDE",
+      "documentos_cnv": 1,
+      "titulares": 6,
+      "social_no_verificado": 0,
+      "temas": [
+        "produccion",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 66,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "MOLI",
       "documentos_cnv": 1,
       "titulares": 5,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion",
-        "financiamiento",
-        "resultados_balance"
+        "adquisicion"
       ],
       "prioridad_lectura": 60,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "COME",
-      "documentos_cnv": 1,
-      "titulares": 2,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 42,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "ALUA",
+      "ticker": "LOMA",
       "documentos_cnv": 1,
       "titulares": 1,
       "social_no_verificado": 0,
-      "temas": [],
+      "temas": [
+        "adquisicion",
+        "recompra",
+        "resultados_balance"
+      ],
       "prioridad_lectura": 36,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "CEPU",
+      "ticker": "PAMP",
       "documentos_cnv": 0,
       "titulares": 6,
       "social_no_verificado": 0,
       "temas": [
+        "financiamiento",
         "resultados_balance"
       ],
       "prioridad_lectura": 36,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "CVH",
+      "ticker": "TECO2",
+      "documentos_cnv": 0,
+      "titulares": 6,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "financiamiento",
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 36,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "COME",
       "documentos_cnv": 1,
-      "titulares": 1,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 36,
+      "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
@@ -177,35 +194,6 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "LEDE",
-      "documentos_cnv": 1,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "METR",
-      "documentos_cnv": 1,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "MOLI",
-      "documentos_cnv": 1,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion"
-      ],
-      "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
       "ticker": "TGSU2",
       "documentos_cnv": 1,
       "titulares": 0,
@@ -213,6 +201,26 @@
       "temas": [],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "MIRG",
+      "documentos_cnv": 0,
+      "titulares": 3,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 18,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "BPAT",
+      "documentos_cnv": 0,
+      "titulares": 2,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 12,
+      "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
   "restricciones": [
