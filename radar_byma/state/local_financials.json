@@ -63,22 +63,22 @@
     },
     "CARC": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-11T17:11:21.551130-03:00",
+      "checked_at": "2026-11-18T18:26:19.993946-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "CECO2": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-11T17:11:21.551130-03:00",
+      "checked_at": "2026-11-18T18:26:19.993946-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "CELU": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-11T17:11:21.551130-03:00",
+      "checked_at": "2026-11-18T18:26:19.993946-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "CEPU": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-11T17:11:21.551130-03:00",
+      "checked_at": "2026-11-18T18:26:19.993946-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "CGPA2": {
@@ -340,9 +340,14 @@
       "status": "NOT_VERIFIED",
       "checked_at": "2026-11-18T01:18:01.066633-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
+    },
+    "INAG": {
+      "status": "NOT_VERIFIED",
+      "checked_at": "2026-11-18T18:26:19.993946-03:00",
+      "reason": "ValueError: Missing required annual income/balance/cashflows"
     }
   },
-  "last_run": "2026-11-18T01:18:01.066633-03:00",
+  "last_run": "2026-11-18T18:26:19.993946-03:00",
   "source": "stockanalysis.com/quote/bcba (third-party summary; ARS millions)",
-  "all_listed": 68
+  "all_listed": 69
 }
