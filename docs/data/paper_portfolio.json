@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "currency": "USD",
+  "initial_cash": 1000,
+  "cash": 1000,
+  "positions": [],
+  "closed": [],
+  "events": [],
+  "processed_report_at": null,
+  "pending": [],
+  "updated_at": null,
+  "status": "PAPER_ONLY_NO_BROKER"
+}
