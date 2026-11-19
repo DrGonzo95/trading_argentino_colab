@@ -503,11 +503,14 @@ def run():
                 ok=cross is not None and abs(cross["close"]/metrics["last_close"]-1)<=.015
                 result["independent_quote"]=cross
                 result["independent_match"]=ok
-                if ok and info["mapping_verified"]:
+                if ok:
+                    # USD original can be studied independently of the local
+                    # CEDEAR conversion ratio; ARS execution stays prohibited.
                     result["research_state"]="VIGILANCIA_TECNICA_SUBYACENTE_NO_EJECUTABLE"
+                    result["cedear_ars_execution_authorized"]=False
                     watches.append(sym)
                 else:
-                    result["research_state"]="FALTA_COTEJO_INDEPENDIENTE_O_MAPEO"
+                    result["research_state"]="FALTA_COTEJO_INDEPENDIENTE"
             else:
                 result["research_state"]="SIN_SETUP_TECNICO_CONFIRMADO"
             findings.append(result)
