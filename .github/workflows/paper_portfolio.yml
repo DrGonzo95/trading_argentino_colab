@@ -22,6 +22,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install public data dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4
       - name: Validate paper ledger
         run: python -m unittest discover -s radar_byma -p 'test_paper_portfolio.py' -v
       - name: Read research and update USD paper ledger
