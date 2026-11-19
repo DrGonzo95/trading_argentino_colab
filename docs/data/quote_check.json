@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-18T23:47:53.914657-03:00",
+  "generated_at": "2026-11-19T00:13:14.348711-03:00",
   "source_name": "Gio Bursatil (independiente de IOL)",
   "source_url": "https://giobursatil.com.ar/cotizaciones/",
   "method": "Comparación de cierre por símbolo y fecha de mercado, NO precio ejecutable",
-  "state": "NO_SAME_DATE_OVERLAP",
-  "asof": "2026-11-18",
+  "state": "UNAVAILABLE",
+  "asof": null,
   "checked": 0,
   "matched": 0,
   "discrepancies": 0,
   "prices": {},
-  "error": null
+  "error": "ValueError: La tabla de cotizaciones líderes no está disponible en el HTML."
 }
