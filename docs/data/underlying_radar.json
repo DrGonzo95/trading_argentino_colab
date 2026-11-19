@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-19T08:18:39.484720-03:00",
+  "generated_at": "2026-11-19T08:27:39.906714-03:00",
   "mode": "PUBLIC_ONLY_PAPER_RESEARCH_NO_ORDERS",
   "universe": {
     "listed_cedears": 967,
     "mapped_cedears": 372,
     "panel_status": "PANEL_IOL_CONSULTADO",
-    "mapping_status": "CAJA_XLSX_OFICIAL_0; CAJA_HTML_0; CRITERIA_0; ATLAS_TERCIARIO_SOLO_ESTUDIO_399",
+    "mapping_status": "CAJA_XLSX_NO_DISPONIBLE: 406 Client Error: Not Acceptable for url: https://cajadevalores.com.ar/pdf/CEDEARS.xlsx; CAJA_HTML_0; CRITERIA_0; ATLAS_TERCIARIO_SOLO_ESTUDIO_399",
     "mapping_reference": [
       "https://cajadevalores.com.ar/pdf/CEDEARS.xlsx",
       "https://cajadevalores.com.ar/Servicios/Cedears",
