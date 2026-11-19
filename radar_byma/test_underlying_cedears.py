@@ -63,6 +63,33 @@ class UnderlyingTests(unittest.TestCase):
         self.assertEqual(chosen,["AMAT"])
         self.assertEqual(count,1)
 
+    def test_fallback_to_query2_when_query1_fails(self):
+        from requests.exceptions import ConnectionError
+        class FakeResponse:
+            url="https://query2.finance.yahoo.com/v8/finance/chart/AMAT"
+            def raise_for_status(self): pass
+            def json(self):
+                return {"chart":{"result":[{"meta":{"symbol":"AMAT","currency":"USD",
+                    "exchangeName":"NMS"},"timestamp":[],
+                    "indicators":{"quote":[{"open":[],"high":[],"low":[],"close":[],"volume":[]}]}}]}}
+        class FakeSession:
+            def __init__(self): self.hosts=[]
+            def get(self,url,**kwargs):
+                self.hosts.append(url.split("/")[2])
+                if "query1" in url: raise ConnectionError("primary unavailable")
+                return FakeResponse()
+        session=FakeSession()
+        with self.assertRaisesRegex(ValueError,"OHLCV_INSUFICIENTE_0"):
+            get_hist(session,"AMAT")
+        self.assertEqual(session.hosts,["query1.finance.yahoo.com","query2.finance.yahoo.com"])
+
+    def test_both_hosts_fail_closed(self):
+        from requests.exceptions import ConnectionError
+        class FakeSession:
+            def get(self,*args,**kwargs): raise ConnectionError("network unavailable")
+        with self.assertRaisesRegex(ValueError,"AMBOS_YAHOO_FALLARON"):
+            get_hist(FakeSession(),"AMAT")
+
     def test_yahoo_meta_mismatch_blocks_signal(self):
         class FakeResponse:
             url="https://query1.finance.yahoo.com/v8/finance/chart/AMAT"
