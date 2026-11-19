@@ -1,11 +1,13 @@
 {
-  "revisado_en": "2026-11-18T18:29:00.968785-03:00",
+  "revisado_en": "2026-11-19T00:39:13.650005-03:00",
   "total_acciones_panel": 88,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
   "completo_balance_cuantitativo": false,
   "anotaciones": [],
-  "errores": {},
+  "errores": {
+    "rss_CELU": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22CELULOSA+ARGENT"
+  },
   "acciones_sin_mapeo": [
     "A3",
     "ALUAD",
@@ -50,8 +52,8 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 225,
-  "hechos_cnv_coincidentes": 29,
+  "total_hechos_cnv": 184,
+  "hechos_cnv_coincidentes": 24,
   "consultas_noticias": 32,
   "noticias_con_nombre_coincidente": 56,
   "estado_redes": "NO_DISPONIBLE:HTTPError:404 Client Error: Not Found for url: https://www.reddit.com/r/merval/new/.rss?limit=50",
@@ -60,7 +62,7 @@
     {
       "ticker": "BMA",
       "documentos_cnv": 6,
-      "titulares": 3,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -105,61 +107,49 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "LEDE",
-      "documentos_cnv": 1,
-      "titulares": 8,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 78,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "METR",
-      "documentos_cnv": 1,
-      "titulares": 8,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 78,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "MOLI",
-      "documentos_cnv": 1,
-      "titulares": 5,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion"
-      ],
-      "prioridad_lectura": 60,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
       "ticker": "PAMP",
       "documentos_cnv": 0,
-      "titulares": 9,
+      "titulares": 10,
       "social_no_verificado": 0,
       "temas": [
         "financiamiento",
         "resultados_balance"
       ],
-      "prioridad_lectura": 54,
+      "prioridad_lectura": 60,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "LOMA",
       "documentos_cnv": 1,
-      "titulares": 2,
+      "titulares": 4,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
         "recompra",
         "resultados_balance"
       ],
-      "prioridad_lectura": 42,
+      "prioridad_lectura": 54,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "METR",
+      "documentos_cnv": 0,
+      "titulares": 7,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 42,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "CEPU",
+      "documentos_cnv": 0,
+      "titulares": 6,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 36,
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "TECO2",
@@ -173,17 +163,6 @@
       ],
       "prioridad_lectura": 36,
       "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "COME",
-      "documentos_cnv": 1,
-      "titulares": 0,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
       "ticker": "DGCU2",
@@ -204,21 +183,45 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "TGSU2",
-      "documentos_cnv": 1,
-      "titulares": 0,
+      "ticker": "MOLI",
+      "documentos_cnv": 0,
+      "titulares": 5,
       "social_no_verificado": 0,
-      "temas": [],
+      "temas": [
+        "adquisicion"
+      ],
       "prioridad_lectura": 30,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "ALUA",
+      "ticker": "LEDE",
+      "documentos_cnv": 0,
+      "titulares": 4,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 24,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "CRES",
       "documentos_cnv": 0,
       "titulares": 3,
       "social_no_verificado": 0,
       "temas": [
-        "produccion"
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 18,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "MIRG",
+      "documentos_cnv": 0,
+      "titulares": 3,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
       ],
       "prioridad_lectura": 18,
       "estado": "INVESTIGAR_NOTICIAS"
