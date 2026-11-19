@@ -307,9 +307,26 @@ def discover():
 def get_hist(session, ticker):
     url = "https://query1.finance.yahoo.com/v8/finance/chart/" + requests.utils.quote(ticker, safe="-")
     params = {"range":"2y", "interval":"1d", "events":"div,splits"}
-    r = session.get(url, params=params, timeout=22)
-    r.raise_for_status()
-    obj = r.json()
+    # Yahoo's two chart hosts are public but can fail independently (429/5xx,
+    # DNS, timeouts, malformed JSON). Retry the other host before abandoning.
+    # Never synthesize bars or silently use stale cache as fresh market data.
+    errors = []
+    r = None
+    obj = None
+    for host in ("query1.finance.yahoo.com", "query2.finance.yahoo.com"):
+        endpoint = url.replace("query1.finance.yahoo.com", host)
+        try:
+            candidate = session.get(endpoint, params=params, timeout=22)
+            candidate.raise_for_status()
+            payload = candidate.json()
+            if not (payload.get("chart", {}).get("result") or []):
+                raise ValueError("YAHOO_SIN_RESULTADO")
+            r, obj = candidate, payload
+            break
+        except (requests.RequestException, ValueError, TypeError, AttributeError) as exc:
+            errors.append(f"{host}: {type(exc).__name__}: {str(exc)[:90]}")
+    if obj is None:
+        raise ValueError("AMBOS_YAHOO_FALLARON: " + " | ".join(errors))
     entry = (obj.get("chart", {}).get("result") or [None])[0]
     if not entry:
         raise ValueError("SIN_RESULTADO_YAHOO")
