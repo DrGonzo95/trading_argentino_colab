@@ -67,7 +67,7 @@ def main():
     ledger=json.loads(LEDGER.read_text(encoding="utf-8")) if LEDGER.exists() else blank()
     ledger=process(report,ledger)
     LEDGER.parent.mkdir(parents=True,exist_ok=True)
-    LEDGER.write_text(json.dumps(ledger,indent=2,ensure_ascii=False)+"\\n",encoding="utf-8")
+    LEDGER.write_text(json.dumps(ledger,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     print(json.dumps({"report":ledger["processed_report_at"],"pending":len(ledger["pending"]),
                       "positions":len(ledger["positions"]),"closed":len(ledger["closed"]),
                       "cash":ledger["cash"],"status":ledger["status"]}))
