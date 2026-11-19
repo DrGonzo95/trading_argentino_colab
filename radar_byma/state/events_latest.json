@@ -1,13 +1,11 @@
 {
-  "revisado_en": "2026-11-19T00:39:13.650005-03:00",
+  "revisado_en": "2026-11-19T18:39:59.914179-03:00",
   "total_acciones_panel": 88,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
   "completo_balance_cuantitativo": false,
   "anotaciones": [],
-  "errores": {
-    "rss_CELU": "HTTPError:429 Client Error: Too Many Requests for url: https://news.google.com/rss/search?q=%22CELULOSA+ARGENT"
-  },
+  "errores": {},
   "acciones_sin_mapeo": [
     "A3",
     "ALUAD",
@@ -52,10 +50,10 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 184,
-  "hechos_cnv_coincidentes": 24,
+  "total_hechos_cnv": 200,
+  "hechos_cnv_coincidentes": 25,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 56,
+  "noticias_con_nombre_coincidente": 54,
   "estado_redes": "NO_DISPONIBLE:HTTPError:404 Client Error: Not Found for url: https://www.reddit.com/r/merval/new/.rss?limit=50",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
@@ -85,7 +83,7 @@
     },
     {
       "ticker": "CTIO",
-      "documentos_cnv": 4,
+      "documentos_cnv": 5,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -107,15 +105,12 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "PAMP",
+      "ticker": "METR",
       "documentos_cnv": 0,
-      "titulares": 10,
+      "titulares": 11,
       "social_no_verificado": 0,
-      "temas": [
-        "financiamiento",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 60,
+      "temas": [],
+      "prioridad_lectura": 66,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
@@ -132,36 +127,28 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "METR",
+      "ticker": "PAMP",
       "documentos_cnv": 0,
-      "titulares": 7,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 42,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "CEPU",
-      "documentos_cnv": 0,
-      "titulares": 6,
+      "titulares": 9,
       "social_no_verificado": 0,
       "temas": [
+        "financiamiento",
         "resultados_balance"
       ],
-      "prioridad_lectura": 36,
+      "prioridad_lectura": 54,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "TECO2",
       "documentos_cnv": 0,
-      "titulares": 6,
+      "titulares": 7,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
         "financiamiento",
         "resultados_balance"
       ],
-      "prioridad_lectura": 36,
+      "prioridad_lectura": 42,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
@@ -194,17 +181,6 @@
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "LEDE",
-      "documentos_cnv": 0,
-      "titulares": 4,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 24,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
       "ticker": "CRES",
       "documentos_cnv": 0,
       "titulares": 3,
@@ -216,14 +192,34 @@
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "MIRG",
+      "ticker": "LEDE",
       "documentos_cnv": 0,
       "titulares": 3,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 18,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "CEPU",
+      "documentos_cnv": 0,
+      "titulares": 2,
       "social_no_verificado": 0,
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 18,
+      "prioridad_lectura": 12,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "FERR",
+      "documentos_cnv": 0,
+      "titulares": 2,
+      "social_no_verificado": 0,
+      "temas": [
+        "produccion"
+      ],
+      "prioridad_lectura": 12,
       "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
