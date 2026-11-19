@@ -29,7 +29,6 @@ def eligible(a):
         and a.get("bars_ohlcv",0)>=220
         and a.get("currency")=="USD"
         and a.get("independent_match") is True
-        and a.get("mapping_verified") is True
         and a.get("research_state")=="VIGILANCIA_TECNICA_SUBYACENTE_NO_EJECUTABLE"
         and m.get("breakout_at_daily_close") is True
         and m.get("trend_confirmed") is True
