@@ -1,5 +1,10 @@
 name: Paper portfolio - fail closed
 on:
+  push:
+    paths:
+      - 'radar_byma/paper_portfolio.py'
+      - 'radar_byma/test_paper_portfolio.py'
+      - '.github/workflows/paper_portfolio.yml'
   workflow_dispatch:
   workflow_run:
     workflows:
@@ -12,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   paper:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
