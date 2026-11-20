@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-20T00:28:26.669271-03:00",
+  "revisado_en": "2026-11-20T18:16:13.860537-03:00",
   "total_acciones_panel": 88,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -50,17 +50,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 209,
-  "hechos_cnv_coincidentes": 29,
+  "total_hechos_cnv": 255,
+  "hechos_cnv_coincidentes": 30,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 28,
+  "noticias_con_nombre_coincidente": 26,
   "estado_redes": "NO_DISPONIBLE:HTTPError:404 Client Error: Not Found for url: https://www.reddit.com/r/merval/new/.rss?limit=50",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
       "documentos_cnv": 8,
-      "titulares": 7,
+      "titulares": 9,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -105,18 +105,6 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "ALUA",
-      "documentos_cnv": 0,
-      "titulares": 6,
-      "social_no_verificado": 0,
-      "temas": [
-        "produccion",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 36,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
       "ticker": "DGCU2",
       "documentos_cnv": 1,
       "titulares": 0,
@@ -124,6 +112,15 @@
       "temas": [],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "EDN",
+      "documentos_cnv": 0,
+      "titulares": 5,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "GGAL",
@@ -147,25 +144,24 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "CRES",
-      "documentos_cnv": 0,
-      "titulares": 3,
+      "ticker": "RICH",
+      "documentos_cnv": 1,
+      "titulares": 0,
       "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 18,
-      "estado": "INVESTIGAR_NOTICIAS"
+      "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "FERR",
+      "ticker": "ALUA",
       "documentos_cnv": 0,
-      "titulares": 3,
+      "titulares": 4,
       "social_no_verificado": 0,
       "temas": [
-        "produccion"
+        "produccion",
+        "resultados_balance"
       ],
-      "prioridad_lectura": 18,
+      "prioridad_lectura": 24,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
@@ -178,35 +174,11 @@
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "CEPU",
-      "documentos_cnv": 0,
-      "titulares": 2,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 12,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "COME",
-      "documentos_cnv": 0,
-      "titulares": 2,
-      "social_no_verificado": 0,
-      "temas": [
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 12,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "BHIP",
+      "ticker": "AUSO",
       "documentos_cnv": 0,
       "titulares": 1,
       "social_no_verificado": 0,
-      "temas": [
-        "financiamiento"
-      ],
+      "temas": [],
       "prioridad_lectura": 6,
       "estado": "INVESTIGAR_NOTICIAS"
     },
@@ -218,6 +190,24 @@
       "temas": [
         "resultados_balance"
       ],
+      "prioridad_lectura": 6,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "CEPU",
+      "documentos_cnv": 0,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 6,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "CRES",
+      "documentos_cnv": 0,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [],
       "prioridad_lectura": 6,
       "estado": "INVESTIGAR_NOTICIAS"
     }
