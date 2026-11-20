@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-20T00:00:41.941571-03:00",
+  "generated_at": "2026-11-20T18:02:32.798726-03:00",
   "kind": "FORWARD_LEDGER_ONLY",
   "strategy_state": "EXPERIMENTAL_NOT_PROVEN",
   "from_exclusive": "2026-10-30",
-  "last_processed_session": "2026-11-18",
+  "last_processed_session": "2026-11-19",
   "portfolio_tracking": {
     "50000": {
       "closed_or_recorded_orders": 1,
