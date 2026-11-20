@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-19T18:39:59.914179-03:00",
+  "revisado_en": "2026-11-20T00:28:26.669271-03:00",
   "total_acciones_panel": 88,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -50,17 +50,17 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 200,
-  "hechos_cnv_coincidentes": 25,
+  "total_hechos_cnv": 209,
+  "hechos_cnv_coincidentes": 29,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 54,
+  "noticias_con_nombre_coincidente": 28,
   "estado_redes": "NO_DISPONIBLE:HTTPError:404 Client Error: Not Found for url: https://www.reddit.com/r/merval/new/.rss?limit=50",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 6,
-      "titulares": 0,
+      "documentos_cnv": 8,
+      "titulares": 7,
       "social_no_verificado": 0,
       "temas": [
         "adquisicion",
@@ -71,7 +71,7 @@
     },
     {
       "ticker": "BYMA",
-      "documentos_cnv": 8,
+      "documentos_cnv": 10,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -96,59 +96,24 @@
     {
       "ticker": "SUPV",
       "documentos_cnv": 3,
-      "titulares": 4,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 100,
+      "prioridad_lectura": 90,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "METR",
+      "ticker": "ALUA",
       "documentos_cnv": 0,
-      "titulares": 11,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 66,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "LOMA",
-      "documentos_cnv": 1,
-      "titulares": 4,
+      "titulares": 6,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion",
-        "recompra",
+        "produccion",
         "resultados_balance"
       ],
-      "prioridad_lectura": 54,
-      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "PAMP",
-      "documentos_cnv": 0,
-      "titulares": 9,
-      "social_no_verificado": 0,
-      "temas": [
-        "financiamiento",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 54,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "TECO2",
-      "documentos_cnv": 0,
-      "titulares": 7,
-      "social_no_verificado": 0,
-      "temas": [
-        "adquisicion",
-        "financiamiento",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 42,
+      "prioridad_lectura": 36,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
@@ -170,15 +135,16 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "MOLI",
-      "documentos_cnv": 0,
-      "titulares": 5,
+      "ticker": "LOMA",
+      "documentos_cnv": 1,
+      "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
-        "adquisicion"
+        "adquisicion",
+        "recompra"
       ],
       "prioridad_lectura": 30,
-      "estado": "INVESTIGAR_NOTICIAS"
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
       "ticker": "CRES",
@@ -192,7 +158,18 @@
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "LEDE",
+      "ticker": "FERR",
+      "documentos_cnv": 0,
+      "titulares": 3,
+      "social_no_verificado": 0,
+      "temas": [
+        "produccion"
+      ],
+      "prioridad_lectura": 18,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "TRAN",
       "documentos_cnv": 0,
       "titulares": 3,
       "social_no_verificado": 0,
@@ -212,14 +189,36 @@
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "FERR",
+      "ticker": "COME",
       "documentos_cnv": 0,
       "titulares": 2,
       "social_no_verificado": 0,
       "temas": [
-        "produccion"
+        "resultados_balance"
       ],
       "prioridad_lectura": 12,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "BHIP",
+      "documentos_cnv": 0,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "financiamiento"
+      ],
+      "prioridad_lectura": 6,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
+      "ticker": "BOLT",
+      "documentos_cnv": 0,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "resultados_balance"
+      ],
+      "prioridad_lectura": 6,
       "estado": "INVESTIGAR_NOTICIAS"
     }
   ],
