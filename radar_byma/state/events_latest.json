@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-20T18:16:13.860537-03:00",
+  "revisado_en": "2026-11-20T23:29:22.684160-03:00",
   "total_acciones_panel": 88,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -50,16 +50,16 @@
     "VALOD",
     "YPFDD"
   ],
-  "total_hechos_cnv": 255,
-  "hechos_cnv_coincidentes": 30,
+  "total_hechos_cnv": 262,
+  "hechos_cnv_coincidentes": 36,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 26,
+  "noticias_con_nombre_coincidente": 31,
   "estado_redes": "NO_DISPONIBLE:HTTPError:404 Client Error: Not Found for url: https://www.reddit.com/r/merval/new/.rss?limit=50",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
     {
       "ticker": "BMA",
-      "documentos_cnv": 8,
+      "documentos_cnv": 10,
       "titulares": 9,
       "social_no_verificado": 0,
       "temas": [
@@ -71,7 +71,7 @@
     },
     {
       "ticker": "BYMA",
-      "documentos_cnv": 10,
+      "documentos_cnv": 12,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
@@ -105,6 +105,27 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
+      "ticker": "LOMA",
+      "documentos_cnv": 2,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion",
+        "recompra"
+      ],
+      "prioridad_lectura": 60,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "EDN",
+      "documentos_cnv": 0,
+      "titulares": 9,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 54,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
       "ticker": "DGCU2",
       "documentos_cnv": 1,
       "titulares": 0,
@@ -112,15 +133,6 @@
       "temas": [],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
-    },
-    {
-      "ticker": "EDN",
-      "documentos_cnv": 0,
-      "titulares": 5,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 30,
-      "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "GGAL",
@@ -132,14 +144,11 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "LOMA",
+      "ticker": "MOLI",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
-      "temas": [
-        "adquisicion",
-        "recompra"
-      ],
+      "temas": [],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
@@ -183,6 +192,15 @@
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
+      "ticker": "BHIP",
+      "documentos_cnv": 0,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [],
+      "prioridad_lectura": 6,
+      "estado": "INVESTIGAR_NOTICIAS"
+    },
+    {
       "ticker": "BOLT",
       "documentos_cnv": 0,
       "titulares": 1,
@@ -190,24 +208,6 @@
       "temas": [
         "resultados_balance"
       ],
-      "prioridad_lectura": 6,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "CEPU",
-      "documentos_cnv": 0,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 6,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "CRES",
-      "documentos_cnv": 0,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [],
       "prioridad_lectura": 6,
       "estado": "INVESTIGAR_NOTICIAS"
     }
