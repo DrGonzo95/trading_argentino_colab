@@ -1,5 +1,5 @@
 {
-  "revisado_en": "2026-11-23T22:00:17.562258-03:00",
+  "revisado_en": "2026-11-24T20:05:06.428281-03:00",
   "total_acciones_panel": 88,
   "acciones_mapeadas_a_emisora": 46,
   "fuente_cnv": "https://www.cnv.gov.ar/SitioWeb/HechosRelevantes",
@@ -51,9 +51,9 @@
     "YPFDD"
   ],
   "total_hechos_cnv": 200,
-  "hechos_cnv_coincidentes": 21,
+  "hechos_cnv_coincidentes": 22,
   "consultas_noticias": 32,
-  "noticias_con_nombre_coincidente": 52,
+  "noticias_con_nombre_coincidente": 41,
   "estado_redes": "NO_DISPONIBLE:HTTPError:404 Client Error: Not Found for url: https://www.reddit.com/r/merval/new/.rss?limit=50",
   "publicaciones_sociales_mencionando_ticker": 0,
   "top_prioridad_revision": [
@@ -83,60 +83,58 @@
     },
     {
       "ticker": "CTIO",
-      "documentos_cnv": 5,
+      "documentos_cnv": 3,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [
-        "produccion",
         "resultados_balance"
       ],
-      "prioridad_lectura": 100,
+      "prioridad_lectura": 90,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "METR",
-      "documentos_cnv": 0,
-      "titulares": 13,
+      "ticker": "BBAR",
+      "documentos_cnv": 2,
+      "titulares": 4,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 78,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "LOMA",
-      "documentos_cnv": 1,
-      "titulares": 5,
-      "social_no_verificado": 0,
-      "temas": [
-        "recompra",
-        "resultados_balance"
-      ],
-      "prioridad_lectura": 60,
+      "prioridad_lectura": 84,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "EDN",
+      "ticker": "PAMP",
       "documentos_cnv": 0,
-      "titulares": 9,
+      "titulares": 8,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 54,
+      "prioridad_lectura": 48,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
       "ticker": "ALUA",
       "documentos_cnv": 0,
-      "titulares": 5,
+      "titulares": 6,
       "social_no_verificado": 0,
       "temas": [
         "produccion",
         "resultados_balance"
       ],
-      "prioridad_lectura": 30,
+      "prioridad_lectura": 36,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "DGCU2",
+      "ticker": "MOLI",
+      "documentos_cnv": 1,
+      "titulares": 1,
+      "social_no_verificado": 0,
+      "temas": [
+        "adquisicion"
+      ],
+      "prioridad_lectura": 36,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "EDN",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
@@ -145,11 +143,22 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "MOLI",
+      "ticker": "GGAL",
       "documentos_cnv": 1,
       "titulares": 0,
       "social_no_verificado": 0,
       "temas": [],
+      "prioridad_lectura": 30,
+      "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
+    },
+    {
+      "ticker": "LOMA",
+      "documentos_cnv": 1,
+      "titulares": 0,
+      "social_no_verificado": 0,
+      "temas": [
+        "recompra"
+      ],
       "prioridad_lectura": 30,
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
@@ -163,25 +172,27 @@
       "estado": "REVISAR_DOCUMENTOS_PUBLICADOS"
     },
     {
-      "ticker": "LEDE",
+      "ticker": "MIRG",
       "documentos_cnv": 0,
-      "titulares": 4,
+      "titulares": 3,
       "social_no_verificado": 0,
       "temas": [],
-      "prioridad_lectura": 24,
+      "prioridad_lectura": 18,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "BBAR",
+      "ticker": "SUPV",
       "documentos_cnv": 0,
       "titulares": 2,
       "social_no_verificado": 0,
-      "temas": [],
+      "temas": [
+        "produccion"
+      ],
       "prioridad_lectura": 12,
       "estado": "INVESTIGAR_NOTICIAS"
     },
     {
-      "ticker": "CRES",
+      "ticker": "TRAN",
       "documentos_cnv": 0,
       "titulares": 2,
       "social_no_verificado": 0,
@@ -191,15 +202,6 @@
     },
     {
       "ticker": "AUSO",
-      "documentos_cnv": 0,
-      "titulares": 1,
-      "social_no_verificado": 0,
-      "temas": [],
-      "prioridad_lectura": 6,
-      "estado": "INVESTIGAR_NOTICIAS"
-    },
-    {
-      "ticker": "BHIP",
       "documentos_cnv": 0,
       "titulares": 1,
       "social_no_verificado": 0,
