@@ -2,7 +2,7 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 23/11/2026 21:47 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 24/11/2026 02:55 (Argentina); hora real de negociación desconocida.
 
 **Universo:** 1884 especies, incluidos 88 acciones y 974 CEDEARs.
 
@@ -19,7 +19,7 @@
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
 | **BYMA** | $200,00 | -4.19% | 40 | [OTRA INFORMACIÓN DEL ADMINSITRADO - HECHO RELEVANTE - BYMA INFORMA ADQUISICION DE ACCIONES PROP](https://aif2.cnv.gov.ar/Presentations/publicview/058D4EF3-2644-4CC7-AB64-A3753C03279A) | No hay entrada confirmada |
-| **METR** | $1.865,00 | -5.04% | 29 | [Lanús decretó 72 horas de duelo por los operarios de Metrogas fallecidos en la explosión - Cade](https://news.google.com/rss/articles/CBMi1wFBVV95cUxQbW5hRGFvS29hZEttUnhaRVdzdWhBSndRLVFUU3lMZXd5Sjk2UTZ6THc0VmhxZ3h5TW03eEtmTWNZSVhXeFdJb1Fja0p3bFQzNERwYmJPaXB3WHdDY1YtQkNYdkNQRng3SXdWcE42Nm9LbG5yMHc4dGM5YmNsWG1LbU5vYklvWGJNNEdQV1JHVFdtTDJDU242S0pPa3RwakdRNE5jQ1VCa1hqWXdHbTVaQVZ0RVlyXzhQd25KSjVQZUVaUEJOT2RiTXV5dzVpQVNPRGoyTkNvY9IB1wFBVV95cUxQbW5hRGFvS29hZEttUnhaRVdzdWhBSndRLVFUU3lMZXd5Sjk2UTZ6THc0VmhxZ3h5TW03eEtmTWNZSVhXeFdJb1Fja0p3bFQzNERwYmJPaXB3WHdDY1YtQkNYdkNQRng3SXdWcE42Nm9LbG5yMHc4dGM5YmNsWG1LbU5vYklvWGJNNEdQV1JHVFdtTDJDU242S0pPa3RwakdRNE5jQ1VCa1hqWXdHbTVaQVZ0RVlyXzhQd25KSjVQZUVaUEJOT2RiTXV5dzVpQVNPRGoyTkNvYw?oc=5) | No hay entrada confirmada |
+| **METR** | $1.865,00 | -5.04% | 29 | [Metrogas: la explosión en Remedios de Escalada golpea a Javier Milei, Horacio Marín y José Luis](https://news.google.com/rss/articles/CBMi2AFBVV95cUxQSk8yOWhzb2ExUUVkel9UV0VZaFllSFA1dVBpMmxVTUdkejZ2RE1WVTJWWGhqQ3JET0FjaERDNUJCTzUtUEdyYkNGQXlxR2hGWGF3b0hzUEdXX1NMQjduMTZMUjZZNENCUzRsSV9WcjRRREdBb2dfQXZPbV9mSE9jUFg4TXI0Z1JsYjJCUlA0SzE3eUJJYWlOSDBQckFqVS1fUUJsbWxKNU5Hd3ctTjVVUzN2cDFWMzgzcHNDZ0J0aF9LcGFzcjhKdHMwVUFCQ3UyR0pCZ0I4SEs?oc=5) | No hay entrada confirmada |
 
 La coincidencia entre una caída y una noticia no demuestra relación causal ni implica que habrá rebote.
 
