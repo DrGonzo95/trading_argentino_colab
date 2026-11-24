@@ -2,9 +2,9 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 24/11/2026 02:55 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 24/11/2026 19:59 (Argentina); hora real de negociación desconocida.
 
-**Universo:** 1884 especies, incluidos 88 acciones y 974 CEDEARs.
+**Universo:** 1885 especies, incluidos 88 acciones y 973 CEDEARs.
 
 **Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 2. **Indicadores técnicos validados:** 0.
 
@@ -18,8 +18,8 @@
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **BYMA** | $200,00 | -4.19% | 40 | [OTRA INFORMACIÓN DEL ADMINSITRADO - HECHO RELEVANTE - BYMA INFORMA ADQUISICION DE ACCIONES PROP](https://aif2.cnv.gov.ar/Presentations/publicview/058D4EF3-2644-4CC7-AB64-A3753C03279A) | No hay entrada confirmada |
-| **METR** | $1.865,00 | -5.04% | 29 | [Metrogas: la explosión en Remedios de Escalada golpea a Javier Milei, Horacio Marín y José Luis](https://news.google.com/rss/articles/CBMi2AFBVV95cUxQSk8yOWhzb2ExUUVkel9UV0VZaFllSFA1dVBpMmxVTUdkejZ2RE1WVTJWWGhqQ3JET0FjaERDNUJCTzUtUEdyYkNGQXlxR2hGWGF3b0hzUEdXX1NMQjduMTZMUjZZNENCUzRsSV9WcjRRREdBb2dfQXZPbV9mSE9jUFg4TXI0Z1JsYjJCUlA0SzE3eUJJYWlOSDBQckFqVS1fUUJsbWxKNU5Hd3ctTjVVUzN2cDFWMzgzcHNDZ0J0aF9LcGFzcjhKdHMwVUFCQ3UyR0pCZ0I4SEs?oc=5) | No hay entrada confirmada |
+| **BYMA** | $190,00 | -5.11% | 40 | [OTRA INFORMACIÓN DEL ADMINSITRADO - HECHO RELEVANTE - BYMA INFORMA ADQUISICION DE ACCIONES PROP](https://aif2.cnv.gov.ar/Presentations/publicview/058D4EF3-2644-4CC7-AB64-A3753C03279A) | No hay entrada confirmada |
+| **METR** | $1.748,00 | -5.86% | 29 | [Metrogas: la explosión en Remedios de Escalada golpea a Javier Milei, Horacio Marín y José Luis](https://news.google.com/rss/articles/CBMi2AFBVV95cUxQSk8yOWhzb2ExUUVkel9UV0VZaFllSFA1dVBpMmxVTUdkejZ2RE1WVTJWWGhqQ3JET0FjaERDNUJCTzUtUEdyYkNGQXlxR2hGWGF3b0hzUEdXX1NMQjduMTZMUjZZNENCUzRsSV9WcjRRREdBb2dfQXZPbV9mSE9jUFg4TXI0Z1JsYjJCUlA0SzE3eUJJYWlOSDBQckFqVS1fUUJsbWxKNU5Hd3ctTjVVUzN2cDFWMzgzcHNDZ0J0aF9LcGFzcjhKdHMwVUFCQ3UyR0pCZ0I4SEs?oc=5) | No hay entrada confirmada |
 
 La coincidencia entre una caída y una noticia no demuestra relación causal ni implica que habrá rebote.
 
