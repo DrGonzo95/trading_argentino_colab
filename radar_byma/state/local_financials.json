@@ -3,12 +3,12 @@
   "records": {
     "A3": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "AGRO": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "ALUA": {
@@ -18,47 +18,47 @@
     },
     "AUSO": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "BBAR": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "BHIP": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "BMA": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "BOLT": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "BPAT": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "BYMA": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "CADO": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "CAPX": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "CARC": {
@@ -318,27 +318,27 @@
     },
     "RICH": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-17T18:45:29.621463-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "RIGO": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "ROSE": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "SAMI": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "SEMI": {
       "status": "NOT_VERIFIED",
-      "checked_at": "2026-11-18T01:18:01.066633-03:00",
+      "checked_at": "2026-11-25T19:29:55.992564-03:00",
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     },
     "INAG": {
@@ -347,7 +347,7 @@
       "reason": "ValueError: Missing required annual income/balance/cashflows"
     }
   },
-  "last_run": "2026-11-25T02:25:43.317936-03:00",
+  "last_run": "2026-11-25T19:29:55.992564-03:00",
   "source": "stockanalysis.com/quote/bcba (third-party summary; ARS millions)",
   "all_listed": 69
 }
