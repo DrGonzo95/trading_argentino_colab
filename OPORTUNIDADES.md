@@ -2,11 +2,11 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 26/11/2026 01:05 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 26/11/2026 19:16 (Argentina); hora real de negociación desconocida.
 
-**Universo:** 1886 especies, incluidos 88 acciones y 974 CEDEARs.
+**Universo:** 1885 especies, incluidos 88 acciones y 972 CEDEARs.
 
-**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 1. **Indicadores técnicos validados:** 0.
+**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 0. **Indicadores técnicos validados:** 2.
 
 ## Entradas ficticias con niveles (no ejecutadas)
 
@@ -18,7 +18,7 @@
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| **FERR** | $14,20 | -3.40% | 19 | [Ferrum Health gobernará la IA aplicada a imágenes médicas en los 16 hospitales de AHN - Unite.A](https://news.google.com/rss/articles/CBMijAFBVV95cUxPeVdNYWxOa2twbHpiZGl3bTF5NVJMd2RkUFlwVUhKdV9nYU93YzhsSWRtemh1MTZjdW5adUNIM3dMX05tS0gtWTZWaVJncm1pT01pOUNnZzhMSXpDUGlfdmpPeXMtSmxfZGZGSjZUMkkwaHBaaUg1a2kyMjlsRFdJWGppYkdEdXh4QjlpRQ?oc=5) | No hay entrada confirmada |
+| — | — | — | — | Sin señales que cumplan la clasificación | — |
 
 La coincidencia entre una caída y una noticia no demuestra relación causal ni implica que habrá rebote.
 
