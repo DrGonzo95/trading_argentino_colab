@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T01:08:01.367116-03:00",
+  "generated_at": "2026-11-27T18:55:45.988682-03:00",
   "method": "RSI14 crosses above 35, closing price above EMA200. Signal at close. Next session OPEN, ATR14 stop 1.2x / target 3.5x, max hold 14 sessions.",
   "basis": "Unadjusted public daily candles from locally cached IOL BCBA; not independently matched to official settlement, adjustments, bid/ask or corporate actions.",
   "version": "frozen-rsi35-v1",
@@ -11,8 +11,8 @@
     "capital_exposure_not_modeled": true,
     "spread_not_observed": true
   },
-  "history_sources": 27,
-  "valid_symbols": 21,
+  "history_sources": 28,
+  "valid_symbols": 22,
   "symbols": {
     "ADBE": 500,
     "AGRO": 500,
@@ -28,6 +28,7 @@
     "PBR": 500,
     "PEP": 500,
     "PFE": 500,
+    "PLTR": 500,
     "SAMI": 500,
     "TGSU2": 500,
     "TRAN": 500,
@@ -55,13 +56,13 @@
     "hypothetical_sequential_return_pct": -13.76
   },
   "test": {
-    "trades": 10,
-    "win_rate_pct": 20.0,
-    "mean_net_pct": -6.408,
+    "trades": 12,
+    "win_rate_pct": 16.67,
+    "mean_net_pct": -6.749,
     "median_net_pct": -8.243,
-    "profit_factor": 0.047,
-    "max_drawdown_pct": -48.93,
-    "hypothetical_sequential_return_pct": -48.93
+    "profit_factor": 0.038,
+    "max_drawdown_pct": -57.2,
+    "hypothetical_sequential_return_pct": -57.2
   },
   "sample_ok": false,
   "status": "EXPLORATORY_NOT_PROVEN",
@@ -83,6 +84,16 @@
       "entry": 493.493,
       "exit": 456.5492,
       "return_pct": -8.8007,
+      "exit_reason": "stop"
+    },
+    {
+      "symbol": "PLTR",
+      "signal_date": "2026-02-03",
+      "entry_date": "2026-02-04",
+      "exit_date": "2026-02-04",
+      "entry": 78078.0,
+      "exit": 73151.8208,
+      "return_pct": -7.64054,
       "exit_reason": "stop"
     },
     {
@@ -174,6 +185,16 @@
       "exit": 11904.7391,
       "return_pct": -7.68611,
       "exit_reason": "stop"
+    },
+    {
+      "symbol": "PLTR",
+      "signal_date": "2026-11-06",
+      "entry_date": "2026-11-11",
+      "exit_date": "2026-11-20",
+      "entry": 94119.025,
+      "exit": 86625.0,
+      "return_pct": -9.27003,
+      "exit_reason": "gap_stop"
     }
   ]
 }

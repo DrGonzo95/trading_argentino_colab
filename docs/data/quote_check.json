@@ -1,86 +1,13 @@
 {
-  "generated_at": "2026-11-27T01:07:59.469886-03:00",
+  "generated_at": "2026-11-27T18:55:43.796221-03:00",
   "source_name": "Gio Bursatil (independiente de IOL)",
   "source_url": "https://giobursatil.com.ar/cotizaciones/",
   "method": "Comparación de cierre por símbolo y fecha de mercado, NO precio ejecutable",
-  "state": "PARTIAL_INDEPENDENT_EOD",
-  "asof": "2026-11-26",
-  "checked": 8,
-  "matched": 6,
-  "discrepancies": 2,
-  "prices": {
-    "ALUA": {
-      "historical_close": 842.5,
-      "independent_close": 841.0,
-      "market_date": "2026-11-26",
-      "difference_pct": 0.178,
-      "status": "MATCH",
-      "historical_provider": "IOL public historical daily BCBA (no corporate-action adjustments)",
-      "independent_provider": "Gio Bursatil"
-    },
-    "BYMA": {
-      "historical_close": 195.0,
-      "independent_close": 195.75,
-      "market_date": "2026-11-26",
-      "difference_pct": 0.3846,
-      "status": "MATCH",
-      "historical_provider": "IOL public historical daily BCBA (no corporate-action adjustments)",
-      "independent_provider": "Gio Bursatil"
-    },
-    "CRES": {
-      "historical_close": 1553.0,
-      "independent_close": 1520.0,
-      "market_date": "2026-11-26",
-      "difference_pct": 2.1249,
-      "status": "DIVERGENCE",
-      "historical_provider": "IOL public historical daily BCBA (no corporate-action adjustments)",
-      "independent_provider": "Gio Bursatil"
-    },
-    "EDN": {
-      "historical_close": 1113.0,
-      "independent_close": 1119.0,
-      "market_date": "2026-11-26",
-      "difference_pct": 0.5391,
-      "status": "DIVERGENCE",
-      "historical_provider": "IOL public historical daily BCBA (no corporate-action adjustments)",
-      "independent_provider": "Gio Bursatil"
-    },
-    "GGAL": {
-      "historical_close": 4910.0,
-      "independent_close": 4890.0,
-      "market_date": "2026-11-26",
-      "difference_pct": 0.4073,
-      "status": "MATCH",
-      "historical_provider": "IOL public historical daily BCBA (no corporate-action adjustments)",
-      "independent_provider": "Gio Bursatil"
-    },
-    "LOMA": {
-      "historical_close": 3167.5,
-      "independent_close": 3162.5,
-      "market_date": "2026-11-26",
-      "difference_pct": 0.1579,
-      "status": "MATCH",
-      "historical_provider": "IOL public historical daily BCBA (no corporate-action adjustments)",
-      "independent_provider": "Gio Bursatil"
-    },
-    "PAMP": {
-      "historical_close": 4585.0,
-      "independent_close": 4600.0,
-      "market_date": "2026-11-26",
-      "difference_pct": 0.3272,
-      "status": "MATCH",
-      "historical_provider": "IOL public historical daily BCBA (no corporate-action adjustments)",
-      "independent_provider": "Gio Bursatil"
-    },
-    "TXAR": {
-      "historical_close": 706.0,
-      "independent_close": 709.0,
-      "market_date": "2026-11-26",
-      "difference_pct": 0.4249,
-      "status": "MATCH",
-      "historical_provider": "IOL public historical daily BCBA (no corporate-action adjustments)",
-      "independent_provider": "Gio Bursatil"
-    }
-  },
+  "state": "NO_SAME_DATE_OVERLAP",
+  "asof": "2026-11-27",
+  "checked": 0,
+  "matched": 0,
+  "discrepancies": 0,
+  "prices": {},
   "error": null
 }

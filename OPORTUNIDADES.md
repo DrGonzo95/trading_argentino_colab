@@ -2,11 +2,11 @@
 
 > **Datos públicos DEMORADOS, nunca en vivo.** Los precios no son ofertas ejecutables ni se garantiza rentabilidad.
 
-**Última descarga:** 27/11/2026 01:07 (Argentina); hora real de negociación desconocida.
+**Última descarga:** 27/11/2026 18:55 (Argentina); hora real de negociación desconocida.
 
-**Universo:** 1885 especies, incluidos 88 acciones y 972 CEDEARs.
+**Universo:** 1885 especies, incluidos 88 acciones y 971 CEDEARs.
 
-**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 0. **Indicadores técnicos validados:** 2.
+**Entradas ficticias teóricas:** 0. **Caídas con novedades para investigar:** 1. **Indicadores técnicos validados:** 3.
 
 ## Entradas ficticias con niveles (no ejecutadas)
 
@@ -18,7 +18,7 @@
 
 | Símbolo | Precio público* | Var. panel | Prioridad | Fuente/noticia | Entrada / Stop / Objetivo |
 |---|---:|---:|---:|---|---|
-| — | — | — | — | Sin señales que cumplan la clasificación | — |
+| **LOMA** | $3.070,00 | -3.07% | 37 | [La pericia sobre el incendio en el jardín de Loma Negra confirmó que el origen fue un desperfec](https://news.google.com/rss/articles/CBMi8wFBVV95cUxPZjluZ3Q2ZnU1b3BmZXNrMmFVeElFTEh5M1hXTHpHbzdBaGVYSFNpbzhNOW1lSlR5QlpaeGR4dzVlQzBLbXdVenBMTTNHRExvZUtEcHhSU3pKOFFJQ2NwengwekhyQnVHTTM0dW9pYUV0ZmxaajlmZm9GbkhRODI0WFBNVFJMbVVsU25ZX2pDX0FlTXpjR2lLWEJmQU5SMmdOOEZpNDhoWXBsMWdLY2FOVy1vb2FzMS0zZUlfR1p6UkdGbzh1NTM0TVlHSHBqU2dOclNHWXhxZ0hoWkVCVy1pYThyYVVWTEU1VTJibGNUUjF0U3c?oc=5) | No hay entrada confirmada |
 
 La coincidencia entre una caída y una noticia no demuestra relación causal ni implica que habrá rebote.
 
